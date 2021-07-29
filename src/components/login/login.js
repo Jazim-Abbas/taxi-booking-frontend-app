@@ -1,6 +1,8 @@
+import { Field } from "formik";
 import { Link } from "react-router-dom";
 
 import "./login.css";
+import { AppForm } from "../app-form";
 
 function LoginScreen() {
   const handleLogin = () => {
@@ -14,23 +16,21 @@ function LoginScreen() {
           <Link to="/Home">PICK UP</Link>
           <div className="login_form">
             <h3>Log In</h3>
-            <form>
+            <AppForm initialValues={initialValues} handleSubmit={handleLogin}>
               <div className="login_fields">
                 <div className="input_field">
                   <label>Email address</label>
-                  <input type="email" placeholder="" />
+                  <Field type="email" name="email" />
                 </div>
                 <div className="input_field">
                   <label>Password</label>
-                  <input type="password" placeholder="" />
+                  <Field type="password" name="password" />
                 </div>
                 <div className="submit_btn">
-                  <button type="button" onClick={handleLogin}>
-                    Login
-                  </button>
+                  <button type="submit">Login</button>
                 </div>
               </div>
-            </form>
+            </AppForm>
           </div>
         </div>
       </section>
@@ -39,3 +39,8 @@ function LoginScreen() {
 }
 
 export default LoginScreen;
+
+const initialValues = {
+  email: "",
+  password: "",
+};
