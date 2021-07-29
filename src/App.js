@@ -36,7 +36,7 @@ function App() {
    <Route path='/taxi_booking_page_three' component={taxi_booking_page_three} />
    <Route path='/taxi_booking_conformation' component={taxi_booking_conformation} />
    <Route path='/login' component={login} />
-   <Route path='/SignUp' component={SignUp} />
+   <Route path='/register' component={SignUp} />
    <Home/>  
    </Switch>
    
