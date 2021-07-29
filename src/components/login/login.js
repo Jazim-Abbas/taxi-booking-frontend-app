@@ -1,8 +1,9 @@
-import { Field } from "formik";
+import { Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 
 import "./login.css";
-import { AppForm } from "../app-form";
+import { loginSchema } from "../../utils/validations";
+import { AppForm, FieldError } from "../app-form";
 
 function LoginScreen() {
   const handleLogin = () => {
@@ -16,15 +17,21 @@ function LoginScreen() {
           <Link to="/Home">PICK UP</Link>
           <div className="login_form">
             <h3>Log In</h3>
-            <AppForm initialValues={initialValues} handleSubmit={handleLogin}>
+            <AppForm
+              initialValues={initialValues}
+              validationSchema={loginSchema}
+              handleSubmit={handleLogin}
+            >
               <div className="login_fields">
                 <div className="input_field">
                   <label>Email address</label>
                   <Field type="email" name="email" />
+                  <FieldError field="email" />
                 </div>
                 <div className="input_field">
                   <label>Password</label>
                   <Field type="password" name="password" />
+                  <FieldError field="password" />
                 </div>
                 <div className="submit_btn">
                   <button type="submit">Login</button>
