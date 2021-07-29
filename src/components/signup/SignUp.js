@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { Field } from "formik";
 
 import "./SignUp.css";
+import { AppForm } from "../app-form";
 
 export default function SignUpScreen() {
   return (
@@ -20,28 +22,28 @@ export default function SignUpScreen() {
 
 function SignUpForm() {
   return (
-    <form>
+    <AppForm>
       <div className="signup_fields">
         <div className="input_field">
           <label>User Name</label>
-          <input type="text" placeholder="" />
+          <Field type="text" name="username" />
         </div>
         <div className="input_field">
           <label>Email address</label>
-          <input type="email" placeholder="" />
+          <Field type="email" name="email" />
         </div>
         <div className="input_field">
           <label>Password</label>
-          <input type="password" placeholder="" />
+          <Field type="password" name="password" />
         </div>
         <div className="input_field">
           <label>Confirm password</label>
-          <input type="password" placeholder="" />
+          <Field type="password" name="confirmPassword" />
         </div>
         <div className="submit_btn">
           <button type="submit">Sign Up</button>
         </div>
       </div>
-    </form>
+    </AppForm>
   );
 }
