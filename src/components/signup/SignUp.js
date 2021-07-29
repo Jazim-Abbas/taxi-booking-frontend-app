@@ -2,9 +2,14 @@ import { Link } from "react-router-dom";
 import { Field } from "formik";
 
 import "./SignUp.css";
-import { AppForm } from "../app-form";
+import { AppForm, FieldError } from "../app-form";
+import { registerSchema } from "../../utils/validations";
 
 export default function SignUpScreen() {
+  const handleRegister = ({ formValues }) => {
+    console.log("handle registration", formValues);
+  };
+
   return (
     <div>
       <section className="signup_section">
@@ -12,7 +17,7 @@ export default function SignUpScreen() {
           <Link to="/Home">Pick up</Link>
           <div className="signup_form">
             <h3>Sign up</h3>
-            <SignUpForm />
+            <SignUpForm onSubmit={handleRegister} />
           </div>
         </div>
       </section>
@@ -20,25 +25,33 @@ export default function SignUpScreen() {
   );
 }
 
-function SignUpForm() {
+function SignUpForm({ onSubmit }) {
   return (
-    <AppForm>
+    <AppForm
+      initialValues={initialValues}
+      validationSchema={registerSchema}
+      handleSubmit={onSubmit}
+    >
       <div className="signup_fields">
         <div className="input_field">
           <label>User Name</label>
           <Field type="text" name="username" />
+          <FieldError field="username" />
         </div>
         <div className="input_field">
           <label>Email address</label>
           <Field type="email" name="email" />
+          <FieldError field="email" />
         </div>
         <div className="input_field">
           <label>Password</label>
           <Field type="password" name="password" />
+          <FieldError field="password" />
         </div>
         <div className="input_field">
           <label>Confirm password</label>
           <Field type="password" name="confirmPassword" />
+          <FieldError field="confirmPassword" />
         </div>
         <div className="submit_btn">
           <button type="submit">Sign Up</button>
@@ -47,3 +60,10 @@ function SignUpForm() {
     </AppForm>
   );
 }
+
+const initialValues = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
