@@ -1,0 +1,27 @@
+.ferquent_questions_section{
+    float: left;
+    width: 100%;
+    padding: 0px 10px;
+margin-bottom: 50px;
+}
+.ferquent_questions_section h4{
+    float: left;
+    width: 100%;
+ margin-bottom: 15px;
+ font-size: 1.9rem;
+font-weight: 500;
+color: #45423c;
+}
+.ferquent_questions ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.ferquent_questions ul li{
+    list-style: none;
+    padding: 15px 0px;
+}
+.ferquent_questions ul li a{
+color: #1f708f;
+text-decoration: none;
+}

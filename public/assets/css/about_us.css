@@ -1,0 +1,21 @@
+.why_book_us{
+padding-top:50px ;
+}
+.why_book_us p{
+color: #767e88;
+font-size: 20px;
+font-weight: normal;
+font-style: normal;
+line-height: 1.6em;
+text-align: justify;
+width: 100%;
+padding: 0px 15px;
+margin-bottom: 60px;
+}
+.books_us_detali{
+    grid-template-columns: auto !important;
+    width: 100%;
+}
+.book_us_specs_section_two span p {
+    text-align: center;
+}

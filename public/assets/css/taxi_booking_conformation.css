@@ -1,0 +1,43 @@
+.conformation_term_section{
+background-color: #fff;
+border:1px solid gray;
+padding: 15px 10px;
+border-radius: 4px;
+}
+.conformation_term_section h2{
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.conformation_term_field{
+display: flex;
+align-items: center;
+}
+
+.conformation_term_field label{
+    padding: 0px 10px;
+}
+.conformation_term_field label a{
+    text-decoration: none;
+
+}
+
+.taxi_booking_checkout{
+    display: flex;
+    justify-content: center;
+}
+.taxi_booking_checkout a{
+    background-color: #147b22;
+    text-decoration: none;
+    color: #fff;
+    font-size: 19px;
+    padding: 12px 30px;
+    border-radius: 50px;
+    transition: 0.3s ease-in-out;
+    float: left;
+ }
+ .taxi_booking_checkout a:hover{
+   background-color: #fff;
+   color: #147b22;
+    border:2px solid #147b22;
+ }
