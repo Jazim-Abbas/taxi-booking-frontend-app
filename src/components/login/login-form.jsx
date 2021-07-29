@@ -2,8 +2,9 @@ import { Field } from "formik";
 
 import { AppForm, FieldError } from "../app-form";
 import { loginSchema } from "../../utils/validations";
+import AppLoading from "../common/loading";
 
-export default function LoginForm({ onSubmit }) {
+export default function LoginForm({ onSubmit, isLoading }) {
   return (
     <AppForm
       initialValues={initialValues}
@@ -22,7 +23,8 @@ export default function LoginForm({ onSubmit }) {
           <FieldError field="password" />
         </div>
         <div className="submit_btn">
-          <button type="submit">Login</button>
+          {isLoading && <AppLoading />}
+          {!isLoading && <button type="submit">Login</button>}
         </div>
       </div>
     </AppForm>

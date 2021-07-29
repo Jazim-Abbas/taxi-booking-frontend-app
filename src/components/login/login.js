@@ -15,7 +15,7 @@ function LoginScreen() {
           <Link to="/Home">PICK UP</Link>
           <div className="login_form">
             <h3>Log In</h3>
-            <LoginForm onSubmit={handleLogin} />
+            <LoginForm onSubmit={handleLogin} isLoading={true} />
           </div>
         </div>
       </section>
