@@ -22,6 +22,12 @@ const booking = createSlice({
   initialState,
   reducers: {
     orderTaxi: (state, { payload }) => {
+      if (payload.returnDate && payload.returnTime) {
+        payload.isOneWay = false;
+      } else {
+        payload.isOneWay = true;
+      }
+
       return { ...state, ...payload };
     },
   },
