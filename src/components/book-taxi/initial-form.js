@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { orderTaxi } from "../../store/booking";
 
-export default function BookTaxiInitialForm() {
+export default function BookTaxi() {
   const bookingState = useSelector((state) => state.booking);
   const dispatch = useDispatch();
-  console.log(bookingState);
+  console.log("inside order taxi component", bookingState);
 
   const handleOrderTaxi = () => {
     console.log("order taxi");
     dispatch(orderTaxi());
   };
 
+  return <BookTaxiForm onSubmit={handleOrderTaxi} />;
+}
+
+function BookTaxiForm({ onSubmit }) {
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
@@ -142,7 +146,7 @@ export default function BookTaxiInitialForm() {
         </div>
         <div className="booking_fields">
           {/* <Link to="/taxi_booking_page_one">Order Taxi Now</Link> */}
-          <button type="button" onClick={handleOrderTaxi}>
+          <button type="button" onClick={onSubmit}>
             Order Taxi Now
           </button>
         </div>
