@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { orderTaxi } from "../../store/booking";
 
 export default function BookTaxi() {
-  const bookingState = useSelector((state) => state.booking);
+  const history = useHistory();
   const dispatch = useDispatch();
+  const bookingState = useSelector((state) => state.booking);
   console.log("inside order taxi component", bookingState);
 
   const handleOrderTaxi = () => {
     console.log("order taxi");
     dispatch(orderTaxi());
+    history.push("taxi_booking_page_one");
   };
 
   return <BookTaxiForm onSubmit={handleOrderTaxi} />;
