@@ -1,24 +1,53 @@
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { orderTaxi } from "../../store/booking";
 
+const bookTaxiInitialValue = {
+  dropoffLocation: "",
+  pickupLocation: "",
+  pickupDate: "",
+  pickupTime: "",
+  returnDate: "",
+  returnTime: "",
+};
+
 export default function BookTaxi() {
+  const [booking, setBooking] = useState(bookTaxiInitialValue);
   const history = useHistory();
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
   console.log("inside order taxi component", bookingState);
 
-  const handleOrderTaxi = () => {
-    console.log("order taxi");
-    dispatch(orderTaxi());
-    history.push("taxi_booking_page_one");
+  const handleInputChage = (e) => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+
+    setBooking((prev) => {
+      return { ...prev, [inputName]: inputValue };
+    });
   };
 
-  return <BookTaxiForm onSubmit={handleOrderTaxi} />;
+  const handleOrderTaxi = () => {
+    console.log("order taxi");
+
+    console.log("booking fields", booking);
+
+    // dispatch(orderTaxi());
+    // history.push("taxi_booking_page_one");
+  };
+
+  return (
+    <BookTaxiForm
+      onSubmit={handleOrderTaxi}
+      onInputChange={handleInputChage}
+      inputValues={booking}
+    />
+  );
 }
 
-function BookTaxiForm({ onSubmit }) {
+function BookTaxiForm({ onSubmit, onInputChange, inputValues }) {
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
@@ -27,11 +56,23 @@ function BookTaxiForm({ onSubmit }) {
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <input type="location" placeholder="Departure Airport" />
+          <input
+            type="location"
+            placeholder="Departure Airport"
+            name="dropoffLocation"
+            value={inputValues.dropoffLocation}
+            onChange={onInputChange}
+          />
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <input type="location" placeholder="pickup Location" />
+          <input
+            type="location"
+            placeholder="pickup Location"
+            name="pickupLocation"
+            value={inputValues.pickupLocation}
+            onChange={onInputChange}
+          />
         </div>
 
         <div className="booking_fields Arival_airport">
@@ -52,6 +93,9 @@ function BookTaxiForm({ onSubmit }) {
               placeholder="Flight Departure"
               onFocus={(e) => (e.target.type = "date")}
               onBlur={(e) => (e.target.type = "text")}
+              name="pickupDate"
+              value={inputValues.pickupDate}
+              onChange={onInputChange}
             />
             <input
               id="time"
@@ -59,6 +103,9 @@ function BookTaxiForm({ onSubmit }) {
               placeholder="Time"
               onFocus={(e) => (e.target.type = "time")}
               onBlur={(e) => (e.target.type = "text")}
+              name="pickupTime"
+              value={inputValues.pickupTime}
+              onChange={onInputChange}
             />
           </div>
         </div>
@@ -73,6 +120,8 @@ function BookTaxiForm({ onSubmit }) {
               placeholder="Time"
               onFocus={(e) => (e.target.type = "time")}
               onBlur={(e) => (e.target.type = "text")}
+              //   name="returnDate"
+              //   value={inputValues.returnDate}
             />
           </div>
         </div>
@@ -85,6 +134,9 @@ function BookTaxiForm({ onSubmit }) {
               placeholder="Add A Return"
               onFocus={(e) => (e.target.type = "date")}
               onBlur={(e) => (e.target.type = "text")}
+              name="returnDate"
+              value={inputValues.returnDate}
+              onChange={onInputChange}
             />
             <input
               id="time"
@@ -92,6 +144,9 @@ function BookTaxiForm({ onSubmit }) {
               placeholder="Time"
               onFocus={(e) => (e.target.type = "time")}
               onBlur={(e) => (e.target.type = "text")}
+              name="returnTime"
+              value={inputValues.returnTime}
+              onChange={onInputChange}
             />
           </div>
         </div>
