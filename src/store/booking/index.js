@@ -21,8 +21,8 @@ const booking = createSlice({
   name: "booking",
   initialState,
   reducers: {
-    orderTaxi: (state) => {
-      state.dropoffLocation = "Lahore";
+    orderTaxi: (state, { payload }) => {
+      return { ...state, ...payload };
     },
   },
 });

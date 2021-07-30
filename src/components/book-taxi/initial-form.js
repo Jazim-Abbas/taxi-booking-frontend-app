@@ -18,7 +18,7 @@ export default function BookTaxi() {
   const history = useHistory();
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
-  console.log("inside order taxi component", bookingState);
+  //   console.log("inside order taxi component", bookingState);
 
   const handleInputChage = (e) => {
     const inputName = e.target.name;
@@ -44,10 +44,10 @@ export default function BookTaxi() {
   const handleOrderTaxi = () => {
     console.log("order taxi");
 
-    console.log("booking fields", booking);
+    // console.log("booking fields", booking);
 
-    // dispatch(orderTaxi());
-    // history.push("taxi_booking_page_one");
+    dispatch(orderTaxi(booking));
+    history.push("taxi_booking_page_one");
   };
 
   return (
