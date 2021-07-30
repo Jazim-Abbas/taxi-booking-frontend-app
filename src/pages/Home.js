@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import BookTaxiInitialForm from "../components/book-taxi/initial-form";
+import BookTaxiInitialForm from "../components/book-taxi";
 
 export default function Home() {
   return (
