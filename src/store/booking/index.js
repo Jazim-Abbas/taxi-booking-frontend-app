@@ -13,8 +13,7 @@ const initialState = {
   travelDistance: "",
   travelTime: "",
   extras: [],
-  contactDetail: {},
-  tripDetail: {},
+  personaDetail: {},
 };
 
 const booking = createSlice({
@@ -38,9 +37,14 @@ const booking = createSlice({
       console.log("redux store: ", payload);
       state.extras = [...payload];
     },
+    addPersonalDetail: (state, { payload }) => {
+      console.log("redux store: ", payload);
+      state.personaDetail = { ...payload };
+    },
   },
 });
 
-export const { orderTaxi, selectVehicle, addExtras } = booking.actions;
+export const { orderTaxi, selectVehicle, addExtras, addPersonalDetail } =
+  booking.actions;
 
 export default booking.reducer;

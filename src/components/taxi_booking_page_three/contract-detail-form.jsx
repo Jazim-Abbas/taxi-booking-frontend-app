@@ -1,12 +1,17 @@
 import { Field } from "formik";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { AppForm, FieldError } from "../app-form";
+import { addPersonalDetail } from "../../store/booking";
 import { personalDetailSchema } from "../../utils/validations";
 
 export default function ContactDetailForm() {
+  const dispatch = useDispatch();
+
   const handleSubmit = ({ formValues }) => {
     console.log("handle submit: ", formValues);
+    dispatch(addPersonalDetail(formValues));
   };
 
   return (
