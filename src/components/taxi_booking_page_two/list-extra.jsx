@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
 import { addExtras } from "../../store/booking";
 
 export default function ListExtras() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [extras, setExtras] = useState(extrasList);
 
@@ -25,6 +27,7 @@ export default function ListExtras() {
 
   const handleNavigateToNext = () => {
     dispatch(addExtras(_makeAppropriateExtras()));
+    history.push("/taxi_booking_page_three");
   };
 
   const _makeAppropriateExtras = () => {
