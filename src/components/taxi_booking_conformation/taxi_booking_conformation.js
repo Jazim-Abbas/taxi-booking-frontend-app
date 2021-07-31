@@ -9,6 +9,7 @@ export default function taxi_booking_conformation() {
         <section class="page_one_vehical_selection">
           <div class="custom_container">
             <h2>Conformation</h2>
+            <hr />
             <div class="page_one_vehical">
               <TransferDetailToogle />
 
