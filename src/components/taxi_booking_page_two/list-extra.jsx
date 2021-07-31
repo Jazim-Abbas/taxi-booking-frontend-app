@@ -1,30 +1,25 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { extrasList } from "./extras.data";
+
 export default function ListExtras() {
+  const [extras, setExtras] = useState(extrasList);
+
   return (
     <div class="page_two_section_two">
       <form>
-        <div class="page_two_extra_detail">
-          <div class="page_two_extra">
-            <span>
-              <h2>Red Stripe Beer (4 pack) </h2>
-              <strong>$20 </strong>
-            </span>
-            <small>4 Red Stripe Beers served inside the vehicle </small>
-          </div>
-          <div class="page_two_extra_quantity">
-            <span>
-              <i class="far fa-plus-square"></i>
-              <i class="far fa-minus-square"></i>
-            </span>
-            <strong>10</strong>
-          </div>
-          <div class="extra_select_btn">
-            <button>Select</button>
-          </div>
-        </div>
+        {extras.map((extra, i) => {
+          if (i < 2) {
+            return (
+              <SingleExtra key={extra.id} hasQuantity={true} extra={extra} />
+            );
+          } else {
+            return <SingleExtra key={extra.id} extra={extra} />;
+          }
+        })}
 
-        <div class="page_two_extra_detail">
+        {/* <div class="page_two_extra_detail">
           <div class="page_two_extra">
             <span>
               <h2>Champagne + 2 Flutes </h2>
@@ -42,9 +37,9 @@ export default function ListExtras() {
           <div class="extra_select_btn">
             <button>Select</button>
           </div>
-        </div>
+        </div> */}
 
-        <div class="page_two_extra_detail_parttwo">
+        {/* <div class="page_two_extra_detail_parttwo">
           <div class="page_two_extra">
             <span>
               <h2>En-route Jerk Stop </h2>
@@ -55,9 +50,9 @@ export default function ListExtras() {
           <div class="extra_select_btn">
             <button>Select</button>
           </div>
-        </div>
+        </div> */}
 
-        <div class="page_two_extra_detail_parttwo">
+        {/* <div class="page_two_extra_detail_parttwo">
           <div class="page_two_extra">
             <span>
               <h2>Bouquet of Flowers </h2>
@@ -68,7 +63,7 @@ export default function ListExtras() {
           <div class="extra_select_btn">
             <button>Select</button>
           </div>
-        </div>
+        </div> */}
       </form>
 
       <div class="booking_page_one_price_detail" id="mobile_booking_summary">
@@ -94,6 +89,37 @@ export default function ListExtras() {
         <div class="next">
           <Link to="/taxi_booking_page_three">Next</Link>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function SingleExtra({ extra, hasQuantity }) {
+  const className = hasQuantity
+    ? "page_two_extra_detail"
+    : "page_two_extra_detail_parttwo";
+
+  return (
+    <div class={className}>
+      <div class="page_two_extra">
+        <span>
+          <h2>{extra.name}</h2>
+          <strong>${extra.price} </strong>
+        </span>
+        <small>{extra.description} </small>
+      </div>
+      {hasQuantity && (
+        <div class="page_two_extra_quantity">
+          <span>
+            <i class="far fa-plus-square"></i>
+            <i class="far fa-minus-square"></i>
+          </span>
+          <strong>10</strong>
+        </div>
+      )}
+
+      <div class="extra_select_btn">
+        <button>Select</button>
       </div>
     </div>
   );
