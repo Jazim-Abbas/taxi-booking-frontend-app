@@ -1,17 +1,20 @@
 import { Field } from "formik";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { AppForm, FieldError } from "../app-form";
 import { addPersonalDetail } from "../../store/booking";
 import { personalDetailSchema } from "../../utils/validations";
 
 export default function ContactDetailForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = ({ formValues }) => {
     console.log("handle submit: ", formValues);
     dispatch(addPersonalDetail(formValues));
+    history.push("/taxi_booking_conformation");
   };
 
   return (
