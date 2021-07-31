@@ -12,8 +12,9 @@ export default function ListExtras() {
     setExtras((prevExtras) => {
       return prevExtras.map((extra) => {
         if (extra.id === extraId) {
-          let quantity = extra.quantity ?? 0;
+          let quantity = extra.quantity ?? 1;
           quantity = actionName === "increment" ? ++quantity : --quantity;
+          console.log("quantity", quantity);
           return { ...extra, quantity: quantity };
         }
         return extra;
@@ -22,7 +23,14 @@ export default function ListExtras() {
   };
 
   const handleNavigateToNext = () => {
-    console.log("navigation", extras);
+    console.log("navigation", _makeAppropriateExtras());
+  };
+
+  const _makeAppropriateExtras = () => {
+    return extras.map((extra) => {
+      if (extra.quantity) return extra;
+      return { ...extra, quantity: 1 };
+    });
   };
 
   return (

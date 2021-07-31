@@ -9,18 +9,12 @@ export default function AddOrRemoveQuantity({ onUpdateQty, extraId }) {
   };
 
   const handleDecrementQty = () => {
-    let currentQty;
     setQuantity((prevQty) => {
-      if (prevQty <= 1) {
-        currentQty = prevQty;
-        return currentQty;
-      } else {
-        currentQty = prevQty - 1;
-        return currentQty;
-      }
+      if (prevQty <= 1) return prevQty;
+      return prevQty - 1;
     });
 
-    if (currentQty > 1) {
+    if (quantity > 1) {
       onUpdateQty("decrement", extraId);
     }
   };
