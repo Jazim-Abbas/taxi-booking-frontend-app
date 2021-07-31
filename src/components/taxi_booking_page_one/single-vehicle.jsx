@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { selectVehicle } from "../../store/booking";
 
 export default function SingleVehicle({ vehicle }) {
+  const dispatch = useDispatch();
+
+  const handleSelectVehicle = () => {
+    console.log("select vehicle");
+    dispatch(selectVehicle(vehicle));
+  };
+
   return (
     <div class="booking_page_one_car_selection">
       <div class="booking_page_one_car_detail">
@@ -31,7 +41,10 @@ export default function SingleVehicle({ vehicle }) {
           <strong>${vehicle.pricePerKM}</strong>
           <small>Free Cancelation</small>
           <small>No Hidden Charges</small>
-          <Link to="/taxi_booking_page_two">Select This Vehicle</Link>
+          {/* <Link to="/taxi_booking_page_two">Select This Vehicle</Link> */}
+          <Link to="#" onClick={handleSelectVehicle}>
+            Select This Vehicle
+          </Link>
         </div>
       </div>
     </div>
