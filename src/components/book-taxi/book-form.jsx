@@ -11,15 +11,14 @@ export default function BookTaxiForm({
   onSwapLocation,
 }) {
   const [dropoffLocation, setDropOffLocation] = useState();
-  // const [pickupLocation, setPickupLocation] = useState(
-  //   inputValues.pickupLocation
-  // );
+  const [pickupLocation, setPickupLocation] = useState();
 
   useEffect(() => {
     setDropOffLocation(inputValues.dropoffLocation);
+    setPickupLocation(inputValues.pickupLocation);
   }, [inputValues]);
 
-  const handleDropoffLocation = (inputName, place) => {
+  const handleDropoffLocation = (inputName, place, setLocationCallback) => {
     console.log(inputName, place);
 
     const target = {
@@ -27,7 +26,7 @@ export default function BookTaxiForm({
       value: place.formatted_address,
     };
 
-    setDropOffLocation(place.formatted_address);
+    setLocationCallback(place.formatted_address);
     onInputChange({ target });
   };
 
@@ -42,7 +41,11 @@ export default function BookTaxiForm({
           <AutoComplete
             apiKey={GOOGLE_MAP_API_KEY}
             onPlaceSelected={(place) =>
-              handleDropoffLocation("dropoffLocation", place)
+              handleDropoffLocation(
+                "dropoffLocation",
+                place,
+                setDropOffLocation
+              )
             }
             // options={{ componentRestrictions: { country: "pk" } }}
             options={{ types: ["(regions)"] }}
@@ -55,11 +58,13 @@ export default function BookTaxiForm({
           <AutoComplete
             apiKey={GOOGLE_MAP_API_KEY}
             onPlaceSelected={(place) =>
-              handleDropoffLocation("pickupLocation", place)
+              handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
             // options={{ componentRestrictions: { country: "pk" } }}
             options={{ types: ["(regions)"] }}
             defaultValue={inputValues.pickupLocation}
+            value={pickupLocation}
+            onChange={(e) => setPickupLocation(e.target.value)}
             // inputAutocompleteValue={inputValues.pickupLocation}
           />
         </div>
