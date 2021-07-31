@@ -13,6 +13,8 @@ export default function BookTaxi() {
   console.log("inside order taxi component", bookingState);
 
   const handleInputChage = (e) => {
+    console.log("input change", e);
+
     const inputName = e.target.name;
     const inputValue = e.target.value;
 

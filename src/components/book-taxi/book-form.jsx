@@ -1,9 +1,35 @@
+import { useEffect, useRef, useState } from "react";
+import GooglePlaces from "react-google-places-autocomplete";
+import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
+
 export default function BookTaxiForm({
   onSubmit,
   onInputChange,
   inputValues,
   onSwapLocation,
 }) {
+  const [location, setLocation] = useState(inputValues.dropoffLocation);
+  console.log("input values", inputValues);
+
+  useEffect(() => {
+    console.log(location);
+    const target = {
+      name: "dropoffLocation",
+      value: location.label,
+    };
+    onInputChange({ target });
+  }, [location]);
+
+  const handleChange = (e) => {
+    const target = {
+      name: "dropoffLocation",
+      value: e.label,
+    };
+
+    setLocation(e.label);
+    onInputChange({ target });
+  };
+
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
@@ -12,12 +38,20 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <input
+          {/* <input
             type="location"
             placeholder="Departure Airport"
             name="dropoffLocation"
             value={inputValues.dropoffLocation}
             onChange={onInputChange}
+          /> */}
+          <GooglePlaces
+            apiKey={GOOGLE_MAP_API_KEY}
+            selectProps={{
+              value: location,
+              onChange: setLocation,
+            }}
+            apiOptions={{ region: "us" }}
           />
         </div>
         <div className="booking_fields departure_airport">
