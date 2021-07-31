@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./taxi_booking_page_one.css";
 import ListVehicle from "./list-vehicle";
+import AppLoading from "../common/loading";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
 
 export default function taxi_booking_page_one() {
@@ -11,6 +13,7 @@ export default function taxi_booking_page_one() {
         <section class="page_one_vehical_selection">
           <div class="custom_container">
             <h2>Select Vehicle</h2>
+
             <div class="page_one_vehical">
               <div class="page_one_section">
                 <div class="mobile_route_deail" id="mobile_route_deail">
@@ -42,6 +45,8 @@ export default function taxi_booking_page_one() {
               </div>
 
               <div class="page_one_section_two">
+                <_GoogleMap />
+
                 <ListVehicle />
 
                 <div class="page_one_continous_btn">
@@ -52,6 +57,33 @@ export default function taxi_booking_page_one() {
           </div>
         </section>
       </section>
+    </div>
+  );
+}
+
+function _GoogleMap() {
+  const [isMapLoading, setIsMapLoading] = useState(false);
+
+  if (!isMapLoading) {
+    return (
+      <div>
+        <p>
+          Please wait map is loading ...
+          <AppLoading />
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        height: "50vh",
+        backgroundColor: "tomato",
+        marginBottom: "20px",
+      }}
+    >
+      <p>Google Map</p>
     </div>
   );
 }
