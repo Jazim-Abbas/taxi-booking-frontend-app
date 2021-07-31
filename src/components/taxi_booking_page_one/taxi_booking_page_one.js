@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import GoogleMap from "google-map-react";
 
 import "./taxi_booking_page_one.css";
+import GoogleMap from "./google-map";
 import ListVehicle from "./list-vehicle";
-import AppLoading from "../common/loading";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
-import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
 
 export default function taxi_booking_page_one() {
   return (
@@ -47,8 +44,7 @@ export default function taxi_booking_page_one() {
               </div>
 
               <div class="page_one_section_two">
-                <_GoogleMap />
-
+                <GoogleMap />
                 <ListVehicle />
 
                 <div class="page_one_continous_btn">
@@ -62,42 +58,3 @@ export default function taxi_booking_page_one() {
     </div>
   );
 }
-
-function _GoogleMap() {
-  const [isMapLoading, setIsMapLoading] = useState(false);
-
-  if (!isMapLoading) {
-    return (
-      <div>
-        <p>
-          Please wait map is loading ...
-          <AppLoading />
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      style={{
-        height: "50vh",
-        backgroundColor: "tomato",
-        marginBottom: "20px",
-      }}
-    >
-      <GoogleMap
-        bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-        defaultCenter={mapConfig.center}
-        defaultZoom={mapConfig.zoom}
-      />
-    </div>
-  );
-}
-
-const mapConfig = {
-  center: {
-    lat: 59.95,
-    lng: 30.33,
-  },
-  zoom: 11,
-};
