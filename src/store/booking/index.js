@@ -34,9 +34,13 @@ const booking = createSlice({
       console.log("redux store: ", "select vehicle: ", payload);
       state.vehicle = { ...payload };
     },
+    addExtras: (state, { payload }) => {
+      console.log("redux store: ", payload);
+      state.extras = [...payload];
+    },
   },
 });
 
-export const { orderTaxi, selectVehicle } = booking.actions;
+export const { orderTaxi, selectVehicle, addExtras } = booking.actions;
 
 export default booking.reducer;

@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
+import { addExtras } from "../../store/booking";
 
 export default function ListExtras() {
+  const dispatch = useDispatch();
   const [extras, setExtras] = useState(extrasList);
 
   const handleExtraQuantity = (actionName, extraId) => {
-    console.log("handle extra quantity", actionName, extraId);
     setExtras((prevExtras) => {
       return prevExtras.map((extra) => {
         if (extra.id === extraId) {
           let quantity = extra.quantity ?? 1;
           quantity = actionName === "increment" ? ++quantity : --quantity;
-          console.log("quantity", quantity);
           return { ...extra, quantity: quantity };
         }
         return extra;
@@ -23,7 +24,7 @@ export default function ListExtras() {
   };
 
   const handleNavigateToNext = () => {
-    console.log("navigation", _makeAppropriateExtras());
+    dispatch(addExtras(_makeAppropriateExtras()));
   };
 
   const _makeAppropriateExtras = () => {
