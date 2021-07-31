@@ -1,5 +1,5 @@
 import "./taxi_booking_page_three.css";
-import ContactDetailForm from "./contract-detail-form";
+import ContactDetail from "./contract-detail";
 import TransferDetailToogle from "../taxi_booking_page_two/transfer-detail-toggle";
 
 export default function taxi_booking_page_three() {
@@ -12,7 +12,7 @@ export default function taxi_booking_page_three() {
             <div className="page_one_vehical">
               <TransferDetailToogle />
 
-              <ContactDetailForm />
+              <ContactDetail />
             </div>
           </div>
         </section>

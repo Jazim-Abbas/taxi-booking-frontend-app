@@ -1,52 +1,10 @@
 import { Field } from "formik";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { AppForm, FieldError } from "../app-form";
-import { addPersonalDetail } from "../../store/booking";
 import { personalDetailSchema } from "../../utils/validations";
 
-export default function ContactDetailForm() {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const handleSubmit = ({ formValues }) => {
-    console.log("handle submit: ", formValues);
-    dispatch(addPersonalDetail(formValues));
-    history.push("/taxi_booking_conformation");
-  };
-
-  return (
-    <div class="page_three_section_two">
-      <_ContactForm onSubmit={handleSubmit} />
-
-      {/* <div class="page_three_payment_method">
-        <h2>Choose Payment Method</h2>
-        <span>
-          <i class="fab fa-cc-stripe"></i>
-        </span>
-      </div> */}
-      <div class="booking_page_one_price_detail" id="mobile_booking_summary">
-        <h2>Booking Summary</h2>
-        <div class="booking_page_one_total_price">
-          <h3>Select Vehicle</h3>
-          <span>$100</span>
-        </div>
-        <div class="booking_page_one_total_price total_price_border">
-          <h3>Select Extra</h3>
-          <span>$100</span>
-        </div>
-        <div class="booking_page_one_total_price">
-          <h3>Total Price</h3>
-          <span>$100</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function _ContactForm({ onSubmit }) {
+export default function ContactDetailForm({ onSubmit }) {
   return (
     <AppForm
       initialValues={initialValues}
