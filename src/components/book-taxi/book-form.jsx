@@ -10,31 +10,24 @@ export default function BookTaxiForm({
   inputValues,
   onSwapLocation,
 }) {
-  const [location, setLocation] = useState(inputValues.dropoffLocation);
-  const [pickupLocation, setPickupLocation] = useState(
-    inputValues.pickupLocation
-  );
-  console.log("input values", inputValues);
+  const [dropoffLocation, setDropOffLocation] = useState();
+  // const [pickupLocation, setPickupLocation] = useState(
+  //   inputValues.pickupLocation
+  // );
 
   useEffect(() => {
-    console.log(location);
-    const target = {
-      name: "dropoffLocation",
-      value: location,
-    };
-    onInputChange({ target });
-    onInputChange({
-      target: { name: "pickupLocation", value: pickupLocation },
-    });
-  }, [location, pickupLocation]);
+    setDropOffLocation(inputValues.dropoffLocation);
+  }, [inputValues]);
 
-  const handleChange = (e) => {
+  const handleDropoffLocation = (inputName, place) => {
+    console.log(inputName, place);
+
     const target = {
-      name: "dropoffLocation",
-      value: e.label,
+      name: inputName,
+      value: place.formatted_address,
     };
 
-    setLocation(e.label);
+    setDropOffLocation(place.formatted_address);
     onInputChange({ target });
   };
 
@@ -46,46 +39,29 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          {/* <input
-            type="location"
-            placeholder="Departure Airport"
-            name="dropoffLocation"
-            value={inputValues.dropoffLocation}
-            onChange={onInputChange}
-          /> */}
-          {/* <GooglePlaces
-            apiKey={GOOGLE_MAP_API_KEY}
-            selectProps={{
-              value: location,
-              onChange: setLocation,
-              defaultValue: "lahore"
-            }}
-            apiOptions={{ region: "us" }}
-          /> */}
           <AutoComplete
             apiKey={GOOGLE_MAP_API_KEY}
-            onPlaceSelected={(place) => console.log("selected place", place)}
+            onPlaceSelected={(place) =>
+              handleDropoffLocation("dropoffLocation", place)
+            }
             // options={{ componentRestrictions: { country: "pk" } }}
-            options={{ types: ['(regions)']}}
+            options={{ types: ["(regions)"] }}
+            value={dropoffLocation}
+            onChange={(e) => setDropOffLocation(e.target.value)}
           />
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          {/* <input
-            type="location"
-            placeholder="pickup Location"
-            name="pickupLocation"
-            value={inputValues.pickupLocation}
-            onChange={onInputChange}
-          /> */}
-          {/* <GooglePlaces
+          <AutoComplete
             apiKey={GOOGLE_MAP_API_KEY}
-            selectProps={{
-              value: pickupLocation,
-              onChange: setPickupLocation,
-            }}
-            apiOptions={{ region: "us" }}
-          /> */}
+            onPlaceSelected={(place) =>
+              handleDropoffLocation("pickupLocation", place)
+            }
+            // options={{ componentRestrictions: { country: "pk" } }}
+            options={{ types: ["(regions)"] }}
+            defaultValue={inputValues.pickupLocation}
+            // inputAutocompleteValue={inputValues.pickupLocation}
+          />
         </div>
 
         <div className="booking_fields Arival_airport">
