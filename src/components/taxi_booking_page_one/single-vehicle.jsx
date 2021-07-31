@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { selectVehicle } from "../../store/booking";
 
 export default function SingleVehicle({ vehicle }) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSelectVehicle = () => {
     console.log("select vehicle");
     dispatch(selectVehicle(vehicle));
+    history.push("/taxi_booking_page_two");
   };
 
   return (
