@@ -14,4 +14,15 @@ const loginSchema = yup.object().shape({
   password: yup.string().min(8).required(),
 });
 
-export { loginSchema, registerSchema };
+const personalDetailSchema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  passengerEmail: yup.string().email().required(),
+  passengerNumber: yup.number().required(),
+  pickupFlightNumber: yup.number().required(),
+  returnFlightNumber: yup.number().required(),
+  totalPassengers: yup.number().required(),
+  totalBags: yup.number().required(),
+});
+
+export { loginSchema, registerSchema, personalDetailSchema };
