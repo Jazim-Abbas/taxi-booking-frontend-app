@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import StripeContainer from "../stripe/stripe-container";
 
 export default function ConfirmationForm() {
   const handleConfirmBooking = () => {
@@ -39,6 +40,7 @@ export default function ConfirmationForm() {
           <button href="#" onClick={handleConfirmBooking}>
             Pay ammount ($100)
           </button>
+          {/* <StripeContainer /> */}
         </div>
       </div>
     </div>

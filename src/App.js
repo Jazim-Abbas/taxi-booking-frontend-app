@@ -19,6 +19,7 @@ import login from "./components/login/login";
 import SignUp from "./components/signup/SignUp";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PayAmount from "./pages/pay-amount";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           />
           <Route path="/login" component={login} />
           <Route path="/register" component={SignUp} />
+          <Route path="/pay-amount" component={PayAmount} />
           <Home />
         </Switch>
 
