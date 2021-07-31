@@ -2,23 +2,30 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { extrasList } from "./extras.data";
+import { ExtraProvider, useExtraContext } from "../../context/extra-context";
 
 export default function ListExtras() {
   const [extras, setExtras] = useState(extrasList);
 
+  const handleExtraQuantity = (actionName, extraId) => {
+    console.log("handle extra quantity", actionName, extraId);
+  };
+
   return (
     <div class="page_two_section_two">
-      <form>
-        {extras.map((extra, i) => {
-          if (i < 2) {
-            return (
-              <SingleExtra key={extra.id} hasQuantity={true} extra={extra} />
-            );
-          } else {
-            return <SingleExtra key={extra.id} extra={extra} />;
-          }
-        })}
-      </form>
+      <ExtraProvider value={{ onUpdateQty: handleExtraQuantity }}>
+        <form>
+          {extras.map((extra, i) => {
+            if (i < 2) {
+              return (
+                <SingleExtra key={extra.id} hasQuantity={true} extra={extra} />
+              );
+            } else {
+              return <SingleExtra key={extra.id} extra={extra} />;
+            }
+          })}
+        </form>
+      </ExtraProvider>
 
       <div class="booking_page_one_price_detail" id="mobile_booking_summary">
         <h2>Booking Summary</h2>
@@ -72,10 +79,12 @@ function SingleExtra({ extra, hasQuantity }) {
 }
 
 function AddOrRemoveQuantity() {
+  const extraContext = useExtraContext();
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrementQty = () => {
     setQuantity((prevQty) => prevQty + 1);
+    extraContext.onUpdateQty("increment", 1);
   };
 
   const handleDecrementQty = () => {
