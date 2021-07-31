@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import GooglePlaces from "react-google-places-autocomplete";
+import AutoComplete from "react-google-autocomplete";
+
 import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
 
 export default function BookTaxiForm({
@@ -9,16 +11,22 @@ export default function BookTaxiForm({
   onSwapLocation,
 }) {
   const [location, setLocation] = useState(inputValues.dropoffLocation);
+  const [pickupLocation, setPickupLocation] = useState(
+    inputValues.pickupLocation
+  );
   console.log("input values", inputValues);
 
   useEffect(() => {
     console.log(location);
     const target = {
       name: "dropoffLocation",
-      value: location.label,
+      value: location,
     };
     onInputChange({ target });
-  }, [location]);
+    onInputChange({
+      target: { name: "pickupLocation", value: pickupLocation },
+    });
+  }, [location, pickupLocation]);
 
   const handleChange = (e) => {
     const target = {
@@ -45,24 +53,39 @@ export default function BookTaxiForm({
             value={inputValues.dropoffLocation}
             onChange={onInputChange}
           /> */}
-          <GooglePlaces
+          {/* <GooglePlaces
             apiKey={GOOGLE_MAP_API_KEY}
             selectProps={{
               value: location,
               onChange: setLocation,
+              defaultValue: "lahore"
             }}
             apiOptions={{ region: "us" }}
+          /> */}
+          <AutoComplete
+            apiKey={GOOGLE_MAP_API_KEY}
+            onPlaceSelected={(place) => console.log("selected place", place)}
+            // options={{ componentRestrictions: { country: "pk" } }}
+            options={{ types: ['(regions)']}}
           />
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <input
+          {/* <input
             type="location"
             placeholder="pickup Location"
             name="pickupLocation"
             value={inputValues.pickupLocation}
             onChange={onInputChange}
-          />
+          /> */}
+          {/* <GooglePlaces
+            apiKey={GOOGLE_MAP_API_KEY}
+            selectProps={{
+              value: pickupLocation,
+              onChange: setPickupLocation,
+            }}
+            apiOptions={{ region: "us" }}
+          /> */}
         </div>
 
         <div className="booking_fields Arival_airport">
