@@ -18,52 +18,6 @@ export default function ListExtras() {
             return <SingleExtra key={extra.id} extra={extra} />;
           }
         })}
-
-        {/* <div class="page_two_extra_detail">
-          <div class="page_two_extra">
-            <span>
-              <h2>Champagne + 2 Flutes </h2>
-              <strong>$60</strong>
-            </span>
-            <small>Bottle of chilled Champagne + 2 flutes </small>
-          </div>
-          <div class="page_two_extra_quantity">
-            <span>
-              <i class="far fa-plus-square"></i>
-              <i class="far fa-minus-square"></i>
-            </span>
-            <strong>10</strong>
-          </div>
-          <div class="extra_select_btn">
-            <button>Select</button>
-          </div>
-        </div> */}
-
-        {/* <div class="page_two_extra_detail_parttwo">
-          <div class="page_two_extra">
-            <span>
-              <h2>En-route Jerk Stop </h2>
-              <strong>$30 </strong>
-            </span>
-            <small>30 minute stop en-route for any reason. </small>
-          </div>
-          <div class="extra_select_btn">
-            <button>Select</button>
-          </div>
-        </div> */}
-
-        {/* <div class="page_two_extra_detail_parttwo">
-          <div class="page_two_extra">
-            <span>
-              <h2>Bouquet of Flowers </h2>
-              <strong>$65 </strong>
-            </span>
-            <small>30 minute stop en-route for any reason. </small>
-          </div>
-          <div class="extra_select_btn">
-            <button>Select</button>
-          </div>
-        </div> */}
       </form>
 
       <div class="booking_page_one_price_detail" id="mobile_booking_summary">
@@ -108,19 +62,36 @@ function SingleExtra({ extra, hasQuantity }) {
         </span>
         <small>{extra.description} </small>
       </div>
-      {hasQuantity && (
-        <div class="page_two_extra_quantity">
-          <span>
-            <i class="far fa-plus-square"></i>
-            <i class="far fa-minus-square"></i>
-          </span>
-          <strong>10</strong>
-        </div>
-      )}
+      {hasQuantity && <AddOrRemoveQuantity />}
 
       <div class="extra_select_btn">
         <button>Select</button>
       </div>
+    </div>
+  );
+}
+
+function AddOrRemoveQuantity() {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncrementQty = () => {
+    setQuantity((prevQty) => prevQty + 1);
+  };
+
+  const handleDecrementQty = () => {
+    setQuantity((prevQty) => {
+      if (prevQty <= 1) return prevQty;
+      return prevQty - 1;
+    });
+  };
+
+  return (
+    <div class="page_two_extra_quantity">
+      <span>
+        <i class="far fa-plus-square" onClick={handleIncrementQty}></i>
+        <i class="far fa-minus-square" onClick={handleDecrementQty}></i>
+      </span>
+      <strong>{quantity}</strong>
     </div>
   );
 }
