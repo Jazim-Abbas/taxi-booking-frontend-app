@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import GoogleMap from "google-map-react";
 
 import "./taxi_booking_page_one.css";
 import ListVehicle from "./list-vehicle";
 import AppLoading from "../common/loading";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
+import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
 
 export default function taxi_booking_page_one() {
   return (
@@ -83,7 +85,19 @@ function _GoogleMap() {
         marginBottom: "20px",
       }}
     >
-      <p>Google Map</p>
+      <GoogleMap
+        bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
+        defaultCenter={mapConfig.center}
+        defaultZoom={mapConfig.zoom}
+      />
     </div>
   );
 }
+
+const mapConfig = {
+  center: {
+    lat: 59.95,
+    lng: 30.33,
+  },
+  zoom: 11,
+};
