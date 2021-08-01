@@ -15,6 +15,8 @@ export default function useReduxDataCheck(keysName) {
     console.log("keyname: ", keysName);
     if (keysName && keysName.length <= 0) return;
 
+    if (keysName.length > 0 && Array.isArray(keysName[0])) return;
+
     let checkCount = 0;
 
     for (let i = 0; i < keysName.length; i++) {
@@ -31,6 +33,7 @@ export default function useReduxDataCheck(keysName) {
     }
 
     if (keysName.length !== checkCount) {
+      console.log("keyname not found is true");
       // history.push(location.pathname);
 
       history.push("/");

@@ -14,6 +14,8 @@ import Home from "../pages/Home";
 import PayAmount from "../pages/pay-amount";
 import Single_post_help_center from "../pages/Single_post_help_center";
 
+import { reduxBookingKeys } from "../utils/constants";
+
 const PUBLIC_ROUTES = [
   { path: "/About", Component: About },
   { path: "/Career", Component: Career },
@@ -22,15 +24,35 @@ const PUBLIC_ROUTES = [
   { path: "/Single_post_help_center", Component: Single_post_help_center },
   { path: "/Services", Component: Services },
   { path: "/Frequent_question_page", Component: Frequent_question_page },
-  { path: "/taxi_booking_page_one", Component: TaxiBookingPageOne },
-  { path: "/taxi_booking_page_two", Component: TaxiBookingPageTwo },
-  { path: "/taxi_booking_page_three", Component: TaxiBookingPageThree },
-  { path: "/taxi_booking_conformation", Component: TaxiBookingConfirmation },
+
   { path: "/login", Component: LoginScreen },
   { path: "/register", Component: SignUpScreen },
   { path: "/pay-amount", Component: PayAmount },
 ];
 
+const PROTECTED_ROUTES = [
+  {
+    path: "/taxi_booking_page_one",
+    Component: TaxiBookingPageOne,
+    reduxKeyNames: reduxBookingKeys.INITIAL_BOOKING,
+  },
+  {
+    path: "/taxi_booking_page_two",
+    Component: TaxiBookingPageTwo,
+    reduxKeyNames: reduxBookingKeys.VEHICLE,
+  },
+  {
+    path: "/taxi_booking_page_three",
+    Component: TaxiBookingPageThree,
+    reduxKeyNames: reduxBookingKeys.EXTRAS,
+  },
+  {
+    path: "/taxi_booking_conformation",
+    Component: TaxiBookingConfirmation,
+    reduxKeyNames: reduxBookingKeys.PERSONAL_DETAIL,
+  },
+];
+
 const BASE_ROUTE = { path: "/", Component: Home };
 
-export { PUBLIC_ROUTES, BASE_ROUTE };
+export { PUBLIC_ROUTES, BASE_ROUTE, PROTECTED_ROUTES };

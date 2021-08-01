@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import "./taxi_booking_page_one.css";
 import GoogleMap from "./google-map";
 import ListVehicle from "./list-vehicle";
-import { reduxBookingKeys } from "../../utils/constants";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
-import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 
 export default function TaxiBookingPageOne() {
-  useReduxDataCheck([]);
 
   return (
     <div>
