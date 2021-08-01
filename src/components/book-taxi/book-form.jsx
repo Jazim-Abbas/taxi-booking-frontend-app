@@ -16,7 +16,7 @@ export default function BookTaxiForm({
   useEffect(() => {
     setDropOffLocation(inputValues.dropoffLocation);
     setPickupLocation(inputValues.pickupLocation);
-  }, [inputValues]);
+  }, [inputValues.dropoffLocation, inputValues.pickupLocation]);
 
   const handleDropoffLocation = (inputName, place, setLocationCallback) => {
     console.log(inputName, place);
