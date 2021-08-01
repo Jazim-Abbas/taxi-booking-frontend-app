@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
-import StripeContainer from "../stripe/stripe-container";
+import { Link, useHistory } from "react-router-dom";
 
 export default function ConfirmationForm() {
+  const history = useHistory();
+
   const handleConfirmBooking = () => {
     console.log("handle confirm booking");
+    history.push("/pay-amount");
   };
 
   return (
@@ -13,12 +15,7 @@ export default function ConfirmationForm() {
 
         <_VehicleDetail />
 
-        <div class="page_three_payment_method">
-          <h2>Payment Method</h2>
-          <span>
-            <i class="fab fa-cc-stripe"></i>
-          </span>
-        </div>
+        {/* <_PaymentMethod /> */}
         <div class="conformation_term_section">
           <h2>Terms & Condition</h2>
           <div class="conformation_term_field">
@@ -40,7 +37,6 @@ export default function ConfirmationForm() {
           <button href="#" onClick={handleConfirmBooking}>
             Pay ammount ($100)
           </button>
-          {/* <StripeContainer /> */}
         </div>
       </div>
     </div>
@@ -105,6 +101,17 @@ function _VehicleDetail() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function _PaymentMethod() {
+  return (
+    <div class="page_three_payment_method">
+      <h2>Payment Method</h2>
+      <span>
+        <i class="fab fa-cc-stripe"></i>
+      </span>
     </div>
   );
 }
