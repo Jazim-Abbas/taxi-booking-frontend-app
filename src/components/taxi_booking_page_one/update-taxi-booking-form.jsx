@@ -73,7 +73,7 @@ export default function UpdateTaxiBookingForm() {
           </div>
         </div>
 
-        {initialBooking.returnDate && (
+        {initialBooking.returnDate && !initialBooking.isOneWay && (
           <div class="airport_fileds ">
             <span>
               <i class="far fa-calendar-minus"></i>
@@ -107,7 +107,7 @@ export default function UpdateTaxiBookingForm() {
           </div>
         </div>
 
-        {initialBooking.returnTime && (
+        {initialBooking.returnTime && !initialBooking.isOneWay && (
           <div class="airport_fileds ">
             <span>
               <i class="far fa-calendar-minus"></i>
@@ -129,7 +129,8 @@ export default function UpdateTaxiBookingForm() {
           <input
             type="checkbox"
             name="isOneWay"
-            value={initialBooking.isOneWay}
+            // value={initialBooking.isOneWay}
+            checked={initialBooking.isOneWay}
             onChange={handleChange}
           />
           <label>Only one way</label>
