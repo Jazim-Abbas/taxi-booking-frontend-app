@@ -10,11 +10,32 @@ export default function UpdateTaxiBookingForm() {
     setInitialBooking({ ...booking.initialBooking });
   }, [booking]);
 
+  const handleSelectedPlace = (inputName, place) => {
+    const { lat, lng } = place.geometry.location;
+
+    const target = {
+      name: inputName,
+      value: place.formatted_address,
+      [inputName + "_lat"]: lat(),
+      [inputName + "_lng"]: lng(),
+    };
+
+    console.log("target place selected: ", target);
+
+    setInitialBooking((prev) => {
+      return { ...prev, ...target, [inputName]: target.value };
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    console.log("name: ", name, "value: ", value);
+
     setInitialBooking((prev) => {
-      return { ...prev, [name]: value };
+      const state = { ...prev, [name]: value };
+      // console.log("state inside setting booking: ", state);
+      return state;
     });
   };
 
@@ -33,10 +54,15 @@ export default function UpdateTaxiBookingForm() {
             <span>Where From?</span>
             {/* <input type="location" placeholder="Departure Airport" /> */}
             <AutoComplete
-              onPlaceSelected={(place) => console.log("place")}
+              onPlaceSelected={(place) =>
+                handleSelectedPlace("dropoffLocation", place)
+              }
               options={{ types: ["(regions)"] }}
               value={initialBooking.dropoffLocation}
-              onChange={handleChange}
+              onChange={(e) => {
+                e.target.name = "dropoffLocation";
+                handleChange(e);
+              }}
             />
           </div>
         </div>
@@ -49,10 +75,15 @@ export default function UpdateTaxiBookingForm() {
             <span>Where To?</span>
             {/* <input type="location" placeholder="pickup Location" /> */}
             <AutoComplete
-              onPlaceSelected={(place) => console.log("place")}
+              onPlaceSelected={(place) =>
+                handleSelectedPlace("pickupLocation", place)
+              }
               options={{ types: ["(regions)"] }}
               value={initialBooking.pickupLocation}
-              onChange={handleChange}
+              onChange={(e) => {
+                e.target.name = "pickupLocation";
+                handleChange(e);
+              }}
             />
           </div>
         </div>
