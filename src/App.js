@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { store } from "./store";
+import { GoogleMapProvider } from "./context/google-map";
 import "./App.css";
 import Home from "./pages/Home";
 import About from "./components/AboutUs/About";
@@ -24,48 +25,50 @@ import PayAmount from "./pages/pay-amount";
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Header />
+      <GoogleMapProvider>
+        <Router>
+          <Header />
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/About" component={About} />
-          <Route path="/Career" component={Career} />
-          <Route path="/Contact" component={Contact} />
-          <Route path="/Help" component={Help} />
-          <Route
-            path="/Single_post_help_center"
-            component={Single_post_help_center}
-          />
-          <Route path="/Services" component={Services} />
-          <Route
-            path="/Frequent_question_page"
-            component={Frequent_question_page}
-          />
-          <Route
-            path="/taxi_booking_page_one"
-            component={taxi_booking_page_one}
-          />
-          <Route
-            path="/taxi_booking_page_two"
-            component={taxi_booking_page_two}
-          />
-          <Route
-            path="/taxi_booking_page_three"
-            component={taxi_booking_page_three}
-          />
-          <Route
-            path="/taxi_booking_conformation"
-            component={taxi_booking_conformation}
-          />
-          <Route path="/login" component={login} />
-          <Route path="/register" component={SignUp} />
-          <Route path="/pay-amount" component={PayAmount} />
-          <Home />
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/About" component={About} />
+            <Route path="/Career" component={Career} />
+            <Route path="/Contact" component={Contact} />
+            <Route path="/Help" component={Help} />
+            <Route
+              path="/Single_post_help_center"
+              component={Single_post_help_center}
+            />
+            <Route path="/Services" component={Services} />
+            <Route
+              path="/Frequent_question_page"
+              component={Frequent_question_page}
+            />
+            <Route
+              path="/taxi_booking_page_one"
+              component={taxi_booking_page_one}
+            />
+            <Route
+              path="/taxi_booking_page_two"
+              component={taxi_booking_page_two}
+            />
+            <Route
+              path="/taxi_booking_page_three"
+              component={taxi_booking_page_three}
+            />
+            <Route
+              path="/taxi_booking_conformation"
+              component={taxi_booking_conformation}
+            />
+            <Route path="/login" component={login} />
+            <Route path="/register" component={SignUp} />
+            <Route path="/pay-amount" component={PayAmount} />
+            <Home />
+          </Switch>
 
-        <Footer />
-      </Router>
+          <Footer />
+        </Router>
+      </GoogleMapProvider>
     </Provider>
   );
 }

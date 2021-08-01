@@ -1,21 +1,17 @@
 import { useState } from "react";
 import {
   GoogleMap,
-  useJsApiLoader,
   Marker,
   Polyline,
   DistanceMatrixService,
 } from "@react-google-maps/api";
 
 import AppLoading from "../common/loading";
-import { DEV_GOOGLE_MAP_API_KEY } from "../../utils/constants";
+import { useGoogleMap } from "../../context/google-map";
 
 export default function MyGoogleMap() {
   const [isMapLoading, setIsMapLoading] = useState(true);
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: DEV_GOOGLE_MAP_API_KEY,
-  });
+  const { isLoaded } = useGoogleMap();
 
   if (!isMapLoading || !isLoaded) {
     return (
