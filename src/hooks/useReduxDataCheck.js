@@ -26,7 +26,12 @@ export default function useReduxDataCheck(keysName) {
       if (!reduxField) break;
 
       if (key === "initialBooking") {
-        if (!reduxField.dropoffLocation && !reduxField.pickupLocation) break;
+        const { dropoffLocation, pickupLocation, pickupDate, pickupTime } =
+          reduxField;
+        if (!dropoffLocation || !pickupLocation || !pickupDate || !pickupTime) {
+          console.log("break");
+          break;
+        }
       }
 
       ++checkCount;
