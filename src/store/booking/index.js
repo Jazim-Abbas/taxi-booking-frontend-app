@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dropoffLocation: "",
-  pickupLocation: "",
-  pickupDate: "",
-  pickupTime: "",
-  returnDate: "",
-  returnTime: "",
-  passengers: [],
-  isOneWay: true,
+  firstForm: {
+    dropoffLocation: "",
+    pickupLocation: "",
+    pickupDate: "",
+    pickupTime: "",
+    returnDate: "",
+    returnTime: "",
+    passengers: [],
+    isOneWay: true,
+  },
   vehicle: {},
   travelDistance: "",
   travelTime: "",
@@ -27,7 +29,7 @@ const booking = createSlice({
         payload.isOneWay = true;
       }
 
-      return { ...state, ...payload };
+      state.firstForm = { ...payload };
     },
     selectVehicle: (state, { payload }) => {
       console.log("redux store: ", "select vehicle: ", payload);
