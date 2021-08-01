@@ -1,8 +1,17 @@
 import "./taxi_booking_conformation.css";
 import ConfirmationForm from "./confirmation-form";
+import { reduxBookingKeys } from "../../utils/constants";
+import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 import TransferDetailToogle from "../taxi_booking_page_two/transfer-detail-toggle";
 
-export default function taxi_booking_conformation() {
+export default function TaxiBookingConfirmation() {
+  useReduxDataCheck([
+    reduxBookingKeys.INITIAL_BOOKING,
+    reduxBookingKeys.VEHICLE,
+    reduxBookingKeys.EXTRAS,
+    reduxBookingKeys.PERSONAL_DETAIL,
+  ]);
+
   return (
     <div>
       <section class="taxi_booking_page_one_body">
