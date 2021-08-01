@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function useReduxDataCheck(keysName) {
   const history = useHistory();
+  const location = useLocation();
   const booking = useSelector((state) => state.booking);
 
   useEffect(() => {
@@ -30,6 +31,8 @@ export default function useReduxDataCheck(keysName) {
     }
 
     if (keysName.length !== checkCount) {
+      // history.push(location.pathname);
+
       history.push("/");
     }
   };

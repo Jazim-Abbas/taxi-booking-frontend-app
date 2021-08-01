@@ -8,7 +8,7 @@ import UpdateTaxiBookingForm from "./update-taxi-booking-form";
 import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 
 export default function TaxiBookingPageOne() {
-  useReduxDataCheck([reduxBookingKeys.INITIAL_BOOKING]);
+  useReduxDataCheck([]);
 
   return (
     <div>

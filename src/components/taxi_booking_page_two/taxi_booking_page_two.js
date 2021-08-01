@@ -3,9 +3,16 @@ import React, { Component } from "react";
 import "./taxi_booking_page_two.css";
 
 import ListExtras from "./list-extra";
+import { reduxBookingKeys } from "../../utils/constants";
 import TransferDetailToogle from "./transfer-detail-toggle";
+import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 
-export default function taxi_booking_page_two() {
+export default function TaxiBookingPageTwo() {
+  useReduxDataCheck([
+    reduxBookingKeys.INITIAL_BOOKING,
+    reduxBookingKeys.VEHICLE,
+  ]);
+
   return (
     <div>
       <section class="taxi_booking_page_one_body">
