@@ -1,13 +1,23 @@
 import { useState } from "react";
-import GoogleMapReact from "google-map-react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  Polyline,
+  DistanceMatrixService,
+} from "@react-google-maps/api";
 
 import AppLoading from "../common/loading";
-import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
+import { DEV_GOOGLE_MAP_API_KEY } from "../../utils/constants";
 
-export default function GoogleMap() {
-  const [isMapLoading, setIsMapLoading] = useState(false);
+export default function MyGoogleMap() {
+  const [isMapLoading, setIsMapLoading] = useState(true);
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: DEV_GOOGLE_MAP_API_KEY,
+  });
 
-  if (!isMapLoading) {
+  if (!isMapLoading || !isLoaded) {
     return (
       <div>
         <p>
@@ -26,19 +36,36 @@ export default function GoogleMap() {
         marginBottom: "20px",
       }}
     >
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-        defaultCenter={mapConfig.center}
-        defaultZoom={mapConfig.zoom}
-      />
+      <GoogleMap
+        zoom={10}
+        center={center}
+        mapContainerStyle={{ width: "100%", height: "100%" }}
+      >
+        <Marker position={origin} />
+        <Marker position={destination} />
+        <Polyline
+          path={pathCoordinates}
+          options={{
+            strokeColor: "tomato",
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            icons: [{ icon: "hello", offset: "0", repeat: "10px" }],
+          }}
+        />
+        <DistanceMatrixService
+          options={{
+            origins: [origin],
+            destinations: [destination],
+            travelMode: "DRIVING",
+          }}
+          callback={(response) => console.log("distance res: ", response)}
+        />
+      </GoogleMap>
     </div>
   );
 }
 
-const mapConfig = {
-  center: {
-    lat: 59.95,
-    lng: 30.33,
-  },
-  zoom: 11,
-};
+const origin = { lat: 31.5925, lng: 74.3095 };
+const destination = { lat: 31.5841, lng: 74.4738 };
+const pathCoordinates = [{ ...origin }, { ...destination }];
+const center = { ...origin };
