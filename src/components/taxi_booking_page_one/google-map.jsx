@@ -10,7 +10,7 @@ import AppLoading from "../common/loading";
 import { useGoogleMap } from "../../context/google-map";
 
 export default function MyGoogleMap() {
-  const [isMapLoading, setIsMapLoading] = useState(true);
+  const [isMapLoading, setIsMapLoading] = useState(false);
   const { isLoaded } = useGoogleMap();
 
   if (!isMapLoading || !isLoaded) {

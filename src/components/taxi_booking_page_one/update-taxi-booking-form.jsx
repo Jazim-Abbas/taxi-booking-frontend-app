@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import AutoComplete from "react-google-autocomplete";
+
 export default function UpdateTaxiBookingForm() {
+  const booking = useSelector((state) => state.booking);
+  const [initialBooking, setInitialBooking] = useState();
+
+  useEffect(() => {
+    setInitialBooking({ ...booking.initialBooking });
+  }, [booking]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setInitialBooking((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  if (!initialBooking) {
+    return <></>;
+  }
+
   return (
     <form>
       <div class="airport_selection_fileds">
@@ -8,7 +31,13 @@ export default function UpdateTaxiBookingForm() {
           </span>
           <div class="air_input">
             <span>Where From?</span>
-            <input type="location" placeholder="Departure Airport" />
+            {/* <input type="location" placeholder="Departure Airport" /> */}
+            <AutoComplete
+              onPlaceSelected={(place) => console.log("place")}
+              options={{ types: ["(regions)"] }}
+              value={initialBooking.dropoffLocation}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
@@ -18,7 +47,13 @@ export default function UpdateTaxiBookingForm() {
           </span>
           <div class="air_input">
             <span>Where To?</span>
-            <input type="location" placeholder="pickup Location" />
+            {/* <input type="location" placeholder="pickup Location" /> */}
+            <AutoComplete
+              onPlaceSelected={(place) => console.log("place")}
+              options={{ types: ["(regions)"] }}
+              value={initialBooking.pickupLocation}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
@@ -28,19 +63,33 @@ export default function UpdateTaxiBookingForm() {
           </span>
           <div class="air_input">
             <span>Pickup Date</span>
-            <input type="date" placeholder="Flight Departure" />
+            <input
+              type="date"
+              placeholder="Flight Departure"
+              name="pickupDate"
+              value={initialBooking.pickupDate}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
-        <div class="airport_fileds ">
-          <span>
-            <i class="far fa-calendar-minus"></i>
-          </span>
-          <div class="air_input">
-            <span>Return Date</span>
-            <input type="date" placeholder="Add Return" />
+        {initialBooking.returnDate && (
+          <div class="airport_fileds ">
+            <span>
+              <i class="far fa-calendar-minus"></i>
+            </span>
+            <div class="air_input">
+              <span>Return Date</span>
+              <input
+                type="date"
+                placeholder="Add Return"
+                name="returnDate"
+                value={initialBooking.returnDate}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div class="airport_fileds ">
           <span>
@@ -48,22 +97,41 @@ export default function UpdateTaxiBookingForm() {
           </span>
           <div class="air_input">
             <span>Pickup Time</span>
-            <input type="time" placeholder="Time" />
+            <input
+              type="time"
+              placeholder="Time"
+              name="pickupTime"
+              value={initialBooking.pickupTime}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
-        <div class="airport_fileds ">
-          <span>
-            <i class="far fa-calendar-minus"></i>
-          </span>
-          <div class="air_input">
-            <span>Return Time</span>
-            <input type="time" placeholder="Time" />
+        {initialBooking.returnTime && (
+          <div class="airport_fileds ">
+            <span>
+              <i class="far fa-calendar-minus"></i>
+            </span>
+            <div class="air_input">
+              <span>Return Time</span>
+              <input
+                type="time"
+                placeholder="Time"
+                name="returnTime"
+                value={initialBooking.returnTime}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div class="airport_fileds_checkbox airport_fileds_border">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            name="isOneWay"
+            value={initialBooking.isOneWay}
+            onChange={handleChange}
+          />
           <label>Only one way</label>
         </div>
 
