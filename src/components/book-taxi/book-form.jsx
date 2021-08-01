@@ -21,9 +21,13 @@ export default function BookTaxiForm({
   const handleDropoffLocation = (inputName, place, setLocationCallback) => {
     console.log(inputName, place);
 
+    const { lat, lng } = place.geometry.location;
+
     const target = {
       name: inputName,
       value: place.formatted_address,
+      [inputName + "_lat"]: lat(),
+      [inputName + "_lng"]: lng(),
     };
 
     setLocationCallback(place.formatted_address);

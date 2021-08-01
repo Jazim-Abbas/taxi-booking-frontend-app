@@ -14,12 +14,10 @@ export default function BookTaxi() {
 
   const handleInputChage = (e) => {
     console.log("input change", e);
-
-    const inputName = e.target.name;
-    const inputValue = e.target.value;
+    const { name, value, ...rest } = e.target;
 
     setBooking((prev) => {
-      return { ...prev, [inputName]: inputValue };
+      return { ...prev, [name]: value, ...rest };
     });
   };
 
