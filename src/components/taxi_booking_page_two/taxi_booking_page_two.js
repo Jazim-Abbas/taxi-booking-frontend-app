@@ -9,8 +9,8 @@ import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 
 export default function TaxiBookingPageTwo() {
   useReduxDataCheck([
-    reduxBookingKeys.INITIAL_BOOKING,
-    reduxBookingKeys.VEHICLE,
+    // reduxBookingKeys.INITIAL_BOOKING,
+    // reduxBookingKeys.VEHICLE,
   ]);
 
   return (

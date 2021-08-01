@@ -1,8 +1,16 @@
 import "./taxi_booking_page_three.css";
 import ContactDetail from "./contract-detail";
+import useReduxDataCheck from "../../hooks/useReduxDataCheck";
+import { reduxBookingKeys } from "../../utils/constants";
 import TransferDetailToogle from "../taxi_booking_page_two/transfer-detail-toggle";
 
-export default function taxi_booking_page_three() {
+export default function TaxiBookingPageThree() {
+  useReduxDataCheck([
+    reduxBookingKeys.INITIAL_BOOKING,
+    reduxBookingKeys.VEHICLE,
+    reduxBookingKeys.EXTRAS,
+  ]);
+
   return (
     <div>
       <section className="taxi_booking_page_one_body">
