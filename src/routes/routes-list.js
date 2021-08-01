@@ -1,4 +1,3 @@
-import { Switch, Route } from "react-router-dom";
 import About from "../components/AboutUs/About";
 import Career from "../components/Career/Career";
 import Contact from "../components/ContactUs/Contact";
@@ -15,7 +14,7 @@ import Home from "../pages/Home";
 import PayAmount from "../pages/pay-amount";
 import Single_post_help_center from "../pages/Single_post_help_center";
 
-const routes = [
+const PUBLIC_ROUTES = [
   { path: "/About", Component: About },
   { path: "/Career", Component: Career },
   { path: "/Contact", Component: Contact },
@@ -32,20 +31,6 @@ const routes = [
   { path: "/pay-amount", Component: PayAmount },
 ];
 
-const baseRoute = { path: "/", Component: Home };
+const BASE_ROUTE = { path: "/", Component: Home };
 
-export default function AppRoutes() {
-  return (
-    <Switch>
-      <Route exact path={baseRoute.path}>
-        <baseRoute.Component />
-      </Route>
-
-      {routes.map((route) => (
-        <Route key={route.path} path={route.path}>
-          <route.Component />
-        </Route>
-      ))}
-    </Switch>
-  );
-}
+export { PUBLIC_ROUTES, BASE_ROUTE };
