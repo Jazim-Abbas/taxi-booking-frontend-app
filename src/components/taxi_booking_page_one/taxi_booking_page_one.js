@@ -4,8 +4,11 @@ import "./taxi_booking_page_one.css";
 import GoogleMap from "./google-map";
 import ListVehicle from "./list-vehicle";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
+import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 
-export default function taxi_booking_page_one() {
+export default function TaxiBookingPageOne() {
+  useReduxDataCheck(["initialBooking"]);
+
   return (
     <div>
       <section class="taxi_booking_page_one_body">

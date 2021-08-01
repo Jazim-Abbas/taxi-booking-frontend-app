@@ -43,7 +43,7 @@ export default function BookTaxiForm({
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
           <AutoComplete
-            apiKey={GOOGLE_MAP_API_KEY}
+            // apiKey={GOOGLE_MAP_API_KEY}
             onPlaceSelected={(place) =>
               handleDropoffLocation(
                 "dropoffLocation",
@@ -60,7 +60,7 @@ export default function BookTaxiForm({
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
           <AutoComplete
-            apiKey={GOOGLE_MAP_API_KEY}
+            // apiKey={GOOGLE_MAP_API_KEY}
             onPlaceSelected={(place) =>
               handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
