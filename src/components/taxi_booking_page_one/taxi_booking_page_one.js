@@ -45,7 +45,7 @@ export default function TaxiBookingPageOne() {
               </div>
 
               <div class="page_one_section_two">
-                {/* <GoogleMap /> */}
+                <GoogleMap />
                 <ListVehicle />
 
                 <div class="page_one_continous_btn">

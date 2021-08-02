@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Geocode from "react-geocode";
 import {
   GoogleMap,
   Marker,
@@ -10,6 +11,9 @@ import {
 import AppLoading from "../common/loading";
 import { useGoogleMap } from "../../context/google-map";
 import { addDistanceAndTime } from "../../store/booking";
+import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
+
+Geocode.setApiKey(GOOGLE_MAP_API_KEY);
 
 export default function MyGoogleMap() {
   const dispatch = useDispatch();
@@ -24,7 +28,14 @@ export default function MyGoogleMap() {
     dropoffLocation_lng,
     pickupLocation_lat,
     pickupLocation_lng,
+    dropoffLocation,
+    pickupLocation,
   } = initialBooking;
+
+  useEffect(() => {
+    console.log("convert geocode")
+    _convertLocationToLatAndLng();
+  }, [dropoffLocation, pickupLocation]);
 
   useEffect(() => {
     const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
@@ -41,6 +52,20 @@ export default function MyGoogleMap() {
   ]);
 
   console.log("map location: ", location);
+
+  const _convertLocationToLatAndLng = async () => {
+    const geocode = _getLatAndLng(dropoffLocation);
+    console.log("geocode: ", geocode);
+  };
+
+  const _getLatAndLng = async (location) => {
+    try {
+      const res = await Geocode.fromAddress(location);
+      return res.results[0].geometry.location;
+    } catch (err) {
+      console.log("error while geocoding: ", err);
+    }
+  };
 
   const handleCalculateDistanceTime = (res) => {
     const distanceMatrix = res.rows[0].elements[0];
