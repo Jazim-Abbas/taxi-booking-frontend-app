@@ -12,8 +12,8 @@ const initialState = {
     isOneWay: true,
   },
   vehicle: {},
-  travelDistance: "",
-  travelTime: "",
+  travelDistance: {},
+  travelTime: {},
   extras: [],
   personaDetail: {},
 };
@@ -43,11 +43,6 @@ const booking = createSlice({
       const allExtras = {};
 
       state.extras.map((extra) => (allExtras[extra.id] = extra));
-      // state.extras = payload.map((extra) => {
-      //   if (extra.id === allExtras[extra.id].id) {
-      //     return { ...extra };
-      //   }
-      // });
 
       payload.forEach((extra) => {
         allExtras[extra.id] = { ...extra };
@@ -57,17 +52,14 @@ const booking = createSlice({
       for (const extra in allExtras) {
         state.extras.push(allExtras[extra]);
       }
-
-      // state.extras = state.extras.map((extra) => {
-      //   if (extra.id === payload.id) {
-      //     return { ...payload };
-      //   }
-      //   return extra;
-      // });
     },
     addPersonalDetail: (state, { payload }) => {
       console.log("redux store: ", payload);
       state.personaDetail = { ...payload };
+    },
+    addDistanceAndTime: (state, { payload }) => {
+      state.travelDistance = payload.distance;
+      state.travelTime = payload.duration;
     },
   },
 });
@@ -78,6 +70,7 @@ export const {
   addExtras,
   addPersonalDetail,
   updateExtras,
+  addDistanceAndTime,
 } = booking.actions;
 
 export default booking.reducer;

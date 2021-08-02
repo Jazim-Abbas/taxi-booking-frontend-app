@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   GoogleMap,
   Marker,
@@ -9,8 +9,10 @@ import {
 
 import AppLoading from "../common/loading";
 import { useGoogleMap } from "../../context/google-map";
+import { addDistanceAndTime } from "../../store/booking";
 
 export default function MyGoogleMap() {
+  const dispatch = useDispatch();
   const { initialBooking, travelDistance, travelTime } = useSelector(
     (state) => state.booking
   );
@@ -41,9 +43,21 @@ export default function MyGoogleMap() {
   console.log("map location: ", location);
 
   const handleCalculateDistanceTime = (res) => {
-    const { distance, duration } = res.rows[0].elements[0];
+    const distanceMatrix = res.rows[0].elements[0];
 
-    console.log(distance, duration);
+    if (distanceMatrix) {
+      const { distance, duration } = distanceMatrix;
+
+      if (
+        travelDistance.value === distance.value &&
+        duration.value === travelTime.value
+      ) {
+        return;
+      }
+
+      dispatch(addDistanceAndTime({ distance, duration }));
+      console.log(distance, duration);
+    }
   };
 
   if (!isMapLoading || !isLoaded || !location) {
