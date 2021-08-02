@@ -26,7 +26,7 @@ export default function ConfirmationForm() {
   const handleConfirmBooking = () => {
     console.log(_makeAppropriateFields());
     console.log("handle confirm booking");
-    // history.push("/pay-amount");
+    history.push("/pay-amount");
   };
 
   const _makeAppropriateFields = () => {
@@ -58,8 +58,13 @@ export default function ConfirmationForm() {
       bookingFields = { ...rest };
     }
 
-    request(bookingFields);
-    console.log("booking fields for backend: ", bookingFields);
+    // try {
+    //   request(bookingFields);
+    // } catch (err) {
+    //   console.log("error", err);
+    // }
+
+
   };
 
   const _getDateOjb = (date, time) => {
