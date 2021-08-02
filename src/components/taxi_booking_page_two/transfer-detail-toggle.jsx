@@ -3,22 +3,23 @@ import { useSelector } from "react-redux";
 
 export default function TransferDetailToogle() {
   const booking = useSelector((state) => state.booking);
-  const { initialBooking, extras, vehicle } = booking;
-
-  let _totalPrice = 0;
-  let _vehiclePrice = 0;
+  const { initialBooking, extras, vehicle, travelDistance, travelTime } =
+    booking;
 
   const _calculateExtrasTotalPrice = () => {
+    let _totalPrice = 0;
     extras.forEach((extra) => {
       let quantity = extra.quantity ?? 1;
       _totalPrice += extra.price * quantity;
     });
+    _totalPrice = Math.floor(_totalPrice);
     return _totalPrice;
   };
 
   const _calculateVehicleTotalPrice = () => {
-    _vehiclePrice = vehicle.pricePerKM;
-    return _vehiclePrice;
+    let _vehiclePrice = 0;
+    _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
+    return Math.floor(_vehiclePrice);
   };
 
   if (!booking) {
@@ -53,9 +54,12 @@ export default function TransferDetailToogle() {
           <div class="where_from">
             <i class="far fa-calendar-alt"></i>
             <div class="where_from_location">
-              <span>TRAVEL DATE</span>
+              <span>PICKUP DATE</span>
               <p>
-                {moment("2020-05-12").calendar()} <small>[{moment("2020-05-12").format("LL")}]</small>
+                {moment(initialBooking.pickupDate).calendar()}{" "}
+                <small>
+                  [{moment(initialBooking.pickupDate).format("LL")}]
+                </small>
               </p>
             </div>
           </div>
@@ -69,42 +73,47 @@ export default function TransferDetailToogle() {
           </div>
         </div>
 
-        <div class="pickup_detail_box">
-          <h4>Return</h4>
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>WHERE FROM</span>
-              <p>{initialBooking.dropoffLocation}</p>
+        {!initialBooking.isOneWay && (
+          <div class="pickup_detail_box">
+            <h4>Return</h4>
+            <div class="where_from">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="where_from_location">
+                <span>WHERE FROM</span>
+                <p>{initialBooking.dropoffLocation}</p>
+              </div>
             </div>
-          </div>
 
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>WHERE TO</span>
-              <p>{initialBooking.pickupLocation}</p>
+            <div class="where_from">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="where_from_location">
+                <span>WHERE TO</span>
+                <p>{initialBooking.pickupLocation}</p>
+              </div>
             </div>
-          </div>
 
-          <div class="where_from">
-            <i class="far fa-calendar-alt"></i>
-            <div class="where_from_location">
-              <span>TRAVEL DATE</span>
-              <p>
-              {moment("2020-05-12").calendar()} <small>[{moment("2020-05-12").format("LL")}]</small>
-              </p>
+            <div class="where_from">
+              <i class="far fa-calendar-alt"></i>
+              <div class="where_from_location">
+                <span>RETURN DATE</span>
+                <p>
+                  {moment(initialBooking.returnDate).calendar()}{" "}
+                  <small>
+                    [{moment(initialBooking.returnDate).format("LL")}]
+                  </small>
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>PICKUP TIME</span>
-              <p>12:00</p>
+            <div class="where_from">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="where_from_location">
+                <span>RETURN TIME</span>
+                <p>12:00</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div class="pickup_detail_box">
           <h4>Vehicle Category</h4>
@@ -155,7 +164,7 @@ export default function TransferDetailToogle() {
             <i class="fas fa-car quantites_icon"></i>
             <div class="where_from_location">
               <p>
-                40 km & <small> 65 Min</small>
+                {travelDistance.text} & <small> {travelTime.text}</small>
               </p>
             </div>
           </div>
@@ -174,7 +183,9 @@ export default function TransferDetailToogle() {
         </div>
         <div class="booking_page_one_total_price">
           <h3>Total Price</h3>
-          <span>${_totalPrice + _vehiclePrice}</span>
+          <span>
+            ${_calculateExtrasTotalPrice() + _calculateVehicleTotalPrice()}
+          </span>
         </div>
       </div>
     </div>
