@@ -3,14 +3,12 @@ import { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi";
 import AppLoading from "../common/loading";
 import SingleVehicle from "./single-vehicle";
-import { vehicleList } from "./vehicles.data";
 import * as vehicleApi from "../../apis/vehicle";
 
 export default function ListVehicle() {
   const { request, data: vehicles } = useApi(vehicleApi.allVehicles, {
     keyExtractor: "vehicles",
   });
-  // const [vehicles, setVehicles] = useState(vehicleList);
 
   useEffect(() => {
     request();
@@ -19,8 +17,6 @@ export default function ListVehicle() {
   if (!vehicles) {
     return <AppLoading />;
   }
-
-  console.log("vehicles: ", vehicles);
 
   return (
     <>

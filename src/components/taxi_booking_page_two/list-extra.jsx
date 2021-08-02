@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -6,12 +6,30 @@ import { useHistory } from "react-router-dom";
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
 import { updateExtras } from "../../store/booking";
+import useApi from "../../hooks/useApi";
+import * as extraApi from "../../apis/extra";
+import AppLoading from "../common/loading";
 
 export default function ListExtras() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [extras, setExtras] = useState(extrasList);
   const [selectedExtras, setSelectedExtra] = useState([]);
+  const {
+    request,
+    data: __extras,
+    isLoading,
+  } = useApi(extraApi.allExtras, {
+    keyExtractor: "extras",
+  });
+
+  useEffect(() => {
+    request();
+  }, []);
+
+  useEffect(() => {
+    setExtras(__extras);
+  }, [__extras]);
 
   const handleExtraQuantity = (actionName, extraId) => {
     setExtras((prevExtras) => {
@@ -56,11 +74,14 @@ export default function ListExtras() {
 
   return (
     <div class="page_two_section_two">
-      <_ExtrasList
-        extras={extras}
-        onUpdateQty={handleExtraQuantity}
-        onExtraSelected={handleExtraSelected}
-      />
+      {isLoading && <AppLoading />}
+      {!isLoading && extras && (
+        <_ExtrasList
+          extras={extras}
+          onUpdateQty={handleExtraQuantity}
+          onExtraSelected={handleExtraSelected}
+        />
+      )}
       <_BookingSummary />
       <_NavigateToPages onNavigateNext={handleNavigateToNext} />
     </div>
