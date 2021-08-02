@@ -15,6 +15,11 @@ export default function BookTaxiForm({
     setPickupLocation(inputValues.pickupLocation);
   }, [inputValues.dropoffLocation, inputValues.pickupLocation]);
 
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    onInputChange({ name, value: value.toString() });
+  };
+
   const handleDropoffLocation = (inputName, place, setLocationCallback) => {
     console.log(inputName, place);
 
@@ -28,7 +33,7 @@ export default function BookTaxiForm({
     };
 
     setLocationCallback(place.formatted_address);
-    onInputChange({ target });
+    onInputChange({ ...target });
   };
 
   return (
@@ -90,7 +95,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupDate"
               value={inputValues.pickupDate}
-              onChange={onInputChange}
+              onChange={handleChangeInput}
             />
             <input
               id="time"
@@ -100,7 +105,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupTime"
               value={inputValues.pickupTime}
-              onChange={onInputChange}
+              onChange={handleChangeInput}
             />
           </div>
         </div>
@@ -131,7 +136,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnDate"
               value={inputValues.returnDate}
-              onChange={onInputChange}
+              onChange={handleChangeInput}
             />
             <input
               id="time"
@@ -141,7 +146,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnTime"
               value={inputValues.returnTime}
-              onChange={onInputChange}
+              onChange={handleChangeInput}
             />
           </div>
         </div>

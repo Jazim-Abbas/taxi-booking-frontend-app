@@ -12,9 +12,8 @@ export default function BookTaxi() {
   const bookingState = useSelector((state) => state.booking);
   console.log("inside order taxi component", bookingState);
 
-  const handleInputChage = (e) => {
-    console.log("input change", e);
-    const { name, value, ...rest } = e.target;
+  const handleInputChage = (input) => {
+    const { name, value, ...rest } = input;
 
     setBooking((prev) => {
       return { ...prev, [name]: value.toString(), ...rest };

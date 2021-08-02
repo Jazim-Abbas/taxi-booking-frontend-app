@@ -48,7 +48,7 @@ export default function UpdateTaxiBookingForm() {
   }
 
   return (
-    <form>
+    <div>
       <div class="airport_selection_fileds">
         <div class="airport_fileds">
           <span>
@@ -67,6 +67,7 @@ export default function UpdateTaxiBookingForm() {
                 e.target.name = "dropoffLocation";
                 handleChange(e);
               }}
+              inputAutocompleteValue="off"
             />
           </div>
         </div>
@@ -233,6 +234,6 @@ export default function UpdateTaxiBookingForm() {
           </button>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
