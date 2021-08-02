@@ -18,7 +18,11 @@ export default function TransferDetailToogle() {
 
   const _calculateVehicleTotalPrice = () => {
     let _vehiclePrice = 0;
-    _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
+    if (travelDistance.value) {
+      _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
+    } else {
+      _vehiclePrice = vehicle.pricePerKM;
+    }
     return Math.floor(_vehiclePrice);
   };
 
@@ -136,39 +140,41 @@ export default function TransferDetailToogle() {
           <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
-              <span>ADULT</span>
-              <p>2</p>
+              <span>No of Passengers</span>
+              <p>{initialBooking.passengers}</p>
             </div>
           </div>
 
-          <div class="where_from">
+          {/* <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>CHILDREN</span>
               <p>0</p>
             </div>
-          </div>
+          </div> */}
 
-          <div class="where_from">
+          {/* <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>INFANTS</span>
               <p>0</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
-        <div class="pickup_detail_box">
-          <h4>Travel Distance & Time</h4>
-          <div class="where_from">
-            <i class="fas fa-car quantites_icon"></i>
-            <div class="where_from_location">
-              <p>
-                {travelDistance.text} & <small> {travelTime.text}</small>
-              </p>
+        {travelDistance.text && (
+          <div class="pickup_detail_box">
+            <h4>Travel Distance & Time</h4>
+            <div class="where_from">
+              <i class="fas fa-car quantites_icon"></i>
+              <div class="where_from_location">
+                <p>
+                  {travelDistance.text} & <small> {travelTime.text}</small>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div class="booking_page_one_price_detail" id="laptop_booking_summary">
