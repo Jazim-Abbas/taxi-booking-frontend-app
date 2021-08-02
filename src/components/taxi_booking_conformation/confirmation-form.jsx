@@ -1,7 +1,19 @@
 import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function ConfirmationForm() {
+  const [isAccept, setIsAccept] = useState(false);
   const history = useHistory();
+  const { vehicle, travelDistance } = useSelector((state) => state.booking);
+
+  const calculateVehiclePrice = () => {
+    if (Object.keys(travelDistance).length > 0) {
+      return travelDistance.value * vehicle.pricePerKM;
+    } else {
+      return vehicle.pricePerKM;
+    }
+  };
 
   const handleConfirmBooking = () => {
     console.log("handle confirm booking");
@@ -13,13 +25,20 @@ export default function ConfirmationForm() {
       <form>
         {/* <_ContactForm /> */}
 
-        <_VehicleDetail />
+        <_VehicleDetail
+          vehicle={vehicle}
+          vehiclePrice={calculateVehiclePrice()}
+        />
 
         {/* <_PaymentMethod /> */}
         <div class="conformation_term_section">
           <h2>Terms & Condition</h2>
           <div class="conformation_term_field">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              value={isAccept}
+              onChange={(e) => setIsAccept(e.target.checked)}
+            />
             <label>
               {" "}
               I accept the <a href="#">Terms & Conditions</a> and{" "}
@@ -34,8 +53,8 @@ export default function ConfirmationForm() {
           <Link to="/taxi_booking_page_three">Back</Link>
         </div>
         <div class="next">
-          <button href="#" onClick={handleConfirmBooking}>
-            Pay ammount ($100)
+          <button href="#" onClick={handleConfirmBooking} disabled={!isAccept}>
+            Pay ammount (${calculateVehiclePrice()})
           </button>
         </div>
       </div>
@@ -70,7 +89,7 @@ function _ContactForm() {
   );
 }
 
-function _VehicleDetail() {
+function _VehicleDetail({ vehiclePrice, vehicle }) {
   return (
     <div class="conformation_vehicle_detail">
       <h2>Vehicle Detail</h2>
@@ -81,13 +100,14 @@ function _VehicleDetail() {
               <img src="assets/image/standard.png" />
             </figure>
             <div class="page_one_single_car_detail">
-              <h1>Standard</h1>
+              <h1>{vehicle.name}</h1>
               <span>
                 <i class="fas fa-user"></i>
-                <small>4 Paks</small>
+                <small>{vehicle.passengerCapacity} Passengers</small>
               </span>
               <span>
-                <i class="fas fa-suitcase-rolling"></i> <small>4 Bags</small>
+                <i class="fas fa-suitcase-rolling"></i>{" "}
+                <small>{vehicle.luggageCapacity} Bags</small>
               </span>
             </div>
           </div>
@@ -95,7 +115,7 @@ function _VehicleDetail() {
         <div class="booking_page_one_car_detail">
           <div class="booking_page_one_car_price_detail">
             <strong>Total Price</strong>
-            <strong>$100</strong>
+            <strong>$ {vehiclePrice}</strong>
             <small>Free Cancelation</small>
             <small>No Hidden Charges</small>
           </div>
