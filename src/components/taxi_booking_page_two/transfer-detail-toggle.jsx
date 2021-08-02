@@ -2,7 +2,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function TransferDetailToogle() {
   const booking = useSelector((state) => state.booking);
-  const { initialBooking } = booking;
+  const { initialBooking, extras, vehicle } = booking;
+
+  let _totalPrice = 0;
+  let _vehiclePrice = 0;
+
+  const _calculateExtrasTotalPrice = () => {
+    extras.forEach((extra) => {
+      let quantity = extra.quantity ?? 1;
+      _totalPrice += extra.price * quantity;
+    });
+    return _totalPrice;
+  };
+
+  const _calculateVehicleTotalPrice = () => {
+    _vehiclePrice = vehicle.pricePerKM;
+    return _vehiclePrice;
+  };
 
   if (!booking) {
     return <></>;
@@ -149,15 +165,15 @@ export default function TransferDetailToogle() {
         <h2>Booking Summary</h2>
         <div class="booking_page_one_total_price">
           <h3>Selected Vehicle</h3>
-          <span>$100</span>
+          <span>${_calculateVehicleTotalPrice()}</span>
         </div>
         <div class="booking_page_one_total_price total_price_border">
           <h3>Selected Extra</h3>
-          <span>$100</span>
+          <span>${_calculateExtrasTotalPrice()}</span>
         </div>
         <div class="booking_page_one_total_price">
           <h3>Total Price</h3>
-          <span>$100</span>
+          <span>${_totalPrice + _vehiclePrice}</span>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
-import { addExtras, updateExtras } from "../../store/booking";
+import { updateExtras } from "../../store/booking";
 
 export default function ListExtras() {
   const history = useHistory();
@@ -24,22 +24,6 @@ export default function ListExtras() {
         return extra;
       });
     });
-
-    // const extra = extras.find((extra) => extra.id === extraId);
-    // console.log("updated extra: ", _updatedExtra);
-    // const selectedExtra = selectedExtras.find((extra) => extra.id == extraId);
-    // if (selectedExtra) {
-    //   console.log("extra found", selectedExtra, extras);
-    //   console.log("extra id", extraId);
-    //   const extra = extras.find((extra) => extra.id == extraId);
-
-    //   const _selectedExtras = selectedExtras.map((_extra) => {
-    //     if (_extra.id === extraId) return { ...extra };
-    //     return _extra;
-    //   });
-    //   setSelectedExtra(_selectedExtras);
-    //   dispatch(updateSingleExtra(extra));
-    // }
   };
 
   const handleExtraSelected = (extra) => {
@@ -54,8 +38,6 @@ export default function ListExtras() {
   };
 
   const handleNavigateToNext = () => {
-    // dispatch(updateExtras(_makeAppropriateExtras()));
-    // history.push("/taxi_booking_page_three");
     const extras = _makeAppropriateExtras();
     console.log("extras selected: ", extras);
     dispatch(updateExtras(extras));
@@ -69,11 +51,6 @@ export default function ListExtras() {
 
     console.log("appro extras: ", selectedExtras);
     return selectedExtras.map((extra) => allExtras[extra.id]);
-
-    // return extras.map((extra) => {
-    //   if (extra.quantity) return extra;
-    //   return { ...extra, quantity: 1 };
-    // });
   };
 
   return (
