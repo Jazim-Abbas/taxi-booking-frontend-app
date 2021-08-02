@@ -13,6 +13,7 @@ export default function BookTaxi() {
   console.log("inside order taxi component", bookingState);
 
   const handleInputChage = (input) => {
+    console.log("input: ", input);
     const { name, value, ...rest } = input;
 
     setBooking((prev) => {

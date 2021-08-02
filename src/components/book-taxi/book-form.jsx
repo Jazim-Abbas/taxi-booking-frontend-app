@@ -21,7 +21,7 @@ export default function BookTaxiForm({
   };
 
   const handleDropoffLocation = (inputName, place, setLocationCallback) => {
-    console.log(inputName, place);
+    console.log("place: ", place);
 
     const { lat, lng } = place.geometry.location;
 
@@ -32,7 +32,7 @@ export default function BookTaxiForm({
       [inputName + "_lng"]: lng(),
     };
 
-    setLocationCallback(place.formatted_address);
+    setLocationCallback(target.value);
     onInputChange({ ...target });
   };
 
@@ -53,10 +53,14 @@ export default function BookTaxiForm({
                 setDropOffLocation
               )
             }
+            onInvalid={() => console.log("invalid autocomplete")}
             // options={{ componentRestrictions: { country: "pk" } }}
             options={{ types: ["(regions)"] }}
             value={dropoffLocation}
-            onChange={(e) => setDropOffLocation(e.target.value)}
+            onChange={(e) => {
+              // setDropOffLocation(e.target.value);
+              onInputChange({ name: "dropoffLocation", value: e.target.value });
+            }}
           />
         </div>
         <div className="booking_fields departure_airport">
@@ -70,7 +74,9 @@ export default function BookTaxiForm({
             options={{ types: ["(regions)"] }}
             defaultValue={inputValues.pickupLocation}
             value={pickupLocation}
-            onChange={(e) => setPickupLocation(e.target.value)}
+            onChange={(e) => {
+              onInputChange({ name: "pickupLocation", value: e.target.value });
+            }}
             // inputAutocompleteValue={inputValues.pickupLocation}
           />
         </div>
