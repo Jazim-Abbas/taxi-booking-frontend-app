@@ -34,7 +34,7 @@ export default function UpdateTaxiBookingForm() {
     console.log("name: ", name, "value: ", value);
 
     setInitialBooking((prev) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [name]: value.toString() };
     });
   };
 

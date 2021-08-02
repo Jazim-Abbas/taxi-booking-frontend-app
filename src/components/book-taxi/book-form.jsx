@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import GooglePlaces from "react-google-places-autocomplete";
 import AutoComplete from "react-google-autocomplete";
-
-import { GOOGLE_MAP_API_KEY } from "../../utils/constants";
 
 export default function BookTaxiForm({
   onSubmit,
@@ -31,12 +28,6 @@ export default function BookTaxiForm({
     };
 
     setLocationCallback(place.formatted_address);
-    onInputChange({ target });
-  };
-
-  const handleDateOrTimeChange = (e) => {
-    const value = e.target.value.toString();
-    const target = { value, name: e.target.name };
     onInputChange({ target });
   };
 
@@ -99,7 +90,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupDate"
               value={inputValues.pickupDate}
-              onChange={handleDateOrTimeChange}
+              onChange={onInputChange}
             />
             <input
               id="time"
@@ -109,7 +100,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupTime"
               value={inputValues.pickupTime}
-              onChange={handleDateOrTimeChange}
+              onChange={onInputChange}
             />
           </div>
         </div>
@@ -140,7 +131,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnDate"
               value={inputValues.returnDate}
-              onChange={handleDateOrTimeChange}
+              onChange={onInputChange}
             />
             <input
               id="time"
@@ -150,7 +141,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnTime"
               value={inputValues.returnTime}
-              onChange={handleDateOrTimeChange}
+              onChange={onInputChange}
             />
           </div>
         </div>

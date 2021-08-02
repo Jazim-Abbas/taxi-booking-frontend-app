@@ -17,7 +17,7 @@ export default function BookTaxi() {
     const { name, value, ...rest } = e.target;
 
     setBooking((prev) => {
-      return { ...prev, [name]: value, ...rest };
+      return { ...prev, [name]: value.toString(), ...rest };
     });
   };
 
