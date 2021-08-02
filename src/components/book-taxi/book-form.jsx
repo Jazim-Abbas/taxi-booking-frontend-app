@@ -9,6 +9,7 @@ export default function BookTaxiForm({
 }) {
   const [dropoffLocation, setDropOffLocation] = useState();
   const [pickupLocation, setPickupLocation] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setDropOffLocation(inputValues.dropoffLocation);
@@ -34,6 +35,10 @@ export default function BookTaxiForm({
 
     setLocationCallback(target.value);
     onInputChange({ ...target });
+  };
+
+  const handleDropDown = () => {
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -159,7 +164,7 @@ export default function BookTaxiForm({
       </div>
 
       <div className="booking_info">
-        <div className="booking_fields">
+        <div className="booking_fields" onClick={handleDropDown}>
           <i className="fas fa-car quantites_icon"></i>
           <div className="quantites">
             <h5>
@@ -169,39 +174,18 @@ export default function BookTaxiForm({
               <span>0</span>children
             </h5>
           </div>
-          <div className="quantites_box">
+          <div
+            className="quantites_box"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
             <div className="single_box">
               <div className="children">
-                <h3>Adults</h3>
-                <small>12+ year</small>
+                <h3>Passengers</h3>
+                {/* <small>12+ year</small> */}
               </div>
               <div className="icon_section">
                 <i className="fas fa-minus-circle"></i>
-                <span>2</span>
-                <i className="fas fa-plus-circle"></i>
-              </div>
-            </div>
-
-            <div className="single_box">
-              <div className="children">
-                <h3>children</h3>
-                <small>2-12 year</small>
-              </div>
-              <div className="icon_section">
-                <i className="fas fa-minus-circle"></i>
-                <span>2</span>
-                <i className="fas fa-plus-circle"></i>
-              </div>
-            </div>
-
-            <div className="single_box">
-              <div className="children">
-                <h3>Infants</h3>
-                <small>under 2 year</small>
-              </div>
-              <div className="icon_section">
-                <i className="fas fa-minus-circle"></i>
-                <span>2</span>
+                <span> 2 </span>
                 <i className="fas fa-plus-circle"></i>
               </div>
             </div>

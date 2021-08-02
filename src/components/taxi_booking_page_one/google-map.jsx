@@ -32,10 +32,10 @@ export default function MyGoogleMap() {
     pickupLocation,
   } = initialBooking;
 
-  useEffect(() => {
-    console.log("convert geocode")
-    _convertLocationToLatAndLng();
-  }, [dropoffLocation, pickupLocation]);
+  // useEffect(() => {
+  //   console.log("convert geocode")
+  //   _convertLocationToLatAndLng();
+  // }, [dropoffLocation, pickupLocation]);
 
   useEffect(() => {
     const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
