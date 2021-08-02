@@ -1,11 +1,13 @@
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import moment from "moment";
 
 export default function ConfirmationForm() {
-  const [isAccept, setIsAccept] = useState(false);
+  const [isAccept, setIsAccept] = useState(true);
   const history = useHistory();
-  const { vehicle, travelDistance } = useSelector((state) => state.booking);
+  const booking = useSelector((state) => state.booking);
+  const { vehicle, travelDistance } = booking;
 
   const calculateVehiclePrice = () => {
     if (Object.keys(travelDistance).length > 0) {
@@ -16,8 +18,53 @@ export default function ConfirmationForm() {
   };
 
   const handleConfirmBooking = () => {
+    console.log(_makeAppropriateFields());
     console.log("handle confirm booking");
-    history.push("/pay-amount");
+    // history.push("/pay-amount");
+  };
+
+  const _makeAppropriateFields = () => {
+    const { initialBooking, personaDetail } = booking;
+
+    const bookingFields = {
+      pickupLocation: initialBooking.pickupLocation,
+      dropoffLocation: initialBooking.dropoffLocation,
+      startDateTime: _getDateOjb(
+        initialBooking.pickupDate,
+        initialBooking.pickupTime
+      ),
+      returnDateTime: _getDateOjb(
+        initialBooking.returnDate,
+        initialBooking.returnTime
+      ),
+      distance: travelDistance.value ?? 1,
+      transferType: initialBooking.isOneWay ? "One way" : "Two way",
+      vehicleId: vehicle.id,
+      passengerName: personaDetail.firstName + " " + personaDetail.lastName,
+      passengerEmail: personaDetail.passengerEmail,
+      passengerNumber: personaDetail.passengerNumber,
+      totalPassengers: +initialBooking.passengers,
+      totalBags: personaDetail.totalBags,
+      extrasPrice: _calculateExtrasPrice(),
+    };
+
+    console.log("booking fields for backend: ", bookingFields);
+  };
+
+  const _getDateOjb = (date, time) => {
+    return moment(`${date} ${time}`, "YYYY-MM-DD HH:mm A").format();
+  };
+
+  const _calculateExtrasPrice = () => {
+    const { extras } = booking;
+    let price = 0;
+
+    extras.forEach((extra) => {
+      const quantity = extra.quantity ?? 1;
+      price += extra.price * quantity;
+    });
+
+    return price;
   };
 
   return (
