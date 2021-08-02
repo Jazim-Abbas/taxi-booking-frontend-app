@@ -186,13 +186,13 @@ export default function UpdateTaxiBookingForm() {
             <span>Passengers</span>
             <div class="page_one_Passengers">
               <h5>
-                <span>0</span>
-                <span>children</span>
+                <span>{initialBooking.passengers}</span>
+                <span>Passengers</span>
               </h5>
-              <h5>
+              {/* <h5>
                 <span>0</span>
                 <span>Adult</span>
-              </h5>
+              </h5> */}
             </div>
           </div>
           <div class="quantites_box passenger_quantities">
