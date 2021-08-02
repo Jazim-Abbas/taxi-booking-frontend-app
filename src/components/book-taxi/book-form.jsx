@@ -10,6 +10,7 @@ export default function BookTaxiForm({
   const [dropoffLocation, setDropOffLocation] = useState();
   const [pickupLocation, setPickupLocation] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [passengers, setPassengers] = useState(1);
 
   useEffect(() => {
     setDropOffLocation(inputValues.dropoffLocation);
@@ -39,6 +40,11 @@ export default function BookTaxiForm({
 
   const handleDropDown = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleChangePassenger = (val) => {
+    setPassengers((prev) => prev + val);
+    onInputChange({ name: "passengers", value: +passengers + val });
   };
 
   return (
@@ -168,11 +174,11 @@ export default function BookTaxiForm({
           <i className="fas fa-car quantites_icon"></i>
           <div className="quantites">
             <h5>
-              <span>2</span>Adult
+              <span>{passengers}</span> Passengers
             </h5>
-            <h5>
+            {/* <h5>
               <span>0</span>children
-            </h5>
+            </h5> */}
           </div>
           <div
             className="quantites_box"
@@ -184,9 +190,15 @@ export default function BookTaxiForm({
                 {/* <small>12+ year</small> */}
               </div>
               <div className="icon_section">
-                <i className="fas fa-minus-circle"></i>
-                <span> 2 </span>
-                <i className="fas fa-plus-circle"></i>
+                <i
+                  className="fas fa-minus-circle"
+                  onClick={() => handleChangePassenger(-1)}
+                ></i>
+                <span> {passengers} </span>
+                <i
+                  className="fas fa-plus-circle"
+                  onClick={() => handleChangePassenger(1)}
+                ></i>
               </div>
             </div>
           </div>
