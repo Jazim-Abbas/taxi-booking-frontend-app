@@ -1,7 +1,9 @@
 import moment from "moment";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function TransferDetailToogle() {
+  const [isOpen, setIsOpen] = useState(true);
   const booking = useSelector((state) => state.booking);
   const { initialBooking, extras, vehicle, travelDistance, travelTime } =
     booking;
@@ -34,57 +36,22 @@ export default function TransferDetailToogle() {
     <div class="page_one_section">
       <div class="page_two_booking_complete_summary">
         <p>Transfer Details</p>
-        <i class="fas fa-chevron-down"></i>
+        <i
+          style={{ cursor: "pointer" }}
+          class={isOpen ? "fas fa-chevron-up" : "fas fa-chevron-down"}
+          onClick={() => setIsOpen((prev) => !prev)}
+        ></i>
       </div>
-      <div class="transfer_detail_box">
-        <div class="pickup_detail_box">
-          <h4>Pickup</h4>
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>WHERE FROM</span>
-              <p>{initialBooking.pickupLocation}</p>
-            </div>
-          </div>
 
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>WHERE TO</span>
-              <p>{initialBooking.dropoffLocation}</p>
-            </div>
-          </div>
-
-          <div class="where_from">
-            <i class="far fa-calendar-alt"></i>
-            <div class="where_from_location">
-              <span>PICKUP DATE</span>
-              <p>
-                {moment(initialBooking.pickupDate).calendar()}{" "}
-                <small>
-                  [{moment(initialBooking.pickupDate).format("LL")}]
-                </small>
-              </p>
-            </div>
-          </div>
-
-          <div class="where_from">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="where_from_location">
-              <span>PICKUP TIME</span>
-              <p>12:00</p>
-            </div>
-          </div>
-        </div>
-
-        {!initialBooking.isOneWay && (
+      {isOpen && (
+        <div class="transfer_detail_box">
           <div class="pickup_detail_box">
-            <h4>Return</h4>
+            <h4>Pickup</h4>
             <div class="where_from">
               <i class="fas fa-map-marker-alt"></i>
               <div class="where_from_location">
                 <span>WHERE FROM</span>
-                <p>{initialBooking.dropoffLocation}</p>
+                <p>{initialBooking.pickupLocation}</p>
               </div>
             </div>
 
@@ -92,18 +59,18 @@ export default function TransferDetailToogle() {
               <i class="fas fa-map-marker-alt"></i>
               <div class="where_from_location">
                 <span>WHERE TO</span>
-                <p>{initialBooking.pickupLocation}</p>
+                <p>{initialBooking.dropoffLocation}</p>
               </div>
             </div>
 
             <div class="where_from">
               <i class="far fa-calendar-alt"></i>
               <div class="where_from_location">
-                <span>RETURN DATE</span>
+                <span>PICKUP DATE</span>
                 <p>
-                  {moment(initialBooking.returnDate).calendar()}{" "}
+                  {moment(initialBooking.pickupDate).calendar()}{" "}
                   <small>
-                    [{moment(initialBooking.returnDate).format("LL")}]
+                    [{moment(initialBooking.pickupDate).format("LL")}]
                   </small>
                 </p>
               </div>
@@ -112,40 +79,82 @@ export default function TransferDetailToogle() {
             <div class="where_from">
               <i class="fas fa-map-marker-alt"></i>
               <div class="where_from_location">
-                <span>RETURN TIME</span>
+                <span>PICKUP TIME</span>
                 <p>12:00</p>
               </div>
             </div>
           </div>
-        )}
 
-        <div class="pickup_detail_box">
-          <h4>Vehicle Category</h4>
-          <div class="where_from">
-            <i class="fas fa-car quantites_icon"></i>
-            <div class="where_from_location">
-              <span>DESCRIPTION</span>
-              <p>
-                {vehicle.name} for <small> {vehicle.passengerCapacity} </small>{" "}
-                passengers <small> {vehicle.luggageCapacity} </small> suitecases
-                {/* <small>2</small>
+          {!initialBooking.isOneWay && (
+            <div class="pickup_detail_box">
+              <h4>Return</h4>
+              <div class="where_from">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="where_from_location">
+                  <span>WHERE FROM</span>
+                  <p>{initialBooking.dropoffLocation}</p>
+                </div>
+              </div>
+
+              <div class="where_from">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="where_from_location">
+                  <span>WHERE TO</span>
+                  <p>{initialBooking.pickupLocation}</p>
+                </div>
+              </div>
+
+              <div class="where_from">
+                <i class="far fa-calendar-alt"></i>
+                <div class="where_from_location">
+                  <span>RETURN DATE</span>
+                  <p>
+                    {moment(initialBooking.returnDate).calendar()}{" "}
+                    <small>
+                      [{moment(initialBooking.returnDate).format("LL")}]
+                    </small>
+                  </p>
+                </div>
+              </div>
+
+              <div class="where_from">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="where_from_location">
+                  <span>RETURN TIME</span>
+                  <p>12:00</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div class="pickup_detail_box">
+            <h4>Vehicle Category</h4>
+            <div class="where_from">
+              <i class="fas fa-car quantites_icon"></i>
+              <div class="where_from_location">
+                <span>DESCRIPTION</span>
+                <p>
+                  {vehicle.name} for{" "}
+                  <small> {vehicle.passengerCapacity} </small> passengers{" "}
+                  <small> {vehicle.luggageCapacity} </small> suitecases
+                  {/* <small>2</small>
                 small hand luggage items */}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pickup_detail_box">
-          <h4>Passengers</h4>
-          <div class="where_from">
-            <i class="fas fa-user"></i>
-            <div class="where_from_location">
-              <span>No of Passengers</span>
-              <p>{initialBooking.passengers}</p>
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* <div class="where_from">
+          <div class="pickup_detail_box">
+            <h4>Passengers</h4>
+            <div class="where_from">
+              <i class="fas fa-user"></i>
+              <div class="where_from_location">
+                <span>No of Passengers</span>
+                <p>{initialBooking.passengers}</p>
+              </div>
+            </div>
+
+            {/* <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>CHILDREN</span>
@@ -153,29 +162,30 @@ export default function TransferDetailToogle() {
             </div>
           </div> */}
 
-          {/* <div class="where_from">
+            {/* <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>INFANTS</span>
               <p>0</p>
             </div>
           </div> */}
-        </div>
+          </div>
 
-        {travelDistance.text && (
-          <div class="pickup_detail_box">
-            <h4>Travel Distance & Time</h4>
-            <div class="where_from">
-              <i class="fas fa-car quantites_icon"></i>
-              <div class="where_from_location">
-                <p>
-                  {travelDistance.text} & <small> {travelTime.text}</small>
-                </p>
+          {travelDistance.text && (
+            <div class="pickup_detail_box">
+              <h4>Travel Distance & Time</h4>
+              <div class="where_from">
+                <i class="fas fa-car quantites_icon"></i>
+                <div class="where_from_location">
+                  <p>
+                    {travelDistance.text} & <small> {travelTime.text}</small>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       <div class="booking_page_one_price_detail" id="laptop_booking_summary">
         <h2>Booking Summary</h2>

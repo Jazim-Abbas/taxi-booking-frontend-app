@@ -55,8 +55,7 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <AutoComplete
-            // apiKey={GOOGLE_MAP_API_KEY}
+          {/* <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation(
                 "dropoffLocation",
@@ -65,30 +64,37 @@ export default function BookTaxiForm({
               )
             }
             onInvalid={() => console.log("invalid autocomplete")}
-            // options={{ componentRestrictions: { country: "pk" } }}
             options={{ types: ["(regions)"] }}
             value={dropoffLocation}
             onChange={(e) => {
-              // setDropOffLocation(e.target.value);
               onInputChange({ name: "dropoffLocation", value: e.target.value });
             }}
+          /> */}
+          <input
+            type="text"
+            name="dropoffLocation"
+            value={inputValues.dropoffLocation}
+            onChange={handleChangeInput}
           />
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <AutoComplete
-            // apiKey={GOOGLE_MAP_API_KEY}
+          {/* <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
-            // options={{ componentRestrictions: { country: "pk" } }}
             options={{ types: ["(regions)"] }}
             defaultValue={inputValues.pickupLocation}
             value={pickupLocation}
             onChange={(e) => {
               onInputChange({ name: "pickupLocation", value: e.target.value });
             }}
-            // inputAutocompleteValue={inputValues.pickupLocation}
+          /> */}
+          <input
+            type="text"
+            name="pickupLocation"
+            value={inputValues.pickupLocation}
+            onChange={handleChangeInput}
           />
         </div>
 
