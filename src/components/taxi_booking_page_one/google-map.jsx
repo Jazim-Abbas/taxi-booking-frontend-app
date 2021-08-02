@@ -11,15 +11,18 @@ import AppLoading from "../common/loading";
 import { useGoogleMap } from "../../context/google-map";
 
 export default function MyGoogleMap() {
+  const { initialBooking, travelDistance, travelTime } = useSelector(
+    (state) => state.booking
+  );
+  const { isLoaded } = useGoogleMap();
+  const [location, setLocation] = useState();
+  const [isMapLoading, setIsMapLoading] = useState(true);
   const {
     dropoffLocation_lat,
     dropoffLocation_lng,
     pickupLocation_lat,
     pickupLocation_lng,
-  } = useSelector((state) => state.booking.initialBooking);
-  const { isLoaded } = useGoogleMap();
-  const [isMapLoading, setIsMapLoading] = useState(true);
-  const [location, setLocation] = useState();
+  } = initialBooking;
 
   useEffect(() => {
     const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
@@ -36,6 +39,12 @@ export default function MyGoogleMap() {
   ]);
 
   console.log("map location: ", location);
+
+  const handleCalculateDistanceTime = (res) => {
+    const { distance, duration } = res.rows[0].elements[0];
+
+    console.log(distance, duration);
+  };
 
   if (!isMapLoading || !isLoaded || !location) {
     return (
@@ -78,7 +87,7 @@ export default function MyGoogleMap() {
             destinations: [location.destination],
             travelMode: "DRIVING",
           }}
-          callback={(response) => console.log("distance res: ", response)}
+          callback={handleCalculateDistanceTime}
         />
       </GoogleMap>
     </div>
