@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   GoogleMap,
   Marker,
@@ -10,10 +11,33 @@ import AppLoading from "../common/loading";
 import { useGoogleMap } from "../../context/google-map";
 
 export default function MyGoogleMap() {
-  const [isMapLoading, setIsMapLoading] = useState(false);
+  const {
+    dropoffLocation_lat,
+    dropoffLocation_lng,
+    pickupLocation_lat,
+    pickupLocation_lng,
+  } = useSelector((state) => state.booking.initialBooking);
   const { isLoaded } = useGoogleMap();
+  const [isMapLoading, setIsMapLoading] = useState(true);
+  const [location, setLocation] = useState();
 
-  if (!isMapLoading || !isLoaded) {
+  useEffect(() => {
+    const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
+    const destination = { lat: dropoffLocation_lat, lng: dropoffLocation_lng };
+    const center = { ...origin };
+    const pathCoordinates = [{ ...origin }, { ...destination }];
+
+    setLocation({ origin, destination, center, pathCoordinates });
+  }, [
+    dropoffLocation_lat,
+    dropoffLocation_lng,
+    pickupLocation_lat,
+    pickupLocation_lng,
+  ]);
+
+  console.log("map location: ", location);
+
+  if (!isMapLoading || !isLoaded || !location) {
     return (
       <div>
         <p>
@@ -28,19 +52,19 @@ export default function MyGoogleMap() {
     <div
       style={{
         height: "50vh",
-        backgroundColor: "tomato",
+        backgroundColor: "lightgray",
         marginBottom: "20px",
       }}
     >
       <GoogleMap
         zoom={10}
-        center={center}
+        center={location.center}
         mapContainerStyle={{ width: "100%", height: "100%" }}
       >
-        <Marker position={origin} />
-        <Marker position={destination} />
+        <Marker position={location.origin} />
+        <Marker position={location.destination} />
         <Polyline
-          path={pathCoordinates}
+          path={location.pathCoordinates}
           options={{
             strokeColor: "tomato",
             strokeOpacity: 1,
@@ -50,8 +74,8 @@ export default function MyGoogleMap() {
         />
         <DistanceMatrixService
           options={{
-            origins: [origin],
-            destinations: [destination],
+            origins: [location.origin],
+            destinations: [location.destination],
             travelMode: "DRIVING",
           }}
           callback={(response) => console.log("distance res: ", response)}
@@ -61,7 +85,7 @@ export default function MyGoogleMap() {
   );
 }
 
-const origin = { lat: 31.5925, lng: 74.3095 };
-const destination = { lat: 31.5841, lng: 74.4738 };
-const pathCoordinates = [{ ...origin }, { ...destination }];
-const center = { ...origin };
+// const origin = { lat: 31.5925, lng: 74.3095 };
+// const destination = { lat: 31.5841, lng: 74.4738 };
+// const pathCoordinates = [{ ...origin }, { ...destination }];
+// const center = { ...origin };
