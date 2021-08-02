@@ -11,3 +11,5 @@ export const reduxBookingKeys = {
   EXTRAS: ["initialBooking", "vehicle", "extras"],
   PERSONAL_DETAIL: ["initialBooking", "vehicle", "extras", "personaDetail"],
 };
+
+export const BASE_URL = "http://localhost:8000";

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { selectVehicle } from "../../store/booking";
+import { BASE_URL } from "../../utils/constants";
 
 export default function SingleVehicle({ vehicle }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function SingleVehicle({ vehicle }) {
       <div class="booking_page_one_car_detail">
         <div class="booking_page_one_single_car_detail">
           <figure>
-            <img src={vehicle.image} />
+            <img style={{ width: "180px", height: "100%"}} src={BASE_URL + "/" + vehicle.image} />
           </figure>
           <div class="page_one_single_car_detail">
             <h1>{vehicle.name}</h1>
