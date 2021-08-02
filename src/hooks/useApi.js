@@ -28,6 +28,7 @@ export default function useApi(
       console.log(res);
       return res;
     } catch (err) {
+      console.log("error from server: ", err.response);
       setIsLoading(false);
 
       if (err.response) {

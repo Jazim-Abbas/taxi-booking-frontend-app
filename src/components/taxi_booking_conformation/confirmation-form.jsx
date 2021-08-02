@@ -3,11 +3,17 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import moment from "moment";
 
+import useApi from "../../hooks/useApi";
+import * as bookingApi from "../../apis/booking";
+
 export default function ConfirmationForm() {
   const [isAccept, setIsAccept] = useState(true);
   const history = useHistory();
   const booking = useSelector((state) => state.booking);
   const { vehicle, travelDistance } = booking;
+  const { request, isLoading } = useApi(bookingApi.createBooking, {
+    hasCatchError: true,
+  });
 
   const calculateVehiclePrice = () => {
     if (Object.keys(travelDistance).length > 0) {
@@ -26,7 +32,7 @@ export default function ConfirmationForm() {
   const _makeAppropriateFields = () => {
     const { initialBooking, personaDetail } = booking;
 
-    const bookingFields = {
+    let bookingFields = {
       pickupLocation: initialBooking.pickupLocation,
       dropoffLocation: initialBooking.dropoffLocation,
       startDateTime: _getDateOjb(
@@ -47,7 +53,12 @@ export default function ConfirmationForm() {
       totalBags: personaDetail.totalBags,
       extrasPrice: _calculateExtrasPrice(),
     };
+    if (!initialBooking.returnDate) {
+      const { returnDateTime, ...rest } = bookingFields;
+      bookingFields = { ...rest };
+    }
 
+    request(bookingFields);
     console.log("booking fields for backend: ", bookingFields);
   };
 
