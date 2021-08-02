@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import "./login.css";
 import LoginForm from "./login-form";
@@ -6,11 +6,17 @@ import useApi from "../../hooks/useApi";
 import * as authApi from "../../apis/auth";
 
 function LoginScreen() {
-  const loginApi = useApi(authApi.login);
+  const history = useHistory();
+  const loginApi = useApi(authApi.login, { hasCatchError: true });
 
-  const handleLogin = ({ formValues }) => {
-    loginApi.request(formValues);
-    console.log("handle login", formValues);
+  const handleLogin = async ({ formValues }) => {
+    try {
+      const res = await loginApi.request(formValues);
+      const user = { ...res.data };
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("user", JSON.stringify(user));
+      history.push("/");
+    } catch (_) {}
   };
 
   return (
