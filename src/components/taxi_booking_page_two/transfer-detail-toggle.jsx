@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
 export default function TransferDetailToogle() {
   const booking = useSelector((state) => state.booking);
@@ -54,7 +55,7 @@ export default function TransferDetailToogle() {
             <div class="where_from_location">
               <span>TRAVEL DATE</span>
               <p>
-                30/7/2021 <small>[Friday 30,July]</small>
+                {moment("2020-05-12").calendar()} <small>[{moment("2020-05-12").format("LL")}]</small>
               </p>
             </div>
           </div>
@@ -74,7 +75,7 @@ export default function TransferDetailToogle() {
             <i class="fas fa-map-marker-alt"></i>
             <div class="where_from_location">
               <span>WHERE FROM</span>
-              <p>abc</p>
+              <p>{initialBooking.dropoffLocation}</p>
             </div>
           </div>
 
@@ -82,7 +83,7 @@ export default function TransferDetailToogle() {
             <i class="fas fa-map-marker-alt"></i>
             <div class="where_from_location">
               <span>WHERE TO</span>
-              <p>abc</p>
+              <p>{initialBooking.pickupLocation}</p>
             </div>
           </div>
 
@@ -91,7 +92,7 @@ export default function TransferDetailToogle() {
             <div class="where_from_location">
               <span>TRAVEL DATE</span>
               <p>
-                30/7/2021 <small>[Friday 30,July]</small>
+              {moment("2020-05-12").calendar()} <small>[{moment("2020-05-12").format("LL")}]</small>
               </p>
             </div>
           </div>
@@ -112,10 +113,10 @@ export default function TransferDetailToogle() {
             <div class="where_from_location">
               <span>DESCRIPTION</span>
               <p>
-                Private Taxi With Capacity for <small> 2 </small> passengers{" "}
-                <small> 2 </small>medium suitecases
-                <small>2</small>
-                small hand luggage items
+                {vehicle.name} for <small> {vehicle.passengerCapacity} </small>{" "}
+                passengers <small> {vehicle.luggageCapacity} </small> suitecases
+                {/* <small>2</small>
+                small hand luggage items */}
               </p>
             </div>
           </div>
