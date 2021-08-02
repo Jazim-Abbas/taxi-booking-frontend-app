@@ -1,7 +1,10 @@
 import { useState } from "react";
 import * as progress from "../utils/progress";
 
-export default function useApi(apiFunc, { hasCatchError = false } = {}) {
+export default function useApi(
+  apiFunc,
+  { hasCatchError = false, keyExtractor = "" } = {}
+) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
@@ -13,7 +16,13 @@ export default function useApi(apiFunc, { hasCatchError = false } = {}) {
     try {
       const res = await apiFunc(...params);
       setIsLoading(false);
-      setData(res.data);
+
+      if (keyExtractor === "") {
+        setData(res.data);
+      } else {
+        setData(res.data[keyExtractor]);
+      }
+
       setError({});
       progress.end();
       console.log(res);
