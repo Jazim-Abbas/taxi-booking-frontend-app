@@ -1,4 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
+
 export default function TransferDetailToogle() {
+  const booking = useSelector((state) => state.booking);
+  const { initialBooking } = booking;
+
+  if (!booking) {
+    return <></>;
+  }
+
   return (
     <div class="page_one_section">
       <div class="page_two_booking_complete_summary">
@@ -12,7 +21,7 @@ export default function TransferDetailToogle() {
             <i class="fas fa-map-marker-alt"></i>
             <div class="where_from_location">
               <span>WHERE FROM</span>
-              <p>abc</p>
+              <p>{initialBooking.pickupLocation}</p>
             </div>
           </div>
 
@@ -20,7 +29,7 @@ export default function TransferDetailToogle() {
             <i class="fas fa-map-marker-alt"></i>
             <div class="where_from_location">
               <span>WHERE TO</span>
-              <p>abc</p>
+              <p>{initialBooking.dropoffLocation}</p>
             </div>
           </div>
 

@@ -39,6 +39,32 @@ const booking = createSlice({
       console.log("redux store: ", payload);
       state.extras = [...payload];
     },
+    updateExtras: (state, { payload }) => {
+      const allExtras = {};
+
+      state.extras.map((extra) => (allExtras[extra.id] = extra));
+      // state.extras = payload.map((extra) => {
+      //   if (extra.id === allExtras[extra.id].id) {
+      //     return { ...extra };
+      //   }
+      // });
+
+      payload.forEach((extra) => {
+        allExtras[extra.id] = { ...extra };
+      });
+
+      state.extras = [];
+      for (const extra in allExtras) {
+        state.extras.push(allExtras[extra]);
+      }
+
+      // state.extras = state.extras.map((extra) => {
+      //   if (extra.id === payload.id) {
+      //     return { ...payload };
+      //   }
+      //   return extra;
+      // });
+    },
     addPersonalDetail: (state, { payload }) => {
       console.log("redux store: ", payload);
       state.personaDetail = { ...payload };
@@ -46,7 +72,12 @@ const booking = createSlice({
   },
 });
 
-export const { orderTaxi, selectVehicle, addExtras, addPersonalDetail } =
-  booking.actions;
+export const {
+  orderTaxi,
+  selectVehicle,
+  addExtras,
+  addPersonalDetail,
+  updateExtras,
+} = booking.actions;
 
 export default booking.reducer;

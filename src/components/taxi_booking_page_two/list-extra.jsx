@@ -5,12 +5,13 @@ import { useHistory } from "react-router-dom";
 
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
-import { addExtras } from "../../store/booking";
+import { addExtras, updateExtras } from "../../store/booking";
 
 export default function ListExtras() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [extras, setExtras] = useState(extrasList);
+  const [selectedExtras, setSelectedExtra] = useState([]);
 
   const handleExtraQuantity = (actionName, extraId) => {
     setExtras((prevExtras) => {
@@ -23,30 +24,72 @@ export default function ListExtras() {
         return extra;
       });
     });
+
+    // const extra = extras.find((extra) => extra.id === extraId);
+    // console.log("updated extra: ", _updatedExtra);
+    // const selectedExtra = selectedExtras.find((extra) => extra.id == extraId);
+    // if (selectedExtra) {
+    //   console.log("extra found", selectedExtra, extras);
+    //   console.log("extra id", extraId);
+    //   const extra = extras.find((extra) => extra.id == extraId);
+
+    //   const _selectedExtras = selectedExtras.map((_extra) => {
+    //     if (_extra.id === extraId) return { ...extra };
+    //     return _extra;
+    //   });
+    //   setSelectedExtra(_selectedExtras);
+    //   dispatch(updateSingleExtra(extra));
+    // }
+  };
+
+  const handleExtraSelected = (extra) => {
+    console.log("extra: ", extra);
+    const isSelectedExtraFound = selectedExtras.find(
+      (_extra) => _extra.id === extra.id
+    );
+
+    if (!isSelectedExtraFound) {
+      setSelectedExtra((prev) => [...prev, { ...extra }]);
+    }
   };
 
   const handleNavigateToNext = () => {
-    dispatch(addExtras(_makeAppropriateExtras()));
-    history.push("/taxi_booking_page_three");
+    // dispatch(updateExtras(_makeAppropriateExtras()));
+    // history.push("/taxi_booking_page_three");
+    const extras = _makeAppropriateExtras();
+    console.log("extras selected: ", extras);
+    dispatch(updateExtras(extras));
   };
 
   const _makeAppropriateExtras = () => {
-    return extras.map((extra) => {
-      if (extra.quantity) return extra;
-      return { ...extra, quantity: 1 };
+    const allExtras = {};
+    extras.forEach((extra) => {
+      allExtras[extra.id] = extra;
     });
+
+    console.log("appro extras: ", selectedExtras);
+    return selectedExtras.map((extra) => allExtras[extra.id]);
+
+    // return extras.map((extra) => {
+    //   if (extra.quantity) return extra;
+    //   return { ...extra, quantity: 1 };
+    // });
   };
 
   return (
     <div class="page_two_section_two">
-      <_ExtrasList extras={extras} onUpdateQty={handleExtraQuantity} />
+      <_ExtrasList
+        extras={extras}
+        onUpdateQty={handleExtraQuantity}
+        onExtraSelected={handleExtraSelected}
+      />
       <_BookingSummary />
       <_NavigateToPages onNavigateNext={handleNavigateToNext} />
     </div>
   );
 }
 
-function _ExtrasList({ extras, onUpdateQty }) {
+function _ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
   return (
     <form>
       {extras.map((extra, i) => {
@@ -57,6 +100,7 @@ function _ExtrasList({ extras, onUpdateQty }) {
               hasQuantity={true}
               extra={extra}
               onUpdateQty={onUpdateQty}
+              onExtraSelected={onExtraSelected}
             />
           );
         } else {
@@ -65,6 +109,7 @@ function _ExtrasList({ extras, onUpdateQty }) {
               key={extra.id}
               extra={extra}
               onUpdateQty={onUpdateQty}
+              onExtraSelected={onExtraSelected}
             />
           );
         }

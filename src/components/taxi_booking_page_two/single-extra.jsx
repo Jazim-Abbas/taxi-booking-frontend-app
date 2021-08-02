@@ -1,6 +1,11 @@
 import AddOrRemoveQuantity from "./add-or-remove-quantity";
 
-export default function SingleExtra({ extra, hasQuantity, onUpdateQty }) {
+export default function SingleExtra({
+  extra,
+  hasQuantity,
+  onUpdateQty,
+  onExtraSelected,
+}) {
   const className = hasQuantity
     ? "page_two_extra_detail"
     : "page_two_extra_detail_parttwo";
@@ -19,7 +24,9 @@ export default function SingleExtra({ extra, hasQuantity, onUpdateQty }) {
       )}
 
       <div class="extra_select_btn">
-        <button>Select</button>
+        <button type="button" onClick={() => onExtraSelected(extra)}>
+          Select
+        </button>
       </div>
     </div>
   );
