@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AutoComplete from "react-google-autocomplete";
 
+import { orderTaxi } from "../../store/booking";
+
 export default function UpdateTaxiBookingForm() {
+  const dispatch = useDispatch();
   const booking = useSelector((state) => state.booking);
   const [initialBooking, setInitialBooking] = useState();
 
@@ -20,8 +23,6 @@ export default function UpdateTaxiBookingForm() {
       [inputName + "_lng"]: lng(),
     };
 
-    console.log("target place selected: ", target);
-
     setInitialBooking((prev) => {
       return { ...prev, ...target, [inputName]: target.value };
     });
@@ -33,10 +34,13 @@ export default function UpdateTaxiBookingForm() {
     console.log("name: ", name, "value: ", value);
 
     setInitialBooking((prev) => {
-      const state = { ...prev, [name]: value };
-      // console.log("state inside setting booking: ", state);
-      return state;
+      return { ...prev, [name]: value };
     });
+  };
+
+  const handleUpdateSearch = () => {
+    dispatch(orderTaxi(initialBooking));
+    console.log("handle update search");
   };
 
   if (!initialBooking) {
@@ -224,7 +228,9 @@ export default function UpdateTaxiBookingForm() {
         </div>
 
         <div class="booking_page_one_btn">
-          <button type="submit">update search</button>
+          <button type="button" onClick={handleUpdateSearch}>
+            update search
+          </button>
         </div>
       </div>
     </form>

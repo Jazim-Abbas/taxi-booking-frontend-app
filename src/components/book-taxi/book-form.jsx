@@ -34,6 +34,12 @@ export default function BookTaxiForm({
     onInputChange({ target });
   };
 
+  const handleDateOrTimeChange = (e) => {
+    const value = e.target.value.toString();
+    const target = { value, name: e.target.name };
+    onInputChange({ target });
+  };
+
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
@@ -93,7 +99,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupDate"
               value={inputValues.pickupDate}
-              onChange={onInputChange}
+              onChange={handleDateOrTimeChange}
             />
             <input
               id="time"
@@ -103,7 +109,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="pickupTime"
               value={inputValues.pickupTime}
-              onChange={onInputChange}
+              onChange={handleDateOrTimeChange}
             />
           </div>
         </div>
@@ -134,7 +140,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnDate"
               value={inputValues.returnDate}
-              onChange={onInputChange}
+              onChange={handleDateOrTimeChange}
             />
             <input
               id="time"
@@ -144,7 +150,7 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               name="returnTime"
               value={inputValues.returnTime}
-              onChange={onInputChange}
+              onChange={handleDateOrTimeChange}
             />
           </div>
         </div>
