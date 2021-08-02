@@ -23,13 +23,12 @@ export default function ConfirmationForm() {
     }
   };
 
-  const handleConfirmBooking = () => {
-    console.log(_makeAppropriateFields());
+  const handleConfirmBooking = async () => {
+    await _makeAppropriateFields();
     console.log("handle confirm booking");
-    history.push("/pay-amount");
   };
 
-  const _makeAppropriateFields = () => {
+  const _makeAppropriateFields = async () => {
     const { initialBooking, personaDetail } = booking;
 
     let bookingFields = {
@@ -58,13 +57,14 @@ export default function ConfirmationForm() {
       bookingFields = { ...rest };
     }
 
-    // try {
-    //   request(bookingFields);
-    // } catch (err) {
-    //   console.log("error", err);
-    // }
-
-
+    try {
+      const res = await request(bookingFields);
+      console.log("client secret", res.data.client_secret);
+      window.localStorage.setItem("cs", res.data.client_secret);
+      history.push("/pay-amount");
+    } catch (err) {
+      console.log("error", err);
+    }
   };
 
   const _getDateOjb = (date, time) => {

@@ -97,17 +97,14 @@ export default function PaymentForm() {
     e.preventDefault();
     setIsLoading(true);
 
-    const result = await stripe.confirmCardPayment(
-      "pi_1JK1QqClkiKKoyU1QivypO9K_secret_cQzwPZ88d69quGJui7TQKRhzl",
-      {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            email: "email@gmail.com",
-          },
+    const result = await stripe.confirmCardPayment(localStorage.getItem("cs"), {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          email: "email@gmail.com",
         },
-      }
-    );
+      },
+    });
 
     setIsLoading(false);
 
