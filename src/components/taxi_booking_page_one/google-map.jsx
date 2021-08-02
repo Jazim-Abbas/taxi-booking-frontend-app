@@ -44,20 +44,28 @@ export default function MyGoogleMap() {
 
   const handleCalculateDistanceTime = (res) => {
     const distanceMatrix = res.rows[0].elements[0];
+    console.log("travel distance", travelDistance);
 
     if (distanceMatrix) {
       const { distance, duration } = distanceMatrix;
 
-      if (
-        travelDistance.value === distance.value &&
-        duration.value === travelTime.value
-      ) {
-        return;
+      if (travelDistance && travelTime) {
+        if (
+          !_isObjectEmpty(travelDistance) &&
+          travelDistance.value === distance.value &&
+          !_isObjectEmpty(travelTime) &&
+          travelTime.value === duration.value
+        )
+          return;
       }
 
       dispatch(addDistanceAndTime({ distance, duration }));
       console.log(distance, duration);
     }
+  };
+
+  const _isObjectEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
   };
 
   if (!isMapLoading || !isLoaded || !location) {

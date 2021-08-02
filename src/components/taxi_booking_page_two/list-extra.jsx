@@ -41,6 +41,7 @@ export default function ListExtras() {
     const extras = _makeAppropriateExtras();
     console.log("extras selected: ", extras);
     dispatch(updateExtras(extras));
+    history.push("/taxi_booking_page_three");
   };
 
   const _makeAppropriateExtras = () => {
