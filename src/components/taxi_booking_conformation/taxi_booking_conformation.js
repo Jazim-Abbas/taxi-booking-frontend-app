@@ -3,6 +3,7 @@ import ConfirmationForm from "./confirmation-form";
 import { reduxBookingKeys } from "../../utils/constants";
 import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 import TransferDetailToogle from "../taxi_booking_page_two/transfer-detail-toggle";
+import AppLayout from "../common/layout";
 
 export default function TaxiBookingConfirmation() {
   useReduxDataCheck([
@@ -13,7 +14,7 @@ export default function TaxiBookingConfirmation() {
   ]);
 
   return (
-    <div>
+    <AppLayout>
       <section class="taxi_booking_page_one_body">
         <section class="page_one_vehical_selection">
           <div class="custom_container">
@@ -27,6 +28,6 @@ export default function TaxiBookingConfirmation() {
           </div>
         </section>
       </section>
-    </div>
+    </AppLayout>
   );
 }
