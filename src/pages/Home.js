@@ -1,8 +1,9 @@
+import AppLayout from "../components/common/layout";
 import BookTaxiInitialForm from "../components/book-taxi";
 
 export default function Home() {
   return (
-    <div>
+    <AppLayout>
       <section className="banner">
         <div className="custom_container">
           <div className="banner_data">
@@ -442,6 +443,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </AppLayout>
   );
 }

@@ -9,6 +9,7 @@ import TaxiBookingConfirmation from "../components/taxi_booking_conformation/tax
 import TaxiBookingPageOne from "../components/taxi_booking_page_one/taxi_booking_page_one";
 import TaxiBookingPageThree from "../components/taxi_booking_page_three/taxi_booking_page_three";
 import TaxiBookingPageTwo from "../components/taxi_booking_page_two/taxi_booking_page_two";
+import AccountScreen from "../pages/account";
 import Frequent_question_page from "../pages/Frequent_question_page";
 import Home from "../pages/Home";
 import PayAmount from "../pages/pay-amount";
@@ -28,6 +29,7 @@ const PUBLIC_ROUTES = [
   { path: "/login", Component: LoginScreen },
   { path: "/register", Component: SignUpScreen },
   { path: "/pay-amount", Component: PayAmount },
+  { path: "/account", Component: AccountScreen },
 ];
 
 const PROTECTED_ROUTES = [
