@@ -6,6 +6,7 @@ import ListExtras from "./list-extra";
 import { reduxBookingKeys } from "../../utils/constants";
 import TransferDetailToogle from "./transfer-detail-toggle";
 import useReduxDataCheck from "../../hooks/useReduxDataCheck";
+import AppLayout from "../common/layout";
 
 export default function TaxiBookingPageTwo() {
   useReduxDataCheck([
@@ -14,7 +15,7 @@ export default function TaxiBookingPageTwo() {
   ]);
 
   return (
-    <div>
+    <AppLayout>
       <section class="taxi_booking_page_one_body">
         <section class="page_one_vehical_selection">
           <div class="custom_container">
@@ -27,6 +28,6 @@ export default function TaxiBookingPageTwo() {
           </div>
         </section>
       </section>
-    </div>
+    </AppLayout>
   );
 }
