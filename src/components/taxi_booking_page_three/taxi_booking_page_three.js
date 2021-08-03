@@ -3,6 +3,7 @@ import ContactDetail from "./contract-detail";
 import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 import { reduxBookingKeys } from "../../utils/constants";
 import TransferDetailToogle from "../taxi_booking_page_two/transfer-detail-toggle";
+import AppLayout from "../common/layout";
 
 export default function TaxiBookingPageThree() {
   useReduxDataCheck([
@@ -12,7 +13,7 @@ export default function TaxiBookingPageThree() {
   ]);
 
   return (
-    <div>
+    <AppLayout>
       <section className="taxi_booking_page_one_body">
         <section className="page_one_vehical_selection">
           <div className="custom_container">
@@ -25,6 +26,6 @@ export default function TaxiBookingPageThree() {
           </div>
         </section>
       </section>
-    </div>
+    </AppLayout>
   );
 }
