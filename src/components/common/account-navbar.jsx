@@ -8,16 +8,13 @@ export default function AccountNavbar() {
       <div class="admin-container">
         <div class="navigation">
           <ul id="navigation_active">
-            <li
-              class="change_nav_active navigation_active"
-              onclick="profile_section()"
-            >
+            <li class="change_nav_active">
+              <Link to="/">Home</Link>
+            </li>
+            <li class="change_nav_active">
               <Link to={url}>Profile</Link>
             </li>
-            <li
-              class="change_nav_active "
-            //   onclick="account_managment_section()"
-            >
+            <li class="change_nav_active ">
               <Link to={`${url}/bookings`}>Booking Details</Link>
             </li>
           </ul>
