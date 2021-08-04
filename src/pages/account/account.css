@@ -18,11 +18,11 @@
       
    }
 
-    .container{
+    .admin-container{
         max-width: 1315px;
         margin: 0px auto;
      }
-     .custom_container{
+     .admin-custom_container{
     max-width: 500px;
     margin: 0 auto;
      }

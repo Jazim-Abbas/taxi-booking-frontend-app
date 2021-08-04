@@ -16,6 +16,7 @@ import PayAmount from "../pages/pay-amount";
 import Single_post_help_center from "../pages/Single_post_help_center";
 
 import { reduxBookingKeys } from "../utils/constants";
+import AccountRoutes from "./account-routes";
 
 const PUBLIC_ROUTES = [
   { path: "/About", Component: About },
@@ -29,7 +30,7 @@ const PUBLIC_ROUTES = [
   { path: "/login", Component: LoginScreen },
   { path: "/register", Component: SignUpScreen },
   { path: "/pay-amount", Component: PayAmount },
-  { path: "/account", Component: AccountScreen },
+  { path: "/account", Component: AccountRoutes },
 ];
 
 const PROTECTED_ROUTES = [
