@@ -16,7 +16,7 @@ export default function AccountNavbar() {
             </li>
             <li
               class="change_nav_active "
-              onclick="account_managment_section()"
+            //   onclick="account_managment_section()"
             >
               <Link to={`${url}/bookings`}>Booking Details</Link>
             </li>
