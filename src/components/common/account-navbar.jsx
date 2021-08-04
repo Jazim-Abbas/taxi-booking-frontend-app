@@ -15,7 +15,7 @@ export default function AccountNavbar() {
               <Link to={url}>Profile</Link>
             </li>
             <li class="change_nav_active ">
-              <Link to={`${url}/bookings`}>Booking Details</Link>
+              <Link to={`${url}/bookings`}>Bookings</Link>
             </li>
           </ul>
         </div>
