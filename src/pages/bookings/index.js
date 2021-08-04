@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const bookingList = [
   {
@@ -64,6 +65,8 @@ export default function BookingListScreen() {
 }
 
 function _TableBody({ booking }) {
+  const { url } = useRouteMatch();
+
   return (
     <tr>
       <td>
@@ -79,7 +82,7 @@ function _TableBody({ booking }) {
         <p>{booking.pickupTime}</p>
       </td>
       <td>
-        <a href="view_detail.html">view Detail</a>
+        <Link to={`${url}/${booking.id}`}>View Detail</Link>
       </td>
     </tr>
   );

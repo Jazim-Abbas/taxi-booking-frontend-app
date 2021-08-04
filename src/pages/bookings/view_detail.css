@@ -1,0 +1,134 @@
+
+*{
+    -web-kit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing:border-box;
+   padding:0px;
+   margin:0px;
+   font-family: 'Roboto', sans-serif;  
+}
+   html {
+     scroll-behavior: smooth;
+    }
+   body{
+       float: left;
+       width: 100%;
+       margin:0px;
+       position:relative;
+      
+   }
+   .back_to_admin{
+    margin-top: 30px;
+    width: 100%;   
+}
+.back_to_admin .admin_back_button{
+    float: left;
+    width: 100%;
+    padding: 0px 5px;
+}
+   .back_to_admin .admin_back_button a{
+    background-color: #e5a600;
+    color: #fff;
+    padding: 10px 30px;
+    float: left;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+.customer_admin{
+    float: left;
+    width: 100%;
+    margin-top: 50px;
+    padding: 0px 5px;
+}
+    .custom_container{
+        max-width: 1170px;
+        margin: 0px auto;
+     }
+     .page_two_booking_complete_summary{
+        background-color: #e5a600;
+        float: left;
+        width: 100%;
+        padding: 10px 10px; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .transfer_detail_box{
+          float: left;
+          width: 100%;
+          padding: 10px 10px; 
+          border:1px solid gray;
+          margin-bottom: 10px;
+          background-color: #fff;
+      }
+      .pickup_detail_box{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        border-bottom: 1px solid gray;
+        padding-top: 20px;
+      }
+      .pickup_detail_box h4{
+      padding-bottom: 12px;
+  color: gray;
+  font-size: 20px;
+      }
+      .where_from{
+        display: flex;
+        align-items: center;
+        padding-bottom: 25px;
+      }
+      .where_from i{
+          font-size: 20px;
+          color: gray;
+      }
+      .where_from .where_from_location{
+      display: flex;
+      flex-direction: column;
+      padding: 0px 15px;
+      width: 100%;
+      }
+      .where_from .where_from_location span{
+          font-weight: normal;
+  font-size: 14px;
+  color: gray;
+      }
+      .where_from .where_from_location p{
+          font-weight: normal;
+  font-size: 14px;
+  color: gray;
+      }
+  
+      #laptop_booking_summary{
+        display: block;
+      }
+      #mobile_booking_summary{
+          display:none;
+       }
+  
+       .booking_page_one_price_detail{
+          border: 1px solid gray;
+          background-color: #ffff;
+          padding: 20px 15px;
+          margin-bottom: 20px;
+          float: left;
+          width: 100%;
+      }
+      .booking_page_one_price_detail h2{
+          margin-bottom: 15px;
+      justify-content: left;
+      display: flex;
+      
+      }
+      .booking_page_one_total_price{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      }
+      .booking_page_one_total_price h3{
+          color: #252525;
+          font-weight: normal;
+      }
+  
