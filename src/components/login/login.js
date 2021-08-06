@@ -1,11 +1,14 @@
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./login.css";
 import LoginForm from "./login-form";
 import useApi from "../../hooks/useApi";
 import * as authApi from "../../apis/auth";
+import { createUser } from "../../store/user";
 
 function LoginScreen() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const loginApi = useApi(authApi.login, { hasCatchError: true });
 
@@ -13,9 +16,11 @@ function LoginScreen() {
     try {
       const res = await loginApi.request(formValues);
       const user = { ...res.data };
+      dispatch(createUser(user));
       localStorage.setItem("token", user.token);
       localStorage.setItem("user", JSON.stringify(user));
       history.push("/");
+      console.log("res: ", res.data);
     } catch (_) {}
   };
 
