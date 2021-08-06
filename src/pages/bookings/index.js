@@ -3,6 +3,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 import useApi from "../../hooks/useApi";
 import * as bookingsApi from "../../apis/booking";
+import AppLoading from "../../components/common/loading";
 
 const bookingList = [
   {
@@ -42,12 +43,22 @@ export default function BookingListScreen() {
     else return bookingsApi.allBookingsForUser;
   };
 
-  const [bookings, setBookings] = useState([...bookingList]);
-  const { request } = useApi(_getBookingsCallback());
+  // const [bookings, setBookings] = useState([...bookingList]);
+  const {
+    request,
+    isLoading,
+    data: bookings,
+  } = useApi(_getBookingsCallback(), {
+    keyExtractor: "bookings",
+  });
 
   useEffect(() => {
     request();
   }, []);
+
+  if (isLoading || !bookings) {
+    return <AppLoading />;
+  }
 
   return (
     <>
@@ -67,7 +78,7 @@ export default function BookingListScreen() {
 
               <tbody>
                 {bookings.map((booking) => (
-                  <_TableBody booking={booking} key={booking.id} />
+                  <_TableBody booking={booking} key={booking._id} />
                 ))}
               </tbody>
             </table>
