@@ -22,10 +22,8 @@ export default function ProtectedRoute({
 
         if (!user) return <_RedirectToLogin {...props} />;
 
-        if (isAdmin) {
-          if (!user.isAdmin) {
-            return <_RedirectToLogin {...props} />;
-          }
+        if (isAdmin && !user.isAdmin) {
+          return <_RedirectToLogin {...props} />;
         }
 
         return <Component {...props} />;
