@@ -6,6 +6,7 @@ import LoginForm from "./login-form";
 import useApi from "../../hooks/useApi";
 import * as authApi from "../../apis/auth";
 import { createUser } from "../../store/user";
+import ServerError from "../common/server-error";
 
 function LoginScreen() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function LoginScreen() {
           <div className="login_form">
             <h3>Log In</h3>
             <LoginForm onSubmit={handleLogin} isLoading={loginApi.isLoading} />
+            <ServerError error={loginApi.error} />
           </div>
         </div>
       </section>

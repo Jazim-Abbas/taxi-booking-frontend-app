@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -5,7 +6,6 @@ import "./view_detail.css";
 import useApi from "../../hooks/useApi";
 import * as bookingsApi from "../../apis/booking";
 import AppLoading from "../../components/common/loading";
-import moment from "moment";
 
 const singleBooking = {
   pickupLocation: "pickup location",
