@@ -11,11 +11,14 @@ export default function AccountNavbar() {
             <li class="change_nav_active">
               <Link to="/">Home</Link>
             </li>
-            <li class="change_nav_active">
+            {/* <li class="change_nav_active">
               <Link to={url}>Profile</Link>
             </li>
             <li class="change_nav_active ">
               <Link to={`${url}/bookings`}>Bookings</Link>
+            </li> */}
+            <li class="change_nav_active ">
+              <Link to={`${url}`}>Bookings</Link>
             </li>
           </ul>
         </div>

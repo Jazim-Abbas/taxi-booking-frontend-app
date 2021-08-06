@@ -30,7 +30,8 @@ const PUBLIC_ROUTES = [
   { path: "/login", Component: LoginScreen },
   { path: "/register", Component: SignUpScreen },
   { path: "/pay-amount", Component: PayAmount },
-  { path: "/account", Component: AccountRoutes },
+  // { path: "/account", Component: AccountRoutes },
+  { path: "/booking", Component: AccountRoutes },
 ];
 
 const PROTECTED_ROUTES = [

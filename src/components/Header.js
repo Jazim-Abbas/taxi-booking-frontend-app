@@ -36,7 +36,8 @@ class Header extends React.Component {
                     <Link to="/Help">Help Center</Link>
                   </li>
                   <li>
-                    <Link to="/account">Profile</Link>
+                    {/* <Link to="/account">Profile</Link> */}
+                    <Link to="/booking">Booking</Link>
                   </li>
                 </ul>
               </div>

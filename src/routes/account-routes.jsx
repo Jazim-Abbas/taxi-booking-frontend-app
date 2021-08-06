@@ -16,13 +16,19 @@ export default function AccountRoutes() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path={path}>
+        {/* <Route exact path={path}>
           <AccountScreen />
         </Route>
         <Route exact path={`${path}/bookings`}>
           <BookingListScreen />
+        </Route> */}
+        <Route exact path={`${path}`}>
+          <BookingListScreen />
         </Route>
-        <Route exact path={`${path}/bookings/:id`}>
+        {/* <Route exact path={`${path}/bookings/:id`}>
+          <SingleBookingScreen />
+        </Route> */}
+        <Route exact path={`${path}/:id`}>
           <SingleBookingScreen />
         </Route>
       </Switch>
