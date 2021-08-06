@@ -107,7 +107,7 @@ function _TableBody({ booking }) {
         <p>{moment(booking.startDateTime).format("LT")}</p>
       </td>
       <td>
-        <Link to={`${url}/${booking.id}`}>View Detail</Link>
+        <Link to={`${url}/${booking._id}`}>View Detail</Link>
       </td>
     </tr>
   );

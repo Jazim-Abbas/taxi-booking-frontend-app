@@ -11,3 +11,7 @@ export function allBookingsForUser() {
 export function allBookingsForAllUsers() {
   return api.get("/booking/all-bookings-of-all-users");
 }
+
+export function singleBooking(id) {
+  return api.post("/booking/single-booking-of-single-user", { bookingId: id });
+}

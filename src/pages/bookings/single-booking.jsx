@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import "./view_detail.css";
+import useApi from "../../hooks/useApi";
+import * as bookingsApi from "../../apis/booking";
+import AppLoading from "../../components/common/loading";
+import moment from "moment";
 
 const singleBooking = {
   pickupLocation: "pickup location",
@@ -24,7 +30,24 @@ const singleBooking = {
 };
 
 export default function SingleBookingScreen() {
+  const { id } = useParams();
+  console.log("id: ", id);
+  const {
+    request,
+    data: _booking,
+    isLoading,
+  } = useApi(bookingsApi.singleBooking, {
+    keyExtractor: "booking",
+  });
   const [booking, setBooking] = useState({ ...singleBooking });
+
+  useEffect(() => {
+    request(id);
+  }, []);
+
+  if (isLoading || !_booking) {
+    return <AppLoading />;
+  }
 
   return (
     <>
@@ -42,7 +65,7 @@ export default function SingleBookingScreen() {
                   <i class="fas fa-map-marker-alt"></i>
                   <div class="where_from_location">
                     <span>WHERE FROM</span>
-                    <p>{booking.pickupLocation}</p>
+                    <p>{_booking.pickupLocation}</p>
                   </div>
                 </div>
 
@@ -50,7 +73,7 @@ export default function SingleBookingScreen() {
                   <i class="fas fa-map-marker-alt"></i>
                   <div class="where_from_location">
                     <span>WHERE TO</span>
-                    <p>{booking.dropoffLocation}</p>
+                    <p>{_booking.dropoffLocation}</p>
                   </div>
                 </div>
 
@@ -59,7 +82,10 @@ export default function SingleBookingScreen() {
                   <div class="where_from_location">
                     <span>TRAVEL DATE</span>
                     <p>
-                      {booking.pickupDate} <small>[Friday 30,July]</small>
+                      {moment(booking.startDateTime).format("YYYY-MM-DD")}{" "}
+                      <small>
+                        [{moment(booking.startDateTime).format("MMM Do YYYY")}]
+                      </small>
                     </p>
                   </div>
                 </div>
@@ -68,12 +94,12 @@ export default function SingleBookingScreen() {
                   <i class="fas fa-map-marker-alt"></i>
                   <div class="where_from_location">
                     <span>PICKUP TIME</span>
-                    <p>{booking.pickupTime}</p>
+                    <p>{moment(booking.startDateTime).format("LT")}</p>
                   </div>
                 </div>
               </div>
 
-              <div class="pickup_detail_box">
+              {/* <div class="pickup_detail_box">
                 <h4>Return</h4>
                 <div class="where_from">
                   <i class="fas fa-map-marker-alt"></i>
@@ -108,9 +134,9 @@ export default function SingleBookingScreen() {
                     <p>{booking.returnTime}</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div class="pickup_detail_box">
+              {/* <div class="pickup_detail_box">
                 <h4>{booking.vehicle.name}</h4>
                 <div class="where_from">
                   <i class="fas fa-car quantites_icon"></i>
@@ -122,14 +148,14 @@ export default function SingleBookingScreen() {
                       passengers
                       <small> {booking.vehicle.luggageCapacity} </small>medium
                       suitecases
-                      {/* <small>2</small> small */}
-                      {/* hand  luggage items */}
+                      <small>2</small> small
+                      hand  luggage items
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div class="pickup_detail_box">
+              {/* <div class="pickup_detail_box">
                 <h4>Passengers</h4>
                 <div class="where_from">
                   <i class="fas fa-user"></i>
@@ -139,36 +165,36 @@ export default function SingleBookingScreen() {
                   </div>
                 </div>
 
-                {/* <div class="where_from">
+                <div class="where_from">
                   <i class="fas fa-user"></i>
                   <div class="where_from_location">
                     <span>CHILDREN</span>
                     <p>0</p>
                   </div>
-                </div> */}
+                </div>
 
-                {/* <div class="where_from">
+                <div class="where_from">
                   <i class="fas fa-user"></i>
                   <div class="where_from_location">
                     <span>INFANTS</span>
                     <p>0</p>
                   </div>
-                </div> */}
-              </div>
+                </div>
+              </div> */}
 
-              <div class="pickup_detail_box">
+              {/* <div class="pickup_detail_box">
                 <h4>Travel Distance & Time</h4>
                 <div class="where_from">
                   <i class="fas fa-car quantites_icon"></i>
                   <div class="where_from_location">
-                    {/* <!-- <span>DESCRIPTION</span> --> */}
+                    <span>DESCRIPTION</span> 
                     <p>
-                      {booking.travelDistance} &{" "}
+                      {_booking.distance} KM &{" "}
                       <small> {booking.travelTime}</small>
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div
@@ -176,17 +202,17 @@ export default function SingleBookingScreen() {
               id="laptop_booking_summary"
             >
               <h2>Booking Summary</h2>
-              <div class="booking_page_one_total_price">
+              {/* <div class="booking_page_one_total_price">
                 <h3>Selected Vehicle</h3>
                 <span>${booking.vehiclePrice}</span>
               </div>
               <div class="booking_page_one_total_price total_price_border">
                 <h3>Selected Extra</h3>
                 <span>${booking.extraPrice}</span>
-              </div>
+              </div> */}
               <div class="booking_page_one_total_price">
                 <h3>Total Price</h3>
-                <span>${booking.totalPrice}</span>
+                <span>${_booking.totalPrice}</span>
               </div>
             </div>
           </div>
