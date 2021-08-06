@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -43,7 +44,6 @@ export default function BookingListScreen() {
     else return bookingsApi.allBookingsForUser;
   };
 
-  // const [bookings, setBookings] = useState([...bookingList]);
   const {
     request,
     isLoading,
@@ -101,10 +101,10 @@ function _TableBody({ booking }) {
         <p>{booking.dropoffLocation}</p>
       </td>
       <td>
-        <p>{booking.pickupDate}</p>
+        <p>{moment(booking.startDateTime).format("MMM Do, YYYY")}</p>
       </td>
       <td>
-        <p>{booking.pickupTime}</p>
+        <p>{moment(booking.startDateTime).format("LT")}</p>
       </td>
       <td>
         <Link to={`${url}/${booking.id}`}>View Detail</Link>
