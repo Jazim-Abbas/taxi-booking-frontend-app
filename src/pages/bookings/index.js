@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
+
+import useApi from "../../hooks/useApi";
+import * as bookingsApi from "../../apis/booking";
 
 const bookingList = [
   {
@@ -33,7 +36,18 @@ const bookingList = [
 ];
 
 export default function BookingListScreen() {
+  const _getBookingsCallback = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user.isAdmin) return bookingsApi.allBookingsForAllUsers;
+    else return bookingsApi.allBookingsForUser;
+  };
+
   const [bookings, setBookings] = useState([...bookingList]);
+  const { request } = useApi(_getBookingsCallback());
+
+  useEffect(() => {
+    request();
+  }, []);
 
   return (
     <>
