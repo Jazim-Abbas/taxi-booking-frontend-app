@@ -47,7 +47,7 @@ export default function AppRoutes() {
           path={route.path}
           reduxKeyNames={route.reduxKeyNames}
           component={route.Component}
-          isAdmin
+          isAuth
         />
       ))}
     </Switch>

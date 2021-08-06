@@ -4,6 +4,7 @@ import AccountScreen from "../pages/account";
 import BookingListScreen from "../pages/bookings";
 import SingleBookingScreen from "../pages/bookings/single-booking";
 import Home from "../pages/Home";
+import ProtectedRoute from "./protected-route";
 
 export default function AccountRoutes() {
   const { path } = useRouteMatch();
@@ -22,15 +23,15 @@ export default function AccountRoutes() {
         <Route exact path={`${path}/bookings`}>
           <BookingListScreen />
         </Route> */}
-        <Route exact path={`${path}`}>
+        <ProtectedRoute exact path={`${path}`}>
           <BookingListScreen />
-        </Route>
+        </ProtectedRoute>
         {/* <Route exact path={`${path}/bookings/:id`}>
           <SingleBookingScreen />
         </Route> */}
-        <Route exact path={`${path}/:id`}>
+        <ProtectedRoute exact path={`${path}/:id`}>
           <SingleBookingScreen />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </>
   );
