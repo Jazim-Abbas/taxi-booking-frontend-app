@@ -10,7 +10,10 @@ export default function ProtectedRoute({
   ...rest
 } = {}) {
   useReduxDataCheck([...reduxKeyNames]);
-  const { user } = rest;
+  // const { user } = rest;
+
+  // console.log("user: ", user);
+  const user = JSON.parse(window.localStorage.getItem("user"));
 
   return (
     <Route
@@ -20,13 +23,19 @@ export default function ProtectedRoute({
           return <Component {...props} />;
         }
 
+        console.log("1");
+
         if (!user) return <_RedirectToLogin {...props} />;
+
+        console.log("2");
 
         if (isAdmin) {
           if (!user.isAdmin) {
             return <_RedirectToLogin {...props} />;
           }
         }
+
+        console.log("3");
 
         return <Component {...props} />;
       }}
