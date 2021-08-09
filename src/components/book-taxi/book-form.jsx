@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AutoComplete from 'react-google-autocomplete'
 
 export default function BookTaxiForm({
   onSubmit,
@@ -6,8 +7,8 @@ export default function BookTaxiForm({
   inputValues,
   onSwapLocation,
 }) {
-  const [, setDropOffLocation] = useState();
-  const [, setPickupLocation] = useState();
+  const [dropoffLocation, setDropOffLocation] = useState();
+  const [pickupLocation, setPickupLocation] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [passengers, setPassengers] = useState(1);
 
@@ -21,21 +22,21 @@ export default function BookTaxiForm({
     onInputChange({ name, value: value.toString() });
   };
 
-  // const handleDropoffLocation = (inputName, place, setLocationCallback) => {
-  //   console.log("place: ", place);
+  const handleDropoffLocation = (inputName, place, setLocationCallback) => {
+    console.log("place: ", place);
 
-  //   const { lat, lng } = place.geometry.location;
+    const { lat, lng } = place.geometry.location;
 
-  //   const target = {
-  //     name: inputName,
-  //     value: place.formatted_address,
-  //     [inputName + "_lat"]: lat(),
-  //     [inputName + "_lng"]: lng(),
-  //   };
+    const target = {
+      name: inputName,
+      value: place.formatted_address,
+      [inputName + "_lat"]: lat(),
+      [inputName + "_lng"]: lng(),
+    };
 
-  //   setLocationCallback(target.value);
-  //   onInputChange({ ...target });
-  // };
+    setLocationCallback(target.value);
+    onInputChange({ ...target });
+  };
 
   const handleDropDown = () => {
     setIsOpen((prev) => !prev);

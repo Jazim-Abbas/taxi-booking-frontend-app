@@ -47,7 +47,7 @@ export default function ConfirmationForm() {
       ),
       distance: travelDistance.value ?? 1,
       transferType: initialBooking.isOneWay ? "One way" : "Two way",
-      vehicleId: vehicle._id,
+      vehicleId: vehicle.id,
       passengerName: personaDetail.firstName + " " + personaDetail.lastName,
       passengerEmail: personaDetail.passengerEmail,
       passengerNumber: personaDetail.passengerNumber,

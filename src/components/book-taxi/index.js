@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,11 +6,16 @@ import BookTaxiForm from "./book-form";
 import { orderTaxi } from "../../store/booking";
 
 export default function BookTaxi() {
+  const { initialBooking } = useSelector((state) => state.booking);
   const [booking, setBooking] = useState(bookTaxiInitialValue);
   const history = useHistory();
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
   console.log("inside order taxi component", bookingState);
+
+  useEffect(() => {
+    setBooking({ ...initialBooking });
+  }, []);
 
   const handleInputChage = (input) => {
     console.log("input: ", input);
@@ -57,4 +62,5 @@ const bookTaxiInitialValue = {
   pickupTime: "",
   returnDate: "",
   returnTime: "",
+  passengers: 1,
 };

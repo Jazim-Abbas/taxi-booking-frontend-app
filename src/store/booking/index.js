@@ -8,7 +8,7 @@ const initialState = {
     pickupTime: "",
     returnDate: "",
     returnTime: "",
-    passengers: 0,
+    passengers: 1,
     isOneWay: true,
   },
   vehicle: {},

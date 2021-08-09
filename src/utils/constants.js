@@ -12,4 +12,7 @@ export const reduxBookingKeys = {
   PERSONAL_DETAIL: ["initialBooking", "vehicle", "extras", "personaDetail"],
 };
 
-export const BASE_URL = "https://jamrock-taxi-restapi.herokuapp.com/";
+const DEV_URL = "http://localhost:8000";
+const PROD_URL = "https://jamrock-taxi-restapi.herokuapp.com/";
+
+export const BASE_URL = DEV_URL;
