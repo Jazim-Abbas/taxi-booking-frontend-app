@@ -23,7 +23,7 @@ export default function Home() {
         <div className="custom_container">
           <div className="google_review">
             <figure>
-              <img src="assets/image/google.png" />
+              <img src="assets/image/google.png" alt="" />
             </figure>
             <div className="review_start">
               <i className="fas fa-star"></i>
@@ -114,42 +114,42 @@ export default function Home() {
           <div className="fleet_services">
             <div className="single_service">
               <figure>
-                <img src="assets/image/standard.png" />
+                <img src="assets/image/standard.png" alt="" />
               </figure>
               <h3>Standard</h3>
               <h4>4 pax & 4 bags</h4>
             </div>
             <div className="single_service">
               <figure>
-                <img src="assets/image/standard.png" />
+                <img src="assets/image/standard.png" alt="" />
               </figure>
               <h3>VIP & Exec</h3>
               <h4>3 pax & 3 bags</h4>
             </div>
             <div className="single_service">
               <figure>
-                <img src="assets/image/family.png" />
+                <img src="assets/image/family.png" alt="" />
               </figure>
               <h3>Family</h3>
               <h4>5 pax & 6 bags</h4>
             </div>
             <div className="single_service">
               <figure>
-                <img src="assets/image/minivan.png" />
+                <img src="assets/image/minivan.png" alt="" />
               </figure>
               <h3>Minivan</h3>
               <h4>9 pax & 9 bags</h4>
             </div>
             <div className="single_service">
               <figure>
-                <img src="assets/image/smallbus.png" />
+                <img src="assets/image/smallbus.png" alt="" />
               </figure>
               <h3>Small Bus</h3>
               <h4>15 pax & 15 bags</h4>
             </div>
             <div className="single_service">
               <figure>
-                <img src="assets/image/coash.png" />
+                <img src="assets/image/coash.png" alt="" />
               </figure>
               <h3>Coach</h3>
               <h4>30 pax & 30 bags</h4>
@@ -342,50 +342,50 @@ export default function Home() {
             <div className="airport_list">
               <ul>
                 <li>
-                  <a href="#">Alicante airport</a>
+                  <a href="#1">Alicante airport</a>
                 </li>
                 <li>
-                  <a href="#">Amsterdam airport</a>
+                  <a href="#1">Amsterdam airport</a>
                 </li>
                 <li>
-                  <a href="#">Antalya airport</a>
+                  <a href="#1">Antalya airport</a>
                 </li>
                 <li>
-                  <a href="#">Bali Denpasar airport</a>
+                  <a href="#1">Bali Denpasar airport</a>
                 </li>
                 <li>
-                  <a href="#">Barcelona airport</a>
+                  <a href="#1">Barcelona airport</a>
                 </li>
                 <li>
-                  <a href="#">Budapest airport</a>
+                  <a href="#1">Budapest airport</a>
                 </li>
                 <li>
-                  <a href="#">Cancún airport</a>
+                  <a href="#1">Cancún airport</a>
                 </li>
               </ul>
             </div>
             <div className="airport_list">
               <ul>
                 <li>
-                  <a href="#">Alicante airport</a>
+                  <a href="#1">Alicante airport</a>
                 </li>
                 <li>
-                  <a href="#">Amsterdam airport</a>
+                  <a href="#1">Amsterdam airport</a>
                 </li>
                 <li>
-                  <a href="#">Antalya airport</a>
+                  <a href="#1">Antalya airport</a>
                 </li>
                 <li>
-                  <a href="#">Bali Denpasar airport</a>
+                  <a href="#1">Bali Denpasar airport</a>
                 </li>
                 <li>
-                  <a href="#">Barcelona airport</a>
+                  <a href="#1">Barcelona airport</a>
                 </li>
                 <li>
-                  <a href="#">Budapest airport</a>
+                  <a href="#1">Budapest airport</a>
                 </li>
                 <li>
-                  <a href="#">Cancún airport</a>
+                  <a href="#1">Cancún airport</a>
                 </li>
               </ul>
             </div>
@@ -393,50 +393,50 @@ export default function Home() {
             <div className="airport_list">
               <ul>
                 <li>
-                  <a href="#">Alicante airport</a>
+                  <a href="#1">Alicante airport</a>
                 </li>
                 <li>
-                  <a href="#">Amsterdam airport</a>
+                  <a href="#1">Amsterdam airport</a>
                 </li>
                 <li>
-                  <a href="#">Antalya airport</a>
+                  <a href="#1">Antalya airport</a>
                 </li>
                 <li>
-                  <a href="#">Bali Denpasar airport</a>
+                  <a href="#1">Bali Denpasar airport</a>
                 </li>
                 <li>
-                  <a href="#">Barcelona airport</a>
+                  <a href="#1">Barcelona airport</a>
                 </li>
                 <li>
-                  <a href="#">Budapest airport</a>
+                  <a href="#1">Budapest airport</a>
                 </li>
                 <li>
-                  <a href="#">Cancún airport</a>
+                  <a href="#1">Cancún airport</a>
                 </li>
               </ul>
             </div>
             <div className="airport_list">
               <ul>
                 <li>
-                  <a href="#">Alicante airport</a>
+                  <a href="#1">Alicante airport</a>
                 </li>
                 <li>
-                  <a href="#">Amsterdam airport</a>
+                  <a href="#1">Amsterdam airport</a>
                 </li>
                 <li>
-                  <a href="#">Antalya airport</a>
+                  <a href="#1">Antalya airport</a>
                 </li>
                 <li>
-                  <a href="#">Bali Denpasar airport</a>
+                  <a href="#1">Bali Denpasar airport</a>
                 </li>
                 <li>
-                  <a href="#">Barcelona airport</a>
+                  <a href="#1">Barcelona airport</a>
                 </li>
                 <li>
-                  <a href="#">Budapest airport</a>
+                  <a href="#1">Budapest airport</a>
                 </li>
                 <li>
-                  <a href="#">Cancún airport</a>
+                  <a href="#1">Cancún airport</a>
                 </li>
               </ul>
             </div>

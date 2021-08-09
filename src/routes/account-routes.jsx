@@ -1,6 +1,5 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import AccountNavbar from "../components/common/account-navbar";
-import AccountScreen from "../pages/account";
 import BookingListScreen from "../pages/bookings";
 import SingleBookingScreen from "../pages/bookings/single-booking";
 import Home from "../pages/Home";

@@ -9,7 +9,6 @@ import TaxiBookingConfirmation from "../components/taxi_booking_conformation/tax
 import TaxiBookingPageOne from "../components/taxi_booking_page_one/taxi_booking_page_one";
 import TaxiBookingPageThree from "../components/taxi_booking_page_three/taxi_booking_page_three";
 import TaxiBookingPageTwo from "../components/taxi_booking_page_two/taxi_booking_page_two";
-import AccountScreen from "../pages/account";
 import Frequent_question_page from "../pages/Frequent_question_page";
 import Home from "../pages/Home";
 import PayAmount from "../pages/pay-amount";
@@ -39,25 +38,25 @@ const PROTECTED_ROUTES = [
     path: "/taxi_booking_page_one",
     Component: TaxiBookingPageOne,
     reduxKeyNames: reduxBookingKeys.INITIAL_BOOKING,
-    isAuth: true
+    isAuth: true,
   },
   {
     path: "/taxi_booking_page_two",
     Component: TaxiBookingPageTwo,
     reduxKeyNames: reduxBookingKeys.VEHICLE,
-    isAuth: true
+    isAuth: true,
   },
   {
     path: "/taxi_booking_page_three",
     Component: TaxiBookingPageThree,
     reduxKeyNames: reduxBookingKeys.EXTRAS,
-    isAuth: true
+    isAuth: true,
   },
   {
     path: "/taxi_booking_conformation",
     Component: TaxiBookingConfirmation,
     reduxKeyNames: reduxBookingKeys.PERSONAL_DETAIL,
-    isAuth: true
+    isAuth: true,
   },
 ];
 

@@ -19,12 +19,12 @@ export default function ContactDetail() {
       <ContactDetailForm onSubmit={handleSubmit} />
 
       {/* <_PaymentMethod /> */}
-      <_BookingSummary />
+      <BookingSummary />
     </div>
   );
 }
 
-function _BookingSummary() {
+function BookingSummary() {
   return (
     <div class="booking_page_one_price_detail" id="mobile_booking_summary">
       <h2>Booking Summary</h2>
@@ -44,13 +44,13 @@ function _BookingSummary() {
   );
 }
 
-function _PaymentMethod() {
-  return (
-    <div class="page_three_payment_method">
-      <h2>Choose Payment Method</h2>
-      <span>
-        <i class="fab fa-cc-stripe"></i>
-      </span>
-    </div>
-  );
-}
+// function _PaymentMethod() {
+//   return (
+//     <div class="page_three_payment_method">
+//       <h2>Choose Payment Method</h2>
+//       <span>
+//         <i class="fab fa-cc-stripe"></i>
+//       </span>
+//     </div>
+//   );
+// }

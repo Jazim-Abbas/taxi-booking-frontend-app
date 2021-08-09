@@ -24,6 +24,7 @@ function Application() {
 
   useEffect(() => {
     _storeUserToReduxIfAvailableInLocalStorage();
+    //eslint-disable-next-line
   }, []);
 
   const _storeUserToReduxIfAvailableInLocalStorage = () => {

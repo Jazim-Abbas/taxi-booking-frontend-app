@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -63,7 +63,7 @@ export default function Header() {
                 <i class="fas fa-phone-volume"></i>
               </span>
               <small>Call Now:</small>
-              <a href="#">823</a>
+              <a href="#1">823</a>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function Header() {
 
       <section class="responsive_nav_bar">
         <div class="cancle_nav">
-          <a class="open_close_nav">
+          <a class="open_close_nav" href="#1">
             <i class="fas fa-times"></i>
           </a>
         </div>
@@ -105,7 +105,7 @@ export default function Header() {
             <i class="fas fa-phone-volume"></i>
           </span>
           <small>Call Now:</small>
-          <a href="#">823</a>
+          <a href="#1">823</a>
         </div>
       </section>
     </div>

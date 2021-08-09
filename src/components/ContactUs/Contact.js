@@ -28,24 +28,24 @@ class Contact extends React.Component {
                 <p>
                   Email us for general queries and partnership opportunities{" "}
                 </p>
-                <a href="#">hello@jamrocktaxi.com</a>
+                <a href="#1">hello@jamrocktaxi.com</a>
               </div>
 
               <div class="contact">
                 <i class="fab fa-whatsapp-square"></i>
                 <h2>Whatsapp Us</h2>
                 <p>Contact us on WhatsApp for an immediate response </p>
-                <a href="#">WhatsApp Call Us </a>
-                <a href="#"> WhatsApp Message Us </a>
+                <a href="#1">WhatsApp Call Us </a>
+                <a href="#1"> WhatsApp Message Us </a>
               </div>
 
               <div class="contact">
                 <i class="fas fa-mobile"></i>
                 <h2>Call us</h2>
                 <p> We are available 24h / 7 on a number local to you.</p>
-                <a href="#">US: +1 217 636 4160</a>
-                <a href="#">UK: +44 7985 190947</a>
-                <a href="#">JA: +1 (876) 438-5432</a>
+                <a href="#1">US: +1 217 636 4160</a>
+                <a href="#1">UK: +44 7985 190947</a>
+                <a href="#1">JA: +1 (876) 438-5432</a>
               </div>
 
               <div class="contact">

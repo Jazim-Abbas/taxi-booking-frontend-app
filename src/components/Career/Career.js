@@ -19,7 +19,7 @@ class Career extends React.Component {
               <p>
                 In cooperation with our Transfer Service Network we can provide
                 all sorts of Transfers. Write to uor team on the email{" "}
-                <a href="#">info@demolink.org</a> and you will be given a
+                <a href="#1">info@demolink.org</a> and you will be given a
                 feedback.
               </p>
 
@@ -57,7 +57,7 @@ class Career extends React.Component {
           <section class="become_driver">
             <div class="custom_container">
               <div class="driver_btn">
-                <a href="#">Become A Driver</a>
+                <a href="#1">Become A Driver</a>
               </div>
             </div>
           </section>
@@ -72,7 +72,7 @@ class Career extends React.Component {
                     contact you as soon as the application is processed.
                   </h3>
                   <span>For employment questions, please contact:</span>
-                  <a href="#">+1 000 10 87 000</a>
+                  <a href="#1">+1 000 10 87 000</a>
                 </div>
 
                 <div class="driver_form_data">
@@ -114,7 +114,7 @@ class Career extends React.Component {
                       <li>tress resistant</li>
                     </ul>
                   </div>
-                  <a href="#">
+                  <a href="#1">
                     <span>Become A Driver</span>
                   </a>
                 </div>
@@ -132,7 +132,7 @@ class Career extends React.Component {
                       <li>tress resistant</li>
                     </ul>
                   </div>
-                  <a href="#">
+                  <a href="#1">
                     <span>Become A Driver</span>
                   </a>
                 </div>

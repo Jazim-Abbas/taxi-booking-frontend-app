@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function useReduxDataCheck(keysName) {
   const history = useHistory();
-  const location = useLocation();
   const booking = useSelector((state) => state.booking);
 
   useEffect(() => {
     _checkReduxDataForKeysNameAndThrowErrorIfNotFound();
+    //eslint-disable-next-line
   }, [booking]);
 
   const _checkReduxDataForKeysNameAndThrowErrorIfNotFound = () => {

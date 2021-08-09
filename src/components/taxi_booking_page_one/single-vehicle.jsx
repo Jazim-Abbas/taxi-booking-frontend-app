@@ -20,7 +20,11 @@ export default function SingleVehicle({ vehicle }) {
       <div class="booking_page_one_car_detail">
         <div class="booking_page_one_single_car_detail">
           <figure>
-            <img style={{ width: "180px", height: "100%"}} src={BASE_URL + "/" + vehicle.image} />
+            <img
+              style={{ width: "180px", height: "100%" }}
+              src={BASE_URL + "/" + vehicle.image}
+              alt=""
+            />
           </figure>
           <div class="page_one_single_car_detail">
             <h1>{vehicle.name}</h1>

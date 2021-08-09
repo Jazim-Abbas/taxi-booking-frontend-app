@@ -25,6 +25,7 @@ export default function ListExtras() {
 
   useEffect(() => {
     request();
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -76,19 +77,19 @@ export default function ListExtras() {
     <div class="page_two_section_two">
       {isLoading && <AppLoading />}
       {!isLoading && extras && (
-        <_ExtrasList
+        <ExtrasList
           extras={extras}
           onUpdateQty={handleExtraQuantity}
           onExtraSelected={handleExtraSelected}
         />
       )}
-      <_BookingSummary />
-      <_NavigateToPages onNavigateNext={handleNavigateToNext} />
+      <BookingSummary />
+      <NavigateToPages onNavigateNext={handleNavigateToNext} />
     </div>
   );
 }
 
-function _ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
+function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
   return (
     <form>
       {extras.map((extra, i) => {
@@ -117,7 +118,7 @@ function _ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
   );
 }
 
-function _BookingSummary() {
+function BookingSummary() {
   return (
     <div class="booking_page_one_price_detail" id="mobile_booking_summary">
       <h2>Booking Summary</h2>
@@ -137,7 +138,7 @@ function _BookingSummary() {
   );
 }
 
-function _NavigateToPages({ onNavigateNext }) {
+function NavigateToPages({ onNavigateNext }) {
   return (
     <div class="continuous_btn">
       <div class="back">

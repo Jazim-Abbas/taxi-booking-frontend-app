@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import AppLoading from "../common/loading";
-import { useHistory } from "react-router-dom";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -28,7 +27,6 @@ export default function PaymentForm() {
   const [message, setMessage] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const history = useHistory();
 
   console.log("cs", localStorage.getItem("cs"));
 

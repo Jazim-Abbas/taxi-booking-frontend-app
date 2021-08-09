@@ -25,13 +25,13 @@ export default function ProtectedRoute({
 
         console.log("1");
 
-        if (!user) return <_RedirectToLogin {...props} />;
+        if (!user) return <RedirectToLogin {...props} />;
 
         console.log("2");
 
         if (isAdmin) {
           if (!user.isAdmin) {
-            return <_RedirectToLogin {...props} />;
+            return <RedirectToLogin {...props} />;
           }
         }
 
@@ -43,7 +43,7 @@ export default function ProtectedRoute({
   );
 }
 
-function _RedirectToLogin({ ...props }) {
+function RedirectToLogin({ ...props }) {
   return (
     <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
   );

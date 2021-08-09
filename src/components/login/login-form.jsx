@@ -3,6 +3,7 @@ import { Field } from "formik";
 import { AppForm, FieldError } from "../app-form";
 import { loginSchema } from "../../utils/validations";
 import AppLoading from "../common/loading";
+import { Link } from "react-router-dom";
 
 export default function LoginForm({ onSubmit, isLoading }) {
   return (
@@ -26,6 +27,12 @@ export default function LoginForm({ onSubmit, isLoading }) {
           {isLoading && <AppLoading />}
           {!isLoading && <button type="submit">Login</button>}
         </div>
+        <p>
+          Don't have an account? <Link to="/register">Sign Up</Link>
+        </p>
+        <p>
+          Goto <Link to="/">Home Page</Link>
+        </p>
       </div>
     </AppForm>
   );

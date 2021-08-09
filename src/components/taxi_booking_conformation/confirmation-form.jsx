@@ -11,9 +11,11 @@ export default function ConfirmationForm() {
   const history = useHistory();
   const booking = useSelector((state) => state.booking);
   const { vehicle, travelDistance } = booking;
-  const { request, isLoading } = useApi(bookingApi.createBooking, {
+  const { request } = useApi(bookingApi.createBooking, {
     hasCatchError: true,
   });
+
+  console.log("vehicle", vehicle);
 
   const calculateVehiclePrice = () => {
     if (Object.keys(travelDistance).length > 0) {
@@ -30,6 +32,7 @@ export default function ConfirmationForm() {
 
   const _makeAppropriateFields = async () => {
     const { initialBooking, personaDetail } = booking;
+    console.log("initial Booking", initialBooking);
 
     let bookingFields = {
       pickupLocation: initialBooking.pickupLocation,
@@ -44,7 +47,7 @@ export default function ConfirmationForm() {
       ),
       distance: travelDistance.value ?? 1,
       transferType: initialBooking.isOneWay ? "One way" : "Two way",
-      vehicleId: vehicle.id,
+      vehicleId: vehicle._id,
       passengerName: personaDetail.firstName + " " + personaDetail.lastName,
       passengerEmail: personaDetail.passengerEmail,
       passengerNumber: personaDetail.passengerNumber,
@@ -88,7 +91,7 @@ export default function ConfirmationForm() {
       <form>
         {/* <_ContactForm /> */}
 
-        <_VehicleDetail
+        <VehicleDetail
           vehicle={vehicle}
           vehiclePrice={calculateVehiclePrice()}
         />
@@ -104,8 +107,8 @@ export default function ConfirmationForm() {
             />
             <label>
               {" "}
-              I accept the <a href="#">Terms & Conditions</a> and{" "}
-              <a href="#">Privacy Policy.</a>{" "}
+              I accept the <a href="#1">Terms & Conditions</a> and{" "}
+              <a href="#1">Privacy Policy.</a>{" "}
             </label>
           </div>
         </div>
@@ -125,34 +128,34 @@ export default function ConfirmationForm() {
   );
 }
 
-function _ContactForm() {
-  return (
-    <div class="page_three_contact_detail">
-      <div class="page_three_contact_header">
-        <h4>Contact Detail</h4>
-      </div>
-      <div class="page_three_personal_detail">
-        <div class="personal_detail_fields">
-          <input type="text" Placeholder="First Name*" />
-        </div>
-        <div class="personal_detail_fields">
-          <input type="text" Placeholder="Last Name*" />
-        </div>
-        <div class="personal_detail_fields">
-          <input type="email" Placeholder="Email Address*" />
-        </div>
-        <div class="personal_detail_fields">
-          <input type="number" Placeholder="Phone Number*" />
-        </div>
-      </div>
-      <div class="personal_detail_comment">
-        <input type="text" Placeholder="Comment" />
-      </div>
-    </div>
-  );
-}
+// function _ContactForm() {
+//   return (
+//     <div class="page_three_contact_detail">
+//       <div class="page_three_contact_header">
+//         <h4>Contact Detail</h4>
+//       </div>
+//       <div class="page_three_personal_detail">
+//         <div class="personal_detail_fields">
+//           <input type="text" Placeholder="First Name*" />
+//         </div>
+//         <div class="personal_detail_fields">
+//           <input type="text" Placeholder="Last Name*" />
+//         </div>
+//         <div class="personal_detail_fields">
+//           <input type="email" Placeholder="Email Address*" />
+//         </div>
+//         <div class="personal_detail_fields">
+//           <input type="number" Placeholder="Phone Number*" />
+//         </div>
+//       </div>
+//       <div class="personal_detail_comment">
+//         <input type="text" Placeholder="Comment" />
+//       </div>
+//     </div>
+//   );
+// }
 
-function _VehicleDetail({ vehiclePrice, vehicle }) {
+function VehicleDetail({ vehiclePrice, vehicle }) {
   return (
     <div class="conformation_vehicle_detail">
       <h2>Vehicle Detail</h2>
@@ -160,7 +163,7 @@ function _VehicleDetail({ vehiclePrice, vehicle }) {
         <div class="booking_page_one_car_detail">
           <div class="booking_page_one_single_car_detail">
             <figure>
-              <img src="assets/image/standard.png" />
+              <img src="assets/image/standard.png" alt="" />
             </figure>
             <div class="page_one_single_car_detail">
               <h1>{vehicle.name}</h1>
@@ -188,13 +191,13 @@ function _VehicleDetail({ vehiclePrice, vehicle }) {
   );
 }
 
-function _PaymentMethod() {
-  return (
-    <div class="page_three_payment_method">
-      <h2>Payment Method</h2>
-      <span>
-        <i class="fab fa-cc-stripe"></i>
-      </span>
-    </div>
-  );
-}
+// function _PaymentMethod() {
+//   return (
+//     <div class="page_three_payment_method">
+//       <h2>Payment Method</h2>
+//       <span>
+//         <i class="fab fa-cc-stripe"></i>
+//       </span>
+//     </div>
+//   );
+// }

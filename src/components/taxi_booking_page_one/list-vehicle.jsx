@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useApi from "../../hooks/useApi";
 import AppLoading from "../common/loading";
@@ -12,6 +12,7 @@ export default function ListVehicle() {
 
   useEffect(() => {
     request();
+    //eslint-disable-next-line
   }, []);
 
   if (!vehicles) {

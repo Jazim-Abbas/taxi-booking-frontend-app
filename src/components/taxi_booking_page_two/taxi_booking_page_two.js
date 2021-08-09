@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./taxi_booking_page_two.css";
 
 import ListExtras from "./list-extra";
-import { reduxBookingKeys } from "../../utils/constants";
 import TransferDetailToogle from "./transfer-detail-toggle";
 import useReduxDataCheck from "../../hooks/useReduxDataCheck";
 import AppLayout from "../common/layout";

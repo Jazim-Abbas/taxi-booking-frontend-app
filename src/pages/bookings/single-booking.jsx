@@ -39,10 +39,11 @@ export default function SingleBookingScreen() {
   } = useApi(bookingsApi.singleBooking, {
     keyExtractor: "booking",
   });
-  const [booking, setBooking] = useState({ ...singleBooking });
+  const [booking] = useState({ ...singleBooking });
 
   useEffect(() => {
     request(id);
+    //eslint-disable-next-line
   }, []);
 
   if (isLoading || !_booking) {

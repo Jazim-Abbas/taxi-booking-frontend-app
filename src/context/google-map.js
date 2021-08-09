@@ -1,8 +1,6 @@
 import React from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
 
-import { DEV_GOOGLE_MAP_API_KEY } from "../utils/constants";
-
 const GoogleMapContext = React.createContext({ isLoaded: false });
 
 export function GoogleMapProvider({ children }) {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 class Footer extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class Footer extends React.Component {
         <footer>
           <div class="custom_container">
             <h1>We are ready to take your call 24 hours, 7 days!</h1>
-            <a href="#">
+            <a href="#1">
               <strong>Call Now: +1 217 636 4160</strong>
             </a>
           </div>

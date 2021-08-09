@@ -1,41 +1,41 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import useApi from "../../hooks/useApi";
 import * as bookingsApi from "../../apis/booking";
 import AppLoading from "../../components/common/loading";
 
-const bookingList = [
-  {
-    id: 1,
-    pickupLocation: "abc",
-    dropoffLocation: "abc",
-    pickupDate: "2020-05-12",
-    pickupTime: "10:05 AM",
-  },
-  {
-    id: 2,
-    pickupLocation: "abc",
-    dropoffLocation: "abc",
-    pickupDate: "2020-05-12",
-    pickupTime: "10:05 AM",
-  },
-  {
-    id: 3,
-    pickupLocation: "abc",
-    dropoffLocation: "abc",
-    pickupDate: "2020-05-12",
-    pickupTime: "10:05 AM",
-  },
-  {
-    id: 4,
-    pickupLocation: "abc",
-    dropoffLocation: "abc",
-    pickupDate: "2020-05-12",
-    pickupTime: "10:05 AM",
-  },
-];
+// const bookingList = [
+//   {
+//     id: 1,
+//     pickupLocation: "abc",
+//     dropoffLocation: "abc",
+//     pickupDate: "2020-05-12",
+//     pickupTime: "10:05 AM",
+//   },
+//   {
+//     id: 2,
+//     pickupLocation: "abc",
+//     dropoffLocation: "abc",
+//     pickupDate: "2020-05-12",
+//     pickupTime: "10:05 AM",
+//   },
+//   {
+//     id: 3,
+//     pickupLocation: "abc",
+//     dropoffLocation: "abc",
+//     pickupDate: "2020-05-12",
+//     pickupTime: "10:05 AM",
+//   },
+//   {
+//     id: 4,
+//     pickupLocation: "abc",
+//     dropoffLocation: "abc",
+//     pickupDate: "2020-05-12",
+//     pickupTime: "10:05 AM",
+//   },
+// ];
 
 export default function BookingListScreen() {
   const _getBookingsCallback = () => {
@@ -54,6 +54,7 @@ export default function BookingListScreen() {
 
   useEffect(() => {
     request();
+    //eslint-disable-next-line
   }, []);
 
   if (isLoading || !bookings) {
@@ -78,7 +79,7 @@ export default function BookingListScreen() {
 
               <tbody>
                 {bookings.map((booking) => (
-                  <_TableBody booking={booking} key={booking._id} />
+                  <TableBody booking={booking} key={booking._id} />
                 ))}
               </tbody>
             </table>
@@ -89,7 +90,7 @@ export default function BookingListScreen() {
   );
 }
 
-function _TableBody({ booking }) {
+function TableBody({ booking }) {
   const { url } = useRouteMatch();
 
   return (

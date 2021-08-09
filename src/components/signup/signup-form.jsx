@@ -2,6 +2,7 @@ import { Field } from "formik";
 
 import { AppForm, FieldError } from "../app-form";
 import { registerSchema } from "../../utils/validations";
+import { Link } from "react-router-dom";
 
 export default function SignUpForm({ onSubmit }) {
   return (
@@ -34,6 +35,12 @@ export default function SignUpForm({ onSubmit }) {
         <div className="submit_btn">
           <button type="submit">Sign Up</button>
         </div>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+        <p>
+          Goto <Link to="/">Home Page</Link>
+        </p>
       </div>
     </AppForm>
   );
