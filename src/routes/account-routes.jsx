@@ -5,6 +5,8 @@ import SingleBookingScreen from "../pages/bookings/single-booking";
 import Home from "../pages/Home";
 import ProtectedRoute from "./protected-route";
 
+import "../pages/account/account.css"
+
 export default function AccountRoutes() {
   const { path } = useRouteMatch();
 
