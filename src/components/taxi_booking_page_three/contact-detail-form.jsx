@@ -3,13 +3,30 @@ import { Link } from "react-router-dom";
 
 import { AppForm, FieldError } from "../app-form";
 import { personalDetailSchema } from "../../utils/validations";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export default function ContactDetailForm({ onSubmit }) {
+  const [initialValues, setInitialValues] = useState();
+  const { personaDetail } = useSelector((state) => state.booking);
+  console.log("booking in redux: ", personaDetail);
+
+  useEffect(() => {
+    if (Object.keys(personaDetail).length > 0) {
+      setInitialValues({ ...personaDetail });
+    } else {
+      setInitialValues({ ..._initialValues });
+    }
+  }, []);
+
+  console.log("initial values: ", initialValues);
+
   return (
     <AppForm
       initialValues={initialValues}
       validationSchema={personalDetailSchema}
       handleSubmit={onSubmit}
+      enableReinitialize
     >
       <div class="page_three_contact_detail">
         <div class="page_three_contact_header">
@@ -92,7 +109,7 @@ export default function ContactDetailForm({ onSubmit }) {
   );
 }
 
-const initialValues = {
+const _initialValues = {
   firstName: "",
   lastName: "",
   passengerEmail: "",

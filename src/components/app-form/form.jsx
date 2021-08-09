@@ -5,8 +5,9 @@ const AppForm = ({
   initialValues,
   validationSchema,
   handleSubmit,
+  enableReinitialize = false,
   ...rest
-}) => {
+} = {}) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -14,6 +15,7 @@ const AppForm = ({
       onSubmit={(values) => {
         handleSubmit({ formValues: values });
       }}
+      enableReinitialize={enableReinitialize}
     >
       {(props) => (
         <form onSubmit={props.handleSubmit} {...rest}>
