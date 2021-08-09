@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./taxi_booking_page_one.css";
+import GoogleMap from "./google-map";
 import AppLayout from "../common/layout";
 import ListVehicle from "./list-vehicle";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
@@ -44,7 +45,7 @@ export default function TaxiBookingPageOne() {
               </div>
 
               <div class="page_one_section_two">
-                {/* <GoogleMap /> */}
+                <GoogleMap />
                 <ListVehicle />
 
                 <div class="page_one_continous_btn">

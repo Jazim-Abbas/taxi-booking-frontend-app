@@ -21,7 +21,7 @@ export default function ConfirmationForm() {
 
   const calculateVehiclePrice = () => {
     if (Object.keys(travelDistance).length > 0) {
-      return travelDistance.value * vehicle.pricePerKM;
+      return (travelDistance.value / 1000) * vehicle.pricePerKM;
     } else {
       return vehicle.pricePerKM;
     }
@@ -86,7 +86,13 @@ export default function ConfirmationForm() {
       price += extra.price * quantity;
     });
 
+    console.log("extras price: ", price);
+
     return price;
+  };
+
+  const _getTotalPrice = () => {
+    return Math.floor(calculateVehiclePrice() + _calculateExtrasPrice());
   };
 
   return (
@@ -128,7 +134,7 @@ export default function ConfirmationForm() {
         </div>
         <div class="next">
           <button href="#" onClick={handleConfirmBooking} disabled={!isAccept}>
-            Pay ammount (${calculateVehiclePrice() + _calculateExtrasPrice()})
+            Pay ammount (${_getTotalPrice()})
           </button>
         </div>
       </div>

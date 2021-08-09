@@ -56,7 +56,7 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          {/* <AutoComplete
+          <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation(
                 "dropoffLocation",
@@ -70,17 +70,17 @@ export default function BookTaxiForm({
             onChange={(e) => {
               onInputChange({ name: "dropoffLocation", value: e.target.value });
             }}
-          /> */}
-          <input
+          />
+          {/* <input
             type="text"
             name="dropoffLocation"
             value={inputValues.dropoffLocation}
             onChange={handleChangeInput}
-          />
+          /> */}
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          {/* <AutoComplete
+          <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
@@ -90,13 +90,13 @@ export default function BookTaxiForm({
             onChange={(e) => {
               onInputChange({ name: "pickupLocation", value: e.target.value });
             }}
-          /> */}
-          <input
+          />
+          {/* <input
             type="text"
             name="pickupLocation"
             value={inputValues.pickupLocation}
             onChange={handleChangeInput}
-          />
+          /> */}
         </div>
 
         <div className="booking_fields Arival_airport">
