@@ -61,6 +61,9 @@ const booking = createSlice({
       state.travelDistance = payload.distance;
       state.travelTime = payload.duration;
     },
+    resetAllFields: (_) => {
+      return { ...initialState };
+    },
   },
 });
 
@@ -71,6 +74,7 @@ export const {
   addPersonalDetail,
   updateExtras,
   addDistanceAndTime,
+  resetAllFields,
 } = booking.actions;
 
 export default booking.reducer;

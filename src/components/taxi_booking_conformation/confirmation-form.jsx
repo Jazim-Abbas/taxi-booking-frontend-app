@@ -5,13 +5,15 @@ import moment from "moment";
 
 import useApi from "../../hooks/useApi";
 import * as bookingApi from "../../apis/booking";
+import AppLoading from "../common/loading";
+import ServerError from "../common/server-error";
 
 export default function ConfirmationForm() {
   const [isAccept, setIsAccept] = useState(true);
   const history = useHistory();
   const booking = useSelector((state) => state.booking);
   const { vehicle, travelDistance } = booking;
-  const { request } = useApi(bookingApi.createBooking, {
+  const { request, isLoading, error } = useApi(bookingApi.createBooking, {
     hasCatchError: true,
   });
 
@@ -113,6 +115,11 @@ export default function ConfirmationForm() {
           </div>
         </div>
       </form>
+
+      <div style={{ marginBottom: "20px" }}>
+        {isLoading && <AppLoading />}
+        <ServerError error={error} />
+      </div>
 
       <div class="page_three_continuous_btn">
         <div class="back">
