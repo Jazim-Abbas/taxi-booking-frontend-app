@@ -102,7 +102,7 @@ export default function ConfirmationForm() {
 
         <VehicleDetail
           vehicle={vehicle}
-          vehiclePrice={calculateVehiclePrice()}
+          vehiclePrice={Math.floor(calculateVehiclePrice())}
         />
 
         {/* <_PaymentMethod /> */}
