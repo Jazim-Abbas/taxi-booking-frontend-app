@@ -201,7 +201,9 @@ export default function BookTaxiForm({
                   className="fas fa-minus-circle"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleChangePassenger(-1);
+                    if (passengers > 1) {
+                      handleChangePassenger(-1);
+                    }
                   }}
                 ></i>
                 <span> {passengers} </span>
