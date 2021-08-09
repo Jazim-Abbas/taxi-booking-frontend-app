@@ -15,3 +15,7 @@ export function allBookingsForAllUsers() {
 export function singleBooking(id) {
   return api.post("/booking/single-booking-of-single-user", { bookingId: id });
 }
+
+export function confirmPayment(bookingId) {
+  return api.patch("/booking/confirm-payment", { bookingId });
+}

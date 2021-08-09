@@ -4,6 +4,9 @@ import AppLoading from "../common/loading";
 import { useDispatch } from "react-redux";
 
 import { resetAllFields } from "../../store/booking";
+import useApi from "../../hooks/useApi";
+import * as bookingsApi from "../../apis/booking";
+import { useHistory } from "react-router";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -31,6 +34,10 @@ export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
+  const { request } = useApi(bookingsApi.confirmPayment, {
+    hasCatchError: true,
+  });
+  const history = useHistory();
 
   console.log("cs", localStorage.getItem("cs"));
 
@@ -117,13 +124,18 @@ export default function PaymentForm() {
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
-        setMessage("Payment is received!");
+        setMessage(
+          "Payment is received! Please wait. After confirm your order you will be automatically redirect to homepage ..."
+        );
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
-        dispatch(resetAllFields());
+        request(localStorage.getItem("bookingId")).then(() => {
+          dispatch(resetAllFields());
+          history.replace("/");
+        });
       }
     }
   };

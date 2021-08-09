@@ -66,6 +66,7 @@ export default function ConfirmationForm() {
       const res = await request(bookingFields);
       console.log("client secret", res.data.client_secret);
       window.localStorage.setItem("cs", res.data.client_secret);
+      window.localStorage.setItem("bookingId", res.data.newBooking._id);
       history.push("/pay-amount");
     } catch (err) {
       console.log("error", err);
