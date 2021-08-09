@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import AppLoading from "../common/loading";
+import { useDispatch } from "react-redux";
+
+import { resetAllFields } from "../../store/booking";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -27,6 +30,7 @@ export default function PaymentForm() {
   const [message, setMessage] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
 
   console.log("cs", localStorage.getItem("cs"));
 
@@ -119,6 +123,7 @@ export default function PaymentForm() {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
+        dispatch(resetAllFields());
       }
     }
   };
