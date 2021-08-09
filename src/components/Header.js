@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Link, useHistory } from "react-router-dom";
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -21,7 +22,11 @@ export default function Header() {
             <div class="logo">
               <Link to="/">Pick Up</Link>
             </div>
-            <button class="nav_btn open_close_nav" type="button">
+            <button
+              class="nav_btn open_close_nav"
+              type="button"
+              onClick={() => setIsOpen(() => true)}
+            >
               <i class="fas fa-bars"></i>
             </button>
             <div class="nav_bar">
@@ -69,9 +74,12 @@ export default function Header() {
         </div>
       </header>
 
-      <section class="responsive_nav_bar">
+      <section
+        class="responsive_nav_bar"
+        style={{ display: isOpen ? "block" : "none" }}
+      >
         <div class="cancle_nav">
-          <a class="open_close_nav" href="#1">
+          <a class="open_close_nav" href="#1" onClick={() => setIsOpen(false)}>
             <i class="fas fa-times"></i>
           </a>
         </div>
