@@ -128,7 +128,7 @@ export default function ConfirmationForm() {
         </div>
         <div class="next">
           <button href="#" onClick={handleConfirmBooking} disabled={!isAccept}>
-            Pay ammount (${calculateVehiclePrice()})
+            Pay ammount (${calculateVehiclePrice() + _calculateExtrasPrice()})
           </button>
         </div>
       </div>
