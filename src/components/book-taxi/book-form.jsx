@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AutoComplete from 'react-google-autocomplete'
+import AutoComplete from "react-google-autocomplete";
 
 export default function BookTaxiForm({
   onSubmit,
@@ -39,6 +39,7 @@ export default function BookTaxiForm({
   };
 
   const handleDropDown = () => {
+    console.log("handle dropdown");
     setIsOpen((prev) => !prev);
   };
 
@@ -198,12 +199,18 @@ export default function BookTaxiForm({
               <div className="icon_section">
                 <i
                   className="fas fa-minus-circle"
-                  onClick={() => handleChangePassenger(-1)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleChangePassenger(-1);
+                  }}
                 ></i>
                 <span> {passengers} </span>
                 <i
                   className="fas fa-plus-circle"
-                  onClick={() => handleChangePassenger(1)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleChangePassenger(1);
+                  }}
                 ></i>
               </div>
             </div>
