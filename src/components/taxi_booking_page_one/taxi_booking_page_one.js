@@ -6,13 +6,18 @@ import AppLayout from "../common/layout";
 import ListVehicle from "./list-vehicle";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 export default function TaxiBookingPageOne() {
+  const { initialBooking } = useSelector((state) => state.booking);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     setIsOpen((prev) => !prev);
   };
+
+  console.log("initial booking: ", initialBooking);
 
   return (
     <AppLayout>
@@ -26,23 +31,35 @@ export default function TaxiBookingPageOne() {
                 <div class="mobile_route_deail" id="mobile_route_deail">
                   <div class="mobile_route_history" onClick={handleOpen}>
                     <div class="location_history">
-                      <span>Mallorca airport (PMI)</span>
+                      <span>{initialBooking.dropoffLocation}</span>
                       <span>
                         <i class="fas fa-exchange-alt"></i>
                       </span>
-                      <span>Alcúdia</span>
+                      <span>{initialBooking.pickupLocation}</span>
                     </div>
                     <div class="timing_history">
                       <div class="date_time_history">
                         <i class="far fa-calendar-alt"></i>
-                        <span>Jul,30 at 12:00</span>
+                        <span>
+                          {" "}
+                          {moment(initialBooking.pickupDate).format(
+                            "MMM Do"
+                          )}{" "}
+                          at {initialBooking.pickupTime}
+                        </span>
                         <span>-</span>
-                        <span>Jul,30 at 12:00</span>
+                        {initialBooking.returnDate && (
+                          <span>
+                            {moment(initialBooking.returnDate).format("MMM Do")}{" "}
+                            at {initialBooking.returnTime}
+                          </span>
+                        )}
+                        {!initialBooking.returnDate && <span>No return date and time</span>}
                       </div>
                       <div class="passenger">
                         <span>
                           <i class="fas fa-user-alt"></i>
-                          <small>2</small>
+                          <small>{initialBooking.passengers}</small>
                         </span>
                       </div>
                     </div>

@@ -42,13 +42,25 @@
   padding: 10px 5px;
 }
 .mobile_route_history .location_history {
+  /* border-bottom: 2px solid gray;
+  padding-bottom: 5px; */
+
   border-bottom: 2px solid gray;
   padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobile_route_history .location_history span {
+  width: 100%;
+  text-align: center;
 }
 
 .mobile_route_history .location_history span i {
   padding: 5px;
   color: #09afee;
+  transform: ROTATE(90DEG);
 }
 .timing_history {
   display: flex;
