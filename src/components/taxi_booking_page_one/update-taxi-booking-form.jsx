@@ -4,7 +4,8 @@ import AutoComplete from "react-google-autocomplete";
 
 import { orderTaxi } from "../../store/booking";
 
-export default function UpdateTaxiBookingForm() {
+export default function UpdateTaxiBookingForm({ isOpen }) {
+  // const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.booking);
   const [initialBooking, setInitialBooking] = useState();
@@ -49,7 +50,7 @@ export default function UpdateTaxiBookingForm() {
 
   return (
     <div>
-      <form>
+      <form style={{ display: isOpen ? "block" : "none" }}>
         <div class="airport_selection_fileds">
           <div class="airport_fileds">
             <span>

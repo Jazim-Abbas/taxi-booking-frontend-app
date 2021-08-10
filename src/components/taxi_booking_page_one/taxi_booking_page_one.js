@@ -5,8 +5,15 @@ import GoogleMap from "./google-map";
 import AppLayout from "../common/layout";
 import ListVehicle from "./list-vehicle";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
+import { useState } from "react";
 
 export default function TaxiBookingPageOne() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <AppLayout>
       <section class="taxi_booking_page_one_body">
@@ -17,7 +24,7 @@ export default function TaxiBookingPageOne() {
             <div class="page_one_vehical">
               <div class="page_one_section">
                 <div class="mobile_route_deail" id="mobile_route_deail">
-                  <div class="mobile_route_history">
+                  <div class="mobile_route_history" onClick={handleOpen}>
                     <div class="location_history">
                       <span>Mallorca airport (PMI)</span>
                       <span>
@@ -41,7 +48,7 @@ export default function TaxiBookingPageOne() {
                     </div>
                   </div>
                 </div>
-                <UpdateTaxiBookingForm />
+                <UpdateTaxiBookingForm isOpen={isOpen} />
               </div>
 
               <div class="page_one_section_two">
