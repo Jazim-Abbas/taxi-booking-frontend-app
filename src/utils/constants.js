@@ -17,3 +17,8 @@ const PROD_URL = "https://jamrock-taxi-restapi.herokuapp.com/";
 
 export const BASE_URL =
   process.env.NODE_ENV === "production" ? PROD_URL : DEV_URL;
+
+export const googleAutoCompleteOptions = {
+  types: ["(regions)"],
+  componentRestrictions: { country: "jm" },
+};

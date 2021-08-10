@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import AutoComplete from "react-google-autocomplete";
 
+import { googleAutoCompleteOptions } from "../../utils/constants";
+
 export default function BookTaxiForm({
   onSubmit,
   onInputChange,
@@ -65,7 +67,7 @@ export default function BookTaxiForm({
               )
             }
             onInvalid={() => console.log("invalid autocomplete")}
-            options={{ types: ["(regions)"] }}
+            options={{ ...googleAutoCompleteOptions }}
             value={dropoffLocation}
             onChange={(e) => {
               onInputChange({ name: "dropoffLocation", value: e.target.value });
@@ -85,7 +87,9 @@ export default function BookTaxiForm({
             onPlaceSelected={(place) =>
               handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
-            options={{ types: ["(regions)"] }}
+            options={{
+              ...googleAutoCompleteOptions,
+            }}
             defaultValue={inputValues.pickupLocation}
             value={pickupLocation}
             onChange={(e) => {
