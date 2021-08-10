@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AutoComplete from "react-google-autocomplete";
 
 import { orderTaxi } from "../../store/booking";
+import { googleAutoCompleteOptions } from "../../utils/constants";
 
 export default function UpdateTaxiBookingForm({ isOpen }) {
   // const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 onPlaceSelected={(place) =>
                   handleSelectedPlace("dropoffLocation", place)
                 }
-                options={{ types: ["(regions)"] }}
+                options={{ ...googleAutoCompleteOptions }}
                 value={initialBooking.dropoffLocation}
                 onChange={(e) => {
                   e.target.name = "dropoffLocation";
@@ -85,7 +86,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 onPlaceSelected={(place) =>
                   handleSelectedPlace("pickupLocation", place)
                 }
-                options={{ types: ["(regions)"] }}
+                options={{ ...googleAutoCompleteOptions }}
                 value={initialBooking.pickupLocation}
                 onChange={(e) => {
                   e.target.name = "pickupLocation";
@@ -256,7 +257,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 onPlaceSelected={(place) =>
                   handleSelectedPlace("dropoffLocation", place)
                 }
-                options={{ types: ["(regions)"] }}
+                options={{ ...googleAutoCompleteOptions }}
                 value={initialBooking.dropoffLocation}
                 onChange={(e) => {
                   e.target.name = "dropoffLocation";
@@ -278,7 +279,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 onPlaceSelected={(place) =>
                   handleSelectedPlace("pickupLocation", place)
                 }
-                options={{ types: ["(regions)"] }}
+                options={{ ...googleAutoCompleteOptions }}
                 value={initialBooking.pickupLocation}
                 onChange={(e) => {
                   e.target.name = "pickupLocation";
