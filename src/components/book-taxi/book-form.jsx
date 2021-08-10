@@ -70,6 +70,7 @@ export default function BookTaxiForm({
             onChange={(e) => {
               onInputChange({ name: "dropoffLocation", value: e.target.value });
             }}
+            placeholder="Drop Off Location"
           />
           {/* <input
             type="text"
@@ -90,6 +91,7 @@ export default function BookTaxiForm({
             onChange={(e) => {
               onInputChange({ name: "pickupLocation", value: e.target.value });
             }}
+            placeholder="Pickup Location"
           />
           {/* <input
             type="text"
@@ -134,11 +136,32 @@ export default function BookTaxiForm({
 
             <div class="depature_box">
               <span>Flight Departure Date</span>{" "}
-              <input type="date" placeholder="Flight Departure" />
+              <input
+                type="date"
+                placeholder="Flight Departure"
+                name="pickupDate"
+                value={inputValues.pickupDate}
+                onChange={handleChangeInput}
+              />
             </div>
             <div class="depature_time_box">
               <span>Time</span>{" "}
-              <input id="time" type="time" placeholder="Time" />
+              {/* <input
+                id="time"
+                type="time"
+                placeholder="Time"
+                name="pickupTime"
+                value={inputValues.pickupTime}
+                onChange={onInputChange}
+              /> */}
+              <input
+                id="time"
+                type="time"
+                placeholder="Time"
+                name="pickupTime"
+                value={inputValues.pickupTime}
+                onChange={handleChangeInput}
+              />
             </div>
           </div>
         </div>
@@ -191,12 +214,33 @@ export default function BookTaxiForm({
               onChange={handleChangeInput}
             /> */}
             <div class="depature_box">
-              <span>Flight Departure Date</span>{" "}
-              <input type="date" placeholder="Flight Departure" />
+              <span>Flight Return Date</span>{" "}
+              <input
+                type="date"
+                placeholder="Flight Departure"
+                name="returnDate"
+                value={inputValues.returnDate}
+                onChange={handleChangeInput}
+              />
             </div>
             <div class="depature_time_box">
               <span>Time</span>{" "}
-              <input id="time" type="time" placeholder="Time" />
+              {/* <input
+                id="time"
+                type="time"
+                placeholder="Time"
+                name="returnTime"
+                value={inputValues.returnTime}
+                onChange={handleChangeInput}
+              /> */}
+              <input
+                id="time"
+                type="time"
+                placeholder="Time"
+                name="returnTime"
+                value={inputValues.returnTime}
+                onChange={handleChangeInput}
+              />
             </div>
           </div>
         </div>
