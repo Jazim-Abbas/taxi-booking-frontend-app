@@ -112,7 +112,7 @@ export default function BookTaxiForm({
         <div className="booking_fields flight_departure_date">
           <i className="far fa-calendar-minus" id="cancle"></i>
           <div className="time_date_input">
-            <input
+            {/* <input
               type="text"
               placeholder="Flight Departure"
               onFocus={(e) => (e.target.type = "date")}
@@ -130,14 +130,23 @@ export default function BookTaxiForm({
               name="pickupTime"
               value={inputValues.pickupTime}
               onChange={handleChangeInput}
-            />
+            /> */}
+
+            <div class="depature_box">
+              <span>Flight Departure Date</span>{" "}
+              <input type="date" placeholder="Flight Departure" />
+            </div>
+            <div class="depature_time_box">
+              <span>Time</span>{" "}
+              <input id="time" type="time" placeholder="Time" />
+            </div>
           </div>
         </div>
 
         <div className="booking_fields flight_Arival_date">
           <i className="far fa-calendar-minus" id="cancle"></i>
           <div className="time_date_input">
-            <input type="text" placeholder="Flight Arival" />
+            {/* <input type="text" placeholder="Flight Arival" />
             <input
               id="time"
               type="text"
@@ -146,14 +155,23 @@ export default function BookTaxiForm({
               onBlur={(e) => (e.target.type = "text")}
               //   name="returnDate"
               //   value={inputValues.returnDate}
-            />
+            /> */}
+
+            <div class="depature_box">
+              <span>Flight Departure Date</span>{" "}
+              <input type="date" placeholder="Flight Departure" />
+            </div>
+            <div class="depature_time_box">
+              <span>Time</span>{" "}
+              <input id="time" type="time" placeholder="Time" />
+            </div>
           </div>
         </div>
 
         <div className="booking_fields">
           <i className="far fa-calendar-minus" id="cancle"></i>
           <div className="time_date_input">
-            <input
+            {/* <input
               type="text"
               placeholder="Add A Return"
               onFocus={(e) => (e.target.type = "date")}
@@ -171,7 +189,15 @@ export default function BookTaxiForm({
               name="returnTime"
               value={inputValues.returnTime}
               onChange={handleChangeInput}
-            />
+            /> */}
+            <div class="depature_box">
+              <span>Flight Departure Date</span>{" "}
+              <input type="date" placeholder="Flight Departure" />
+            </div>
+            <div class="depature_time_box">
+              <span>Time</span>{" "}
+              <input id="time" type="time" placeholder="Time" />
+            </div>
           </div>
         </div>
       </div>
