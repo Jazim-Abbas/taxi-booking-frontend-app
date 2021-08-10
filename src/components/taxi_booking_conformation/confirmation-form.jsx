@@ -7,6 +7,7 @@ import useApi from "../../hooks/useApi";
 import * as bookingApi from "../../apis/booking";
 import AppLoading from "../common/loading";
 import ServerError from "../common/server-error";
+import { BASE_URL } from "../../utils/constants";
 
 export default function ConfirmationForm() {
   const [isAccept, setIsAccept] = useState(true);
@@ -179,7 +180,11 @@ function VehicleDetail({ vehiclePrice, vehicle }) {
         <div class="booking_page_one_car_detail">
           <div class="booking_page_one_single_car_detail">
             <figure>
-              <img src="assets/image/standard.png" alt="" />
+              <img
+                style={{ width: "180px", height: "100%" }}
+                src={`${BASE_URL}/${vehicle.image}`}
+                alt=""
+              />
             </figure>
             <div class="page_one_single_car_detail">
               <h1>{vehicle.name}</h1>
