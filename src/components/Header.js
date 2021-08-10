@@ -103,9 +103,22 @@ export default function Header() {
             <li>
               <Link to="/Help">Help Center</Link>
             </li>
+            {!user && (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
             <li>
-              <Link to="/mybooking">My Booking</Link>
+              {/* <Link to="/mybooking">My Booking</Link> */}
+              {user && <Link to="/booking">Booking</Link>}
             </li>
+            {user && (
+              <li>
+                <span style={{ cursor: "pointer" }} onClick={handleLogout}>
+                  Logout
+                </span>
+              </li>
+            )}
           </ul>
         </div>
         <div class="responsive_call_us">
