@@ -60,7 +60,7 @@
 .mobile_route_history .location_history span i {
   padding: 5px;
   color: #09afee;
-  transform: ROTATE(90DEG);
+  transform: ROTATE(90deg);
 }
 .timing_history {
   display: flex;
