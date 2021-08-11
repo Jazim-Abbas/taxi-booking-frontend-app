@@ -46,7 +46,7 @@ export default function AppRoutes() {
           path={route.path}
           reduxKeyNames={route.reduxKeyNames}
           component={route.Component}
-          isAuth
+          isAuth={route.isAuth}
         />
       ))}
     </Switch>
