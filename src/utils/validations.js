@@ -25,4 +25,11 @@ const personalDetailSchema = yup.object().shape({
   totalBags: yup.number().required(),
 });
 
-export { loginSchema, registerSchema, personalDetailSchema };
+const vehicleSchema = yup.object().shape({
+  name: yup.string().required(),
+  passenger: yup.number().required(),
+  luggage: yup.number().required(),
+  price: yup.number().required(),
+});
+
+export { loginSchema, registerSchema, personalDetailSchema, vehicleSchema };
