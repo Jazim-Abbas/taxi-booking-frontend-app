@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export default function AdminLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { isAdmin } = JSON.parse(localStorage.getItem("user"));
+
   return (
     <section className="dashboard">
       <section className="content">
@@ -28,27 +30,35 @@ export default function AdminLayout({ children }) {
             {/* <a class="btn">
               <span onclick="car_type()">Vehicles</span>
             </a> */}
-            <Link className="sidebar_btn" to="/admin/vehicles">
-              Vehicles
-            </Link>
+            {isAdmin && (
+              <Link className="sidebar_btn" to="/admin/vehicles">
+                Vehicles
+              </Link>
+            )}
             {/* <a class="btn">
               <span onclick="add_car_type()">Add Vehicle</span>
             </a> */}
-            <Link className="sidebar_btn" to="/admin/add-vehicle">
-              Add Vehicle
-            </Link>
+            {isAdmin && (
+              <Link className="sidebar_btn" to="/admin/add-vehicle">
+                Add Vehicle
+              </Link>
+            )}
             {/* <a class="btn">
               <span onclick="extras()">Extras</span>
             </a> */}
-            <Link className="sidebar_btn" to="/admin/extras">
-              Extras
-            </Link>
+            {isAdmin && (
+              <Link className="sidebar_btn" to="/admin/extras">
+                Extras
+              </Link>
+            )}
             {/* <a class="btn">
               <span onclick="add_new_extras()">Add Extras</span>
             </a> */}
-            <Link className="sidebar_btn" to="/admin/add-extra">
-              Add Extra
-            </Link>
+            {isAdmin && (
+              <Link className="sidebar_btn" to="/admin/add-extra">
+                Add Extra
+              </Link>
+            )}
           </div>
         </section>
 
