@@ -1,5 +1,10 @@
 import imgSrc from "./standard.png";
 import AdminLayout from "../../../components/common/admin-layout";
+import useApi from "../../../hooks/useApi";
+import * as vehicleApi from "../../../apis/vehicle";
+import { useEffect } from "react";
+import AppLoading from "../../../components/common/loading";
+import { BASE_URL } from "../../../utils/constants";
 
 export default function AdminVehicleList() {
   return (
@@ -10,6 +15,20 @@ export default function AdminVehicleList() {
 }
 
 function _Vehicles() {
+  const {
+    request,
+    isLoading,
+    data: vehicles,
+  } = useApi(vehicleApi.allVehicles, { keyExtractor: "vehicles" });
+
+  useEffect(() => {
+    request();
+  }, []);
+
+  if (isLoading || !vehicles) {
+    return <AppLoading />;
+  }
+
   return (
     <section class="message_window" id="car_type">
       <section class="admin_our_fleet">
@@ -17,99 +36,34 @@ function _Vehicles() {
           <h2>Vehicles</h2>
 
           <div class="admin_fleet_services">
-            <div class="admin_single_service">
-              <figure>
-                <img src={imgSrc} />
-              </figure>
-              <h3>Standard</h3>
-              <h4>4 pax &amp; 4 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="admin_single_service">
-              <figure>
-                <img src="image/standard.png" />
-              </figure>
-              <h3>VIP &amp; Exec</h3>
-              <h4>3 pax &amp; 3 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="admin_single_service">
-              <figure>
-                <img src="image/family.png" />
-              </figure>
-              <h3>Family</h3>
-              <h4>5 pax &amp; 6 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="admin_single_service">
-              <figure>
-                <img src="image/minivan.png" />
-              </figure>
-              <h3>Minivan</h3>
-              <h4>9 pax &amp; 9 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="admin_single_service">
-              <figure>
-                <img src="image/smallbus.png" />
-              </figure>
-              <h3>Small Bus</h3>
-              <h4>15 pax &amp; 15 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="admin_single_service">
-              <figure>
-                <img src="image/coash.png" />
-              </figure>
-              <h3>Coach</h3>
-              <h4>30 pax &amp; 30 bags</h4>
-              <div class="vehical_price_box">
-                <span>100$</span>
-              </div>
-              <div class="single_taxi_btn">
-                <a href="#">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
+            {vehicles.map((vehicle) => (
+              <_SingleVehicle key={vehicle.id} vehicle={vehicle} />
+            ))}
           </div>
         </div>
       </section>
     </section>
+  );
+}
+
+function _SingleVehicle({ vehicle }) {
+  return (
+    <div class="admin_single_service">
+      <figure>
+        <img src={`${BASE_URL}/${vehicle.image}`} style={{ width: "100%", height: "100%"}} />
+      </figure>
+      <h3>{vehicle.name}</h3>
+      <h4>
+        {vehicle.passengerCapacity} pax &amp; {vehicle.luggageCapacity} bags
+      </h4>
+      <div class="vehical_price_box">
+        <span>{vehicle.pricePerKM}$ Per KM</span>
+      </div>
+      <div class="single_taxi_btn">
+        <a href="#">
+          <i class="fas fa-pen"></i>
+        </a>
+      </div>
+    </div>
   );
 }
