@@ -1,4 +1,4 @@
-import { useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import AdminLayout from "../../../components/common/admin-layout";
 
 import useApi from "../../../hooks/useApi";
@@ -9,6 +9,7 @@ import { VehicleForm } from "../add-vehicle";
 import { BASE_URL } from "../../../utils/constants";
 
 export default function EditVehicle() {
+  const history = useHistory();
   const [actualFile, setActualFile] = useState("");
   const [file, setFile] = useState("");
   const { params } = useRouteMatch();
@@ -30,17 +31,22 @@ export default function EditVehicle() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleSubmit = ({ formValues }) => {
-    const vehicle = {
+  const handleSubmit = async ({ formValues }) => {
+    const _vehicle = {
       name: formValues.name,
       luggageCapacity: formValues.luggage,
       passengerCapacity: formValues.passenger,
       pricePerKM: formValues.price,
       isAvailable: true,
-      imagePath: _getImage(),
+      imagePath: actualFile ? "" : _getImage(),
       image: actualFile,
     };
-    console.log("handle submit: ", vehicle);
+    console.log("handle submit: ", _vehicle);
+
+    try {
+      await updateVehicle.request(vehicle.id, _vehicle);
+      history.push("/admin/vehicles");
+    } catch (_) {}
   };
 
   if (isLoading || !vehicle) {

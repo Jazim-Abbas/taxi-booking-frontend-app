@@ -19,13 +19,14 @@ export function getSingleVehicle(id) {
 export function updateVehicle(id, vehicle) {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   let fd = new FormData();
-  const _vehicle = { ...vehicle, vehicleId: id };
-  setFieldsToFormData(fd, _vehicle);
+  setFieldsToFormData(fd, { ...vehicle, vehicleId: id });
+  // console.log("fd: ", fd.getAll());
 
   return api.patch("vehicle/update", fd, config);
 }
 
 function setFieldsToFormData(fd, fields) {
+  console.log("fields: ", fields);
   for (const key in fields) {
     fd.append(key, fields[key]);
   }

@@ -1,8 +1,10 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import imgSrc from "./standard.png";
 import AdminLayout from "../../../components/common/admin-layout";
 import useApi from "../../../hooks/useApi";
 import * as vehicleApi from "../../../apis/vehicle";
-import { useEffect } from "react";
 import AppLoading from "../../../components/common/loading";
 import { BASE_URL } from "../../../utils/constants";
 
@@ -50,7 +52,10 @@ function _SingleVehicle({ vehicle }) {
   return (
     <div class="admin_single_service">
       <figure>
-        <img src={`${BASE_URL}/${vehicle.image}`} style={{ width: "100%", height: "100%"}} />
+        <img
+          src={`${BASE_URL}/${vehicle.image}`}
+          style={{ width: "100%", height: "100%" }}
+        />
       </figure>
       <h3>{vehicle.name}</h3>
       <h4>
@@ -60,9 +65,9 @@ function _SingleVehicle({ vehicle }) {
         <span>{vehicle.pricePerKM}$ Per KM</span>
       </div>
       <div class="single_taxi_btn">
-        <a href="#">
+        <Link to={`/admin/vehicle/${vehicle.id}/edit`}>
           <i class="fas fa-pen"></i>
-        </a>
+        </Link>
       </div>
     </div>
   );
