@@ -3,6 +3,10 @@ import { AppForm, FieldError } from "../../../components/app-form";
 import { Field } from "formik";
 import { extraSchema } from "../../../utils/validations";
 
+import useApi from "../../../hooks/useApi";
+import * as extrasApi from "../../../apis/extra";
+import { useHistory } from "react-router-dom";
+
 export default function AdminAddExtra() {
   return (
     <AdminLayout>
@@ -12,8 +16,17 @@ export default function AdminAddExtra() {
 }
 
 function _AddNewExtra() {
-  const handleSubmit = ({ formValues }) => {
+  const history = useHistory();
+  const { request, isLoading } = useApi(extrasApi.createExtra, {
+    hasCatchError: true,
+  });
+
+  const handleSubmit = async ({ formValues }) => {
     console.log("handle submit", formValues);
+    try {
+      await request(formValues);
+      history.push("/admin/extras");
+    } catch (_) {}
   };
 
   return (
