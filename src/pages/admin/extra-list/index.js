@@ -1,7 +1,9 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import AdminLayout from "../../../components/common/admin-layout";
 import useApi from "../../../hooks/useApi";
 import * as extrasApi from "../../../apis/extra";
-import { useEffect } from "react";
 import AppLoading from "../../../components/common/loading";
 
 export default function AdminExtraList() {
@@ -53,9 +55,9 @@ function _SingleExtra({ extra }) {
         <span>{extra.price}$</span>
       </div>
       <div class="single_taxi_btn">
-        <a href="#">
+        <Link to={`/admin/extra/${extra.id}/edit`}>
           <i class="fas fa-pen"></i>
-        </a>
+        </Link>
       </div>
     </div>
   );
