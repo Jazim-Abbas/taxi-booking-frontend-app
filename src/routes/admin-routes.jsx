@@ -8,6 +8,16 @@ import AdminExtraList from "../pages/admin/extra-list";
 import AdminAddExtra from "../pages/admin/add-extra";
 import EditExtra from "../pages/admin/edit-extra";
 import EditVehicle from "../pages/admin/edit-vehicle";
+import ProtectedRoute from "./protected-route";
+
+const routes = [
+  { path: "/vehicles", Component: AdminVehicleList, isAdmin: true },
+  { path: "/add-vehicle", Component: AdminAddVehicle, isAdmin: true },
+  { path: "/extras", Component: AdminExtraList, isAdmin: true },
+  { path: "/add-extra", Component: AdminAddExtra, isAdmin: true },
+  { path: "/extra/:id/edit", Component: EditExtra, isAdmin: true },
+  { path: "/vehicle/:id/edit", Component: EditVehicle, isAdmin: true },
+];
 
 export default function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -18,24 +28,39 @@ export default function AdminRoutes() {
         <Route exact path={path}>
           <AdminBookingList />
         </Route>
-        <Route path={`${path}/vehicles`}>
-          <AdminVehicleList />
-        </Route>
-        <Route path={`${path}/add-vehicle`}>
-          <AdminAddVehicle />
-        </Route>
-        <Route path={`${path}/extras`}>
-          <AdminExtraList />
-        </Route>
-        <Route path={`${path}/add-extra`}>
-          <AdminAddExtra />
-        </Route>
-        <Route path={`${path}/extra/:id/edit`}>
-          <EditExtra />
-        </Route>
-        <Route path={`${path}/vehicle/:id/edit`}>
-          <EditVehicle />
-        </Route>
+
+        {/* {routes.map((route) => (
+          // <ProtectedRoute
+          //   key={route.path}
+          //   path={`${path}/${route.path}`}
+          //   component={route.Component}
+          // />
+          // <Route key={route.path} path={`admin/vehicles`}>
+          //   <AdminVehicleList />
+          // </Route>
+        ))} */}
+        <ProtectedRoute
+          isAdmin={true}
+          path={`${path}/vehicles`}
+          component={AdminVehicleList}
+        />
+        {/* <AdminVehicleList />
+        </ProtectedRoute> */}
+        <ProtectedRoute isAdmin path={`${path}/add-vehicle`} component={AdminAddVehicle} />
+          {/* <AdminAddVehicle /> */}
+        {/* </ProtectedRoute> */}
+        <ProtectedRoute isAdmin path={`${path}/extras`} component={AdminExtraList} />
+          {/* <AdminExtraList /> */}
+        {/* </ProtectedRoute> */}
+        <ProtectedRoute isAdmin path={`${path}/add-extra`} component={AdminAddExtra} />
+          {/* <AdminAddExtra /> */}
+        {/* </ProtectedRoute> */}
+        <ProtectedRoute isAdmin path={`${path}/extra/:id/edit`} component={EditExtra} />
+          {/* <EditExtra /> */}
+        {/* </ProtectedRoute> */}
+        <ProtectedRoute isAdmin path={`${path}/vehicle/:id/edit`} component={EditVehicle} />
+          {/* <EditVehicle /> */}
+        {/* </ProtectedRoute> */}
       </Switch>
     </>
   );

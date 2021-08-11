@@ -12,7 +12,6 @@ export default function ProtectedRoute({
   useReduxDataCheck([...reduxKeyNames]);
   // const { user } = rest;
 
-  // console.log("user: ", user);
   const user = JSON.parse(window.localStorage.getItem("user"));
 
   return (
@@ -23,19 +22,14 @@ export default function ProtectedRoute({
           return <Component {...props} />;
         }
 
-        console.log("1");
-
         if (!user) return <RedirectToLogin {...props} />;
 
-        console.log("2");
 
         if (isAdmin) {
-          if (!user.isAdmin) {
+          if (user.isAdmin == false) {
             return <RedirectToLogin {...props} />;
           }
         }
-
-        console.log("3");
 
         return <Component {...props} />;
       }}
