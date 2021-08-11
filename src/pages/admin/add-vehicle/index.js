@@ -1,9 +1,11 @@
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { Field } from "formik";
+
 import imgSrc from "./standard.png";
 import AdminLayout from "../../../components/common/admin-layout";
 import { AppForm, FieldError } from "../../../components/app-form";
-import { Field } from "formik";
 import { vehicleSchema } from "../../../utils/validations";
-import { useState } from "react";
 import useApi from "../../../hooks/useApi";
 import * as vehicleApi from "../../../apis/vehicle";
 
@@ -16,6 +18,7 @@ export default function AdminAddVehicle() {
 }
 
 function _AddNewTaxi() {
+  const history = useHistory();
   const [actualFile, setActualFile] = useState();
   const [file, setFile] = useState("");
   const { request, isLoading } = useApi(vehicleApi.createVehicle, {
@@ -40,6 +43,7 @@ function _AddNewTaxi() {
 
     try {
       await request(vehicle);
+      history.push("/admin/vehicles");
     } catch (err) {}
   };
 
