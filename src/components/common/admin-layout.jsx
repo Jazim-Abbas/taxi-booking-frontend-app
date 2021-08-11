@@ -19,31 +19,31 @@ export default function AdminLayout({ children }) {
             {/* <a class="btn">
               <span onclick="booking_detail()">Booking Detail</span>
             </a> */}
-            <Link className="btn" to="/admin">
+            <Link className="sidebar_btn" to="/admin">
               Booking Detail
             </Link>
             {/* <a class="btn">
               <span onclick="car_type()">Vehicles</span>
             </a> */}
-            <Link className="btn" to="/admin/vehicles">
+            <Link className="sidebar_btn" to="/admin/vehicles">
               Vehicles
             </Link>
             {/* <a class="btn">
               <span onclick="add_car_type()">Add Vehicle</span>
             </a> */}
-            <Link className="btn" to="/admin/add-vehicle">
+            <Link className="sidebar_btn" to="/admin/add-vehicle">
               Add Vehicle
             </Link>
             {/* <a class="btn">
               <span onclick="extras()">Extras</span>
             </a> */}
-            <Link className="btn" to="/admin/extras">
+            <Link className="sidebar_btn" to="/admin/extras">
               Extras
             </Link>
             {/* <a class="btn">
               <span onclick="add_new_extras()">Add Extras</span>
             </a> */}
-            <Link className="btn" to="/admin/add-extra">
+            <Link className="sidebar_btn" to="/admin/add-extra">
               Add Extra
             </Link>
           </div>
