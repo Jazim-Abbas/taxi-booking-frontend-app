@@ -3,6 +3,7 @@ import AdminLayout from "../../../components/common/admin-layout";
 import { AppForm, FieldError } from "../../../components/app-form";
 import { Field } from "formik";
 import { vehicleSchema } from "../../../utils/validations";
+import { useState } from "react";
 
 export default function AdminAddVehicle() {
   return (
@@ -13,6 +14,12 @@ export default function AdminAddVehicle() {
 }
 
 function _AddNewTaxi() {
+  const [file, setFile] = useState("");
+
+  const handleChangeFile = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
+
   const handleSubmit = ({ formValues }) => {
     console.log("handle submit: ", formValues);
   };
@@ -22,14 +29,18 @@ function _AddNewTaxi() {
       <div class="add_car_container">
         <div class="profile_section_data">
           <h2>Add New Vehicle</h2>
-          <_VehicleForm onSubmit={handleSubmit} />
+          <_VehicleForm
+            onSubmit={handleSubmit}
+            onChangeFile={handleChangeFile}
+            initValues={{ file }}
+          />
         </div>
       </div>
     </section>
   );
 }
 
-function _VehicleForm({ onSubmit }) {
+function _VehicleForm({ onSubmit, onChangeFile, initValues }) {
   return (
     <AppForm
       initialValues={initialValues}
@@ -38,11 +49,16 @@ function _VehicleForm({ onSubmit }) {
     >
       <div class="profile_form">
         <div class="profile_section_one">
-          <figure>
-            <img src={imgSrc} />
-          </figure>
+          {initValues.file && (
+            <figure>
+              <img
+                src={initValues.file}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </figure>
+          )}
           <div class="upload_pic">
-            <input type="file" placeholder="change" />
+            <input type="file" placeholder="change" onChange={onChangeFile} />
           </div>
         </div>
         <div class="profile_section_two">
