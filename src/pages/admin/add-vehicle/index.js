@@ -4,6 +4,8 @@ import { AppForm, FieldError } from "../../../components/app-form";
 import { Field } from "formik";
 import { vehicleSchema } from "../../../utils/validations";
 import { useState } from "react";
+import useApi from "../../../hooks/useApi";
+import * as vehicleApi from "../../../apis/vehicle";
 
 export default function AdminAddVehicle() {
   return (
@@ -14,14 +16,31 @@ export default function AdminAddVehicle() {
 }
 
 function _AddNewTaxi() {
+  const [actualFile, setActualFile] = useState();
   const [file, setFile] = useState("");
+  const { request, isLoading } = useApi(vehicleApi.createVehicle, {
+    hasCatchError: true,
+  });
 
   const handleChangeFile = (e) => {
+    setActualFile(e.target.files[0]);
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleSubmit = ({ formValues }) => {
-    console.log("handle submit: ", formValues);
+  const handleSubmit = async ({ formValues }) => {
+    const vehicle = {
+      name: formValues.name,
+      luggageCapacity: formValues.luggage,
+      passengerCapacity: formValues.passenger,
+      pricePerKM: formValues.price,
+      isAvailable: true,
+      image: actualFile,
+    };
+    console.log(vehicle);
+
+    try {
+      await request(vehicle);
+    } catch (err) {}
   };
 
   return (
