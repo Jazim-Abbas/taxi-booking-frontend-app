@@ -32,4 +32,16 @@ const vehicleSchema = yup.object().shape({
   price: yup.number().required(),
 });
 
-export { loginSchema, registerSchema, personalDetailSchema, vehicleSchema };
+const extraSchema = yup.object().shape({
+  name: yup.string().required(),
+  description: yup.string().required(),
+  price: yup.number().required(),
+});
+
+export {
+  loginSchema,
+  registerSchema,
+  personalDetailSchema,
+  vehicleSchema,
+  extraSchema,
+};
