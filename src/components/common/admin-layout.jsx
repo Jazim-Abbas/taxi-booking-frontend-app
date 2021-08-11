@@ -19,6 +19,9 @@ export default function AdminLayout({ children }) {
             {/* <a class="btn">
               <span onclick="booking_detail()">Booking Detail</span>
             </a> */}
+            <Link className="sidebar_btn" to="/">
+              Home
+            </Link>
             <Link className="sidebar_btn" to="/admin">
               Booking Detail
             </Link>

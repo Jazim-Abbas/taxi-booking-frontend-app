@@ -52,7 +52,7 @@ export default function Header() {
                 <li>
                   {/* <Link to="/account">Profile</Link> */}
                   {!user && <Link to="/login">Login</Link>}
-                  {user && <Link to="/booking">Booking</Link>}
+                  {user && <Link to="/admin">Admin Panel</Link>}
                 </li>
                 {user && (
                   <li>
@@ -110,7 +110,7 @@ export default function Header() {
             )}
             <li>
               {/* <Link to="/mybooking">My Booking</Link> */}
-              {user && <Link to="/booking">Booking</Link>}
+              {user && <Link to="/admin">Admin Panel</Link>}
             </li>
             {user && (
               <li>

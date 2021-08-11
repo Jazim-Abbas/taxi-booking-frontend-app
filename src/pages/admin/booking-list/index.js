@@ -1,13 +1,36 @@
 import AdminLayout from "../../../components/common/admin-layout";
-
+import useApi from "../../../hooks/useApi";
+import * as bookingsApi from "../../../apis/booking";
+import AppLoading from "../../../components/common/loading";
+import { useEffect } from "react";
+import moment from "moment";
 
 export default function AdminBookingList() {
+  const _getBookingsCallback = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user.isAdmin) return bookingsApi.allBookingsForAllUsers;
+    else return bookingsApi.allBookingsForUser;
+  };
+
+  const {
+    request,
+    isLoading,
+    data: bookings,
+  } = useApi(_getBookingsCallback(), { keyExtractor: "bookings" });
+
+  useEffect(() => {
+    request();
+  }, []);
+
+  if (isLoading || !bookings) {
+    return <AppLoading />;
+  }
+
   return (
     <AdminLayout>
       {/* body */}
       <div class="body">
         <div class="admin_container">
-
           {/* <!-- dashboard window start--> */}
           <div class="dashboard_window" id="dashboard_window">
             <div class="dashboard_form">
@@ -27,30 +50,24 @@ export default function AdminBookingList() {
 
               <div class="">
                 <table id="">
-                  <tr>
-                    <th>Pickup Date</th>
-                    <th>Pickup Time</th>
-                    <th>Return Date</th>
-                    <th>Return Time</th>
-                    <th>Transfer Type</th>
-                    <th>Payment Status</th>
-                    <th>Total Passengers</th>
-                    <th>Bags</th>
-                    <th>Action</th>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <a href="#">View Detail</a>
-                    </td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Pickup Date</th>
+                      <th>Pickup Time</th>
+                      <th>Return Date</th>
+                      <th>Return Time</th>
+                      <th>Transfer Type</th>
+                      <th>Payment Status</th>
+                      <th>Total Passengers</th>
+                      <th>Bags</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((booking) => (
+                      <_Booking key={booking._id} booking={booking} />
+                    ))}
+                  </tbody>
                 </table>
               </div>
 
@@ -84,44 +101,30 @@ export default function AdminBookingList() {
   );
 }
 
-function _Table() {
+function _Booking({ booking }) {
   return (
-    <section class="account_managment_section" id="account_managment_section">
-      <div class="container">
-        <div class="account_managment">
-          <table>
-            <thead>
-              <tr class="border_bottom">
-                <th>Pick up</th>
-                <th>Drop off</th>
-                <th>pickup date</th>
-                <th>Time</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <p>asdsad</p>
-                </td>
-                <td>
-                  <p>asdasd</p>
-                </td>
-                <td>
-                  <p>asda</p>
-                </td>
-                <td>
-                  <p>asda</p>
-                </td>
-                <td>
-                  {/* <Link to={`${url}/${booking._id}`}>View Detail</Link> */}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+    <tr>
+      <td>{moment(booking.startDateTime).format("MMM Do, YYYY")}</td>
+      <td>{moment(booking.startDateTime).format("LT")}</td>
+      {!booking.returnDateTime && (
+        <>
+          <td>-</td>
+          <td>-</td>
+        </>
+      )}
+      {booking.returnDateTime && (
+        <>
+          <td>{moment(booking.returnDateTime).format("MMM Do, YYYY")}</td>
+          <td>{moment(booking.startDateTime).format("LT")}</td>
+        </>
+      )}
+      <td>{booking.transferType}</td>
+      <td>{booking.isPaid ? "Confirmed" : "Not Confirmed"}</td>
+      <td>{booking.totalPassengers}</td>
+      <td>{booking.totalBags}</td>
+      <td>
+        <a href="#">View Detail</a>
+      </td>
+    </tr>
   );
 }
