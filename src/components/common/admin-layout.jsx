@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AdminLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,21 +16,36 @@ export default function AdminLayout({ children }) {
             <span>Dashboard</span>
           </div>
           <div class="dashboard_buttons" id="change_active">
-            <a class="btn active">
+            {/* <a class="btn">
               <span onclick="booking_detail()">Booking Detail</span>
-            </a>
-            <a class="btn">
+            </a> */}
+            <Link className="btn" to="/admin">
+              Booking Detail
+            </Link>
+            {/* <a class="btn">
               <span onclick="car_type()">Vehicles</span>
-            </a>
-            <a class="btn">
+            </a> */}
+            <Link className="btn" to="/admin/vehicles">
+              Vehicles
+            </Link>
+            {/* <a class="btn">
               <span onclick="add_car_type()">Add Vehicle</span>
-            </a>
-            <a class="btn">
+            </a> */}
+            <Link className="btn" to="/admin/add-vehicle">
+              Add Vehicle
+            </Link>
+            {/* <a class="btn">
               <span onclick="extras()">Extras</span>
-            </a>
-            <a class="btn">
+            </a> */}
+            <Link className="btn" to="/admin/extras">
+              Extras
+            </Link>
+            {/* <a class="btn">
               <span onclick="add_new_extras()">Add Extras</span>
-            </a>
+            </a> */}
+            <Link className="btn" to="/admin/add-extra">
+              Add Extra
+            </Link>
           </div>
         </section>
 
