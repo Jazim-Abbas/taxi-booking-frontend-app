@@ -34,14 +34,14 @@ function _AddNewExtra() {
       <div class="add_car_container">
         <div class="profile_section_data">
           <h2>Add New Extra</h2>
-          <_ExtraForm onSubmit={handleSubmit} />
+          <ExtraForm onSubmit={handleSubmit} initialValues={initialValues} />
         </div>
       </div>
     </section>
   );
 }
 
-function _ExtraForm({ onSubmit }) {
+export function ExtraForm({ onSubmit, initialValues }) {
   return (
     <AppForm
       initialValues={initialValues}
