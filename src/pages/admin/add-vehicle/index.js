@@ -52,10 +52,10 @@ function _AddNewTaxi() {
       <div class="add_car_container">
         <div class="profile_section_data">
           <h2>Add New Vehicle</h2>
-          <_VehicleForm
+          <VehicleForm
             onSubmit={handleSubmit}
             onChangeFile={handleChangeFile}
-            initValues={{ file }}
+            initValues={{ ...initialValues, file }}
           />
         </div>
       </div>
@@ -63,10 +63,10 @@ function _AddNewTaxi() {
   );
 }
 
-function _VehicleForm({ onSubmit, onChangeFile, initValues }) {
+export function VehicleForm({ onSubmit, onChangeFile, initValues }) {
   return (
     <AppForm
-      initialValues={initialValues}
+      initialValues={initValues}
       validationSchema={vehicleSchema}
       handleSubmit={onSubmit}
     >

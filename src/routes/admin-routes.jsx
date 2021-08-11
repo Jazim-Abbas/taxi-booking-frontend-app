@@ -7,6 +7,7 @@ import AdminAddVehicle from "../pages/admin/add-vehicle";
 import AdminExtraList from "../pages/admin/extra-list";
 import AdminAddExtra from "../pages/admin/add-extra";
 import EditExtra from "../pages/admin/edit-extra";
+import EditVehicle from "../pages/admin/edit-vehicle";
 
 export default function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -31,6 +32,9 @@ export default function AdminRoutes() {
         </Route>
         <Route path={`${path}/extra/:id/edit`}>
           <EditExtra />
+        </Route>
+        <Route path={`${path}/vehicle/:id/edit`}>
+          <EditVehicle />
         </Route>
       </Switch>
     </>
