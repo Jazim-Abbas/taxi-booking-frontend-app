@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 export default function AdminLayout({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section className="dashboard">
       <section className="content">
-        <section class="side_bar">
-          <a class="closebtn sidebar-btn">
+        <section class={`side_bar ${isOpen ? "test" : ""}`}>
+          <a class="closebtn sidebar-btn" onClick={() => setIsOpen(false)}>
             <i class="fas fa-times"></i>
           </a>
 
@@ -31,7 +35,7 @@ export default function AdminLayout({ children }) {
 
         <div class="admin_header-bar">
           <div class="sidebar-btn">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars" onClick={() => setIsOpen(true)}></i>
           </div>
 
           <div class="admin_page_logo">
