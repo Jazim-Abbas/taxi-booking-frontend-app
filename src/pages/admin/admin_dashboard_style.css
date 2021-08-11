@@ -550,8 +550,8 @@ top: 0px;
 
 /*car type start*/
 #car_type{
-  display: none;
-  visibility: hidden;
+  /* display: block; */
+  /* visibility: hidden; */
 }
 
 .car_custom_container{
@@ -639,8 +639,8 @@ text-align: center;
 }
 
 #add_new_car{
-  display: none;
-  visibility: hidden;
+  /* display: none; */
+  /* visibility: hidden; */
 }
 .profile_section{
 float: left;
@@ -738,12 +738,12 @@ margin-bottom: 30px;
         width: 35%;
     }
 #extras{
-  display: none;
-  visibility: hidden;
+  /* display: none; */
+  /* visibility: hidden; */
 }
 #add_new_extra{
-  display: none;
-  visibility: hidden;
+  /* display: none; */
+  /* visibility: hidden; */
 }
 
 /*RESPONSIVE*/
