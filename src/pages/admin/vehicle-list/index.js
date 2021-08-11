@@ -1,3 +1,4 @@
+import imgSrc from "./standard.png";
 import AdminLayout from "../../../components/common/admin-layout";
 
 export default function AdminVehicleList() {
@@ -18,7 +19,7 @@ function _Vehicles() {
           <div class="admin_fleet_services">
             <div class="admin_single_service">
               <figure>
-                <img src="image/standard.png" />
+                <img src={imgSrc} />
               </figure>
               <h3>Standard</h3>
               <h4>4 pax &amp; 4 bags</h4>

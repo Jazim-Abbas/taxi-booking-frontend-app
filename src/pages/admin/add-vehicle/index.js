@@ -1,3 +1,4 @@
+import imgSrc from "./standard.png";
 import AdminLayout from "../../../components/common/admin-layout";
 
 export default function AdminAddVehicle() {
@@ -18,7 +19,7 @@ function _AddNewTaxi() {
             <div class="profile_form">
               <div class="profile_section_one">
                 <figure>
-                  <img src="image/standard.png" />
+                  <img src={imgSrc} />
                 </figure>
                 <div class="upload_pic">
                   <input type="file" placeholder="change" />
