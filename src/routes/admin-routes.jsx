@@ -9,6 +9,7 @@ import AdminAddExtra from "../pages/admin/add-extra";
 import EditExtra from "../pages/admin/edit-extra";
 import EditVehicle from "../pages/admin/edit-vehicle";
 import ProtectedRoute from "./protected-route";
+import SingleBookingScreen from "../pages/bookings/single-booking";
 
 const routes = [
   { path: "/vehicles", Component: AdminVehicleList, isAdmin: true },
@@ -46,20 +47,50 @@ export default function AdminRoutes() {
         />
         {/* <AdminVehicleList />
         </ProtectedRoute> */}
-        <ProtectedRoute isAdmin path={`${path}/add-vehicle`} component={AdminAddVehicle} />
-          {/* <AdminAddVehicle /> */}
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/booking/:id`}
+          component={SingleBookingScreen}
+        />
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/add-vehicle`}
+          component={AdminAddVehicle}
+        />
+        {/* <AdminAddVehicle /> */}
         {/* </ProtectedRoute> */}
-        <ProtectedRoute isAdmin path={`${path}/extras`} component={AdminExtraList} />
-          {/* <AdminExtraList /> */}
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/extras`}
+          component={AdminExtraList}
+        />
+        {/* <AdminExtraList /> */}
         {/* </ProtectedRoute> */}
-        <ProtectedRoute isAdmin path={`${path}/add-extra`} component={AdminAddExtra} />
-          {/* <AdminAddExtra /> */}
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/add-extra`}
+          component={AdminAddExtra}
+        />
+        {/* <AdminAddExtra /> */}
         {/* </ProtectedRoute> */}
-        <ProtectedRoute isAdmin path={`${path}/extra/:id/edit`} component={EditExtra} />
-          {/* <EditExtra /> */}
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/extra/:id/edit`}
+          component={EditExtra}
+        />
+        {/* <EditExtra /> */}
         {/* </ProtectedRoute> */}
-        <ProtectedRoute isAdmin path={`${path}/vehicle/:id/edit`} component={EditVehicle} />
-          {/* <EditVehicle /> */}
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/vehicle/:id/edit`}
+          component={EditVehicle}
+        />
+        <ProtectedRoute
+          isAdmin
+          path={`${path}/vehicle/:id/edit`}
+          component={EditVehicle}
+        />
+        {/* <EditVehicle /> */}
         {/* </ProtectedRoute> */}
       </Switch>
     </>

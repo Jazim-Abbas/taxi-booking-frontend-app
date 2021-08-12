@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import "./view_detail.css";
 import useApi from "../../hooks/useApi";
@@ -55,7 +55,8 @@ export default function SingleBookingScreen() {
       <div class="page_one_vehical">
         <div class="customer_admin">
           <div class="custom_container">
-            <div class="page_two_booking_complete_summary">
+            <Link to="/admin">{"<-"} Back to Bookings Page</Link>
+            <div class="page_two_booking_complete_summary" style={{ marginTop: "20px"}}>
               <p>Transfer Details</p>
               <i class="fas fa-chevron-down"></i>
             </div>

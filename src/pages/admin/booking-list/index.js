@@ -1,9 +1,11 @@
+import { useEffect } from "react";
+import moment from "moment";
+import { Link } from "react-router-dom";
+
 import AdminLayout from "../../../components/common/admin-layout";
 import useApi from "../../../hooks/useApi";
 import * as bookingsApi from "../../../apis/booking";
 import AppLoading from "../../../components/common/loading";
-import { useEffect } from "react";
-import moment from "moment";
 
 export default function AdminBookingList() {
   const _getBookingsCallback = () => {
@@ -123,7 +125,7 @@ function _Booking({ booking }) {
       <td>{booking.totalPassengers}</td>
       <td>{booking.totalBags}</td>
       <td>
-        <a href="#">View Detail</a>
+        <Link to={`/admin/booking/${booking._id}`}>View Detail</Link>
       </td>
     </tr>
   );
