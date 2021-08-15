@@ -33,7 +33,12 @@ export default function TaxiBookingPageOne() {
                     <div class="location_history">
                       <span>{initialBooking.dropoffLocation}</span>
                       <span>
-                        <i class="fas fa-exchange-alt"></i>
+                        {!initialBooking.isOneWay && (
+                          <i class="fas fa-exchange-alt"></i>
+                        )}
+                        {initialBooking.isOneWay && (
+                          <i className="fas fa-arrow-right"></i>
+                        )}
                       </span>
                       <span>{initialBooking.pickupLocation}</span>
                     </div>
@@ -54,7 +59,9 @@ export default function TaxiBookingPageOne() {
                             at {initialBooking.returnTime}
                           </span>
                         )}
-                        {!initialBooking.returnDate && <span>No return date and time</span>}
+                        {!initialBooking.returnDate && (
+                          <span>No return date and time</span>
+                        )}
                       </div>
                       <div class="passenger">
                         <span>
