@@ -41,6 +41,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   };
 
   const handleUpdateSearch = () => {
+    console.log("form values inside component: ", initialBooking);
     dispatch(orderTaxi(initialBooking));
     console.log("handle update search");
   };

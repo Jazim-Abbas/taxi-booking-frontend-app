@@ -23,11 +23,20 @@ const booking = createSlice({
   initialState,
   reducers: {
     orderTaxi: (state, { payload }) => {
-      if (payload.returnDate && payload.returnTime) {
-        payload.isOneWay = false;
+      if (payload.isOneWay) {
+        payload.returnDate = "";
+        payload.returnTime = "";
       } else {
-        payload.isOneWay = true;
+        if (payload.returnDate && payload.returnTime) {
+          payload.isOneWay = false;
+        } else {
+          payload.isOneWay = true;
+          payload.returnDate = "";
+          payload.returnTime = "";
+        }
       }
+
+      console.log("redux store payload: ", payload);
 
       state.initialBooking = { ...payload };
     },
