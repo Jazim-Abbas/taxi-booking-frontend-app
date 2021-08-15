@@ -19,6 +19,7 @@ export const BASE_URL =
   process.env.NODE_ENV === "production" ? PROD_URL : DEV_URL;
 
 export const googleAutoCompleteOptions = {
-  types: ["(regions)"],
+  // types: ["(regions)"],
+  types: ["establishment"],
   componentRestrictions: { country: "jm" },
 };
