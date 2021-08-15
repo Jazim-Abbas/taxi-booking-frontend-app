@@ -13,7 +13,7 @@ export default function TaxiBookingPageThree() {
   ]);
 
   return (
-    <AppLayout>
+    <AppLayout hasFooter={false}>
       <section className="taxi_booking_page_one_body">
         <section className="page_one_vehical_selection">
           <div className="custom_container">

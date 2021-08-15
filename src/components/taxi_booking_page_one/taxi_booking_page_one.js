@@ -20,7 +20,7 @@ export default function TaxiBookingPageOne() {
   console.log("initial booking: ", initialBooking);
 
   return (
-    <AppLayout>
+    <AppLayout hasFooter={false}>
       <section class="taxi_booking_page_one_body">
         <section class="page_one_vehical_selection">
           <div class="custom_container">
