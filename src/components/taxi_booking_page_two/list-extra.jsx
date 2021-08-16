@@ -13,9 +13,6 @@ import { BookingSummary } from "../taxi_booking_page_three/contract-detail";
 
 export default function ListExtras() {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [extras, setExtras] = useState(extrasList);
-  const [selectedExtras, setSelectedExtra] = useState([]);
   const {
     request,
     data: __extras,
@@ -29,72 +26,24 @@ export default function ListExtras() {
     //eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    setExtras(__extras);
-  }, [__extras]);
-
-  const handleExtraQuantity = (actionName, extraId) => {
-    setExtras((prevExtras) => {
-      return prevExtras.map((extra) => {
-        if (extra.id === extraId) {
-          let quantity = extra.quantity ?? 1;
-          quantity = actionName === "increment" ? ++quantity : --quantity;
-          return { ...extra, quantity: quantity };
-        }
-        return extra;
-      });
-    });
-  };
-
-  const handleExtraSelected = (extra) => {
-    console.log("extra: ", extra);
-    const isSelectedExtraFound = selectedExtras.find(
-      (_extra) => _extra.id === extra.id
-    );
-
-    if (!isSelectedExtraFound) {
-      setSelectedExtra((prev) => [...prev, { ...extra }]);
-    }
-  };
-
   const handleNavigateToNext = () => {
-    const extras = _makeAppropriateExtras();
-    console.log("extras selected: ", extras);
-    dispatch(updateExtras(extras));
     history.push("/taxi_booking_page_three");
   };
 
-  const _makeAppropriateExtras = () => {
-    const allExtras = {};
-    extras.forEach((extra) => {
-      allExtras[extra.id] = extra;
-    });
-
-    console.log("appro extras: ", selectedExtras);
-    return selectedExtras.map((extra) => allExtras[extra.id]);
-  };
-
   if (isLoading || !__extras) {
-    return <AppLoading />
+    return <AppLoading />;
   }
 
   return (
     <div class="page_two_section_two">
-      {isLoading && <AppLoading />}
-      {!isLoading && extras && (
-        <ExtrasList
-          _extras={__extras}
-          // onUpdateQty={handleExtraQuantity}
-          // onExtraSelected={handleExtraSelected}
-        />
-      )}
+      <ExtrasList _extras={__extras} />
       <BookingSummary />
       <NavigateToPages onNavigateNext={handleNavigateToNext} />
     </div>
   );
 }
 
-function ExtrasList({ _extras, onUpdateQty, onExtraSelected }) {
+function ExtrasList({ _extras }) {
   const [selectedExtras, setSelectedExtras] = useState();
   const { extras } = useSelector((state) => state.booking);
 
@@ -116,9 +65,6 @@ function ExtrasList({ _extras, onUpdateQty, onExtraSelected }) {
       return selectedExtras[extraId];
     }
     return null;
-    return extras[0];
-    return selectedExtras[extraId] ?? null;
-    // return null;
   };
 
   console.log("selected extra: ", selectedExtras);
