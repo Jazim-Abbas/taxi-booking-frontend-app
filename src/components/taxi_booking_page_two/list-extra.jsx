@@ -94,28 +94,57 @@ function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
   return (
     <form>
       {extras.map((extra, i) => {
-        if (i < 2) {
-          return (
-            <SingleExtra
-              key={extra.id}
-              hasQuantity={true}
-              extra={extra}
-              onUpdateQty={onUpdateQty}
-              onExtraSelected={onExtraSelected}
-            />
-          );
-        } else {
-          return (
-            <SingleExtra
-              key={extra.id}
-              extra={extra}
-              onUpdateQty={onUpdateQty}
-              onExtraSelected={onExtraSelected}
-            />
-          );
-        }
+        // if (i < 2) {
+        //   return (
+        //     <SingleExtra
+        //       key={extra.id}
+        //       hasQuantity={true}
+        //       extra={extra}
+        //       onUpdateQty={onUpdateQty}
+        //       onExtraSelected={onExtraSelected}
+        //     />
+        //   );
+        // } else {
+        //   return (
+        //     <SingleExtra
+        //       key={extra.id}
+        //       extra={extra}
+        //       onUpdateQty={onUpdateQty}
+        //       onExtraSelected={onExtraSelected}
+        //     />
+        //   );
+        // }
+        return <_SingleExtra />;
       })}
     </form>
+  );
+}
+
+function _SingleExtra() {
+  return (
+    <div class="page_two_extra_detail_parttwo">
+      <div class="page_two_extra">
+        <span>
+          <h2>Name</h2>
+          <strong>Price </strong>
+        </span>
+        <small>Description </small>
+      </div>
+
+      <div class="extra_select_btn">
+        <button type="button" onClick={() => {}}>
+          Select
+        </button>
+        <button
+          disabled
+          type="button"
+          onClick={() => console.log("selected")}
+          style={{ marginLeft: "10px", backgroundColor: "dodgerblue" }}
+        >
+          1
+        </button>
+      </div>
+    </div>
   );
 }
 
