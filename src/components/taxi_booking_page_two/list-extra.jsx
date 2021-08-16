@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import SingleExtra from "./single-extra";
@@ -79,9 +79,9 @@ export default function ListExtras() {
       {isLoading && <AppLoading />}
       {!isLoading && extras && (
         <ExtrasList
-          extras={extras}
-          onUpdateQty={handleExtraQuantity}
-          onExtraSelected={handleExtraSelected}
+          _extras={__extras}
+          // onUpdateQty={handleExtraQuantity}
+          // onExtraSelected={handleExtraSelected}
         />
       )}
       <BookingSummary />
@@ -90,10 +90,38 @@ export default function ListExtras() {
   );
 }
 
-function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
+function ExtrasList({ _extras, onUpdateQty, onExtraSelected }) {
+  const [selectedExtras, setSelectedExtras] = useState();
+  const { extras } = useSelector((state) => state.booking);
+
+  useEffect(() => {
+    const extrasObj = {};
+
+    if (extras) {
+      extras.forEach((extra) => {
+        extrasObj[extra.id] = { ...extra };
+      });
+
+      setSelectedExtras({ ...extrasObj });
+    }
+  }, [extras]);
+
+  const getSelectedExtra = (extraId) => {
+    console.log("extra id: ", extraId);
+    if (selectedExtras && selectedExtras[extraId]) {
+      return selectedExtras[extraId];
+    }
+    return null;
+    return extras[0];
+    return selectedExtras[extraId] ?? null;
+    // return null;
+  };
+
+  console.log("selected extra: ", selectedExtras);
+
   return (
     <form>
-      {extras.map((extra, i) => {
+      {_extras.map((extra, i) => {
         // if (i < 2) {
         //   return (
         //     <SingleExtra
@@ -114,13 +142,18 @@ function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
         //     />
         //   );
         // }
-        return <_SingleExtra extra={extra} />;
+        return (
+          <_SingleExtra
+            extra={extra}
+            selectedExtra={getSelectedExtra(extra.id)}
+          />
+        );
       })}
     </form>
   );
 }
 
-function _SingleExtra({ extra }) {
+function _SingleExtra({ extra, selectedExtra }) {
   const dispatch = useDispatch();
 
   const handleAddSingleExtra = () => {
@@ -139,7 +172,7 @@ function _SingleExtra({ extra }) {
 
       <div class="extra_select_btn">
         <button type="button" onClick={handleAddSingleExtra}>
-          Add
+          {selectedExtra ? "Added" : "Add"}
         </button>
         <button
           disabled
@@ -147,7 +180,7 @@ function _SingleExtra({ extra }) {
           onClick={() => console.log("selected")}
           style={{ marginLeft: "10px", backgroundColor: "dodgerblue" }}
         >
-          1
+          {selectedExtra ? selectedExtra.qty : "1"}
         </button>
       </div>
     </div>
