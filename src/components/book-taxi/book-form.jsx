@@ -62,8 +62,7 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <_AutoComplete />
-          {/* <AutoComplete
+          <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation(
                 "dropoffLocation",
@@ -73,13 +72,13 @@ export default function BookTaxiForm({
             }
             onInvalid={() => console.log("invalid autocomplete")}
             options={{ ...googleAutoCompleteOptions }}
-            // value={dropoffLocation}
-            // onChange={(e) => {
-            //   onInputChange({ name: "dropoffLocation", value: e.target.value });
-            //   console.log("e: ", e);
-            // }}
+            value={dropoffLocation}
+            onChange={(e) => {
+              onInputChange({ name: "dropoffLocation", value: e.target.value });
+              console.log("e: ", e);
+            }}
             placeholder="Drop Off Location"
-          /> */}
+          />
           {/* <input
             type="text"
             name="dropoffLocation"
@@ -93,9 +92,7 @@ export default function BookTaxiForm({
             onPlaceSelected={(place) =>
               handleDropoffLocation("pickupLocation", place, setPickupLocation)
             }
-            options={{
-              ...googleAutoCompleteOptions,
-            }}
+            options={{ ...googleAutoCompleteOptions }}
             defaultValue={inputValues.pickupLocation}
             value={pickupLocation}
             onChange={(e) => {
@@ -310,7 +307,9 @@ export default function BookTaxiForm({
 }
 
 function _AutoComplete() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(
+    "UET Gate 3, G. T. Road, Staff Houses Engineering University Lahore, Lahore, Pakistan"
+  );
 
   return (
     <PlacesAutocomplete
@@ -371,7 +370,7 @@ const renderFunc = ({
 }) => (
   <div className="autocomplete-root">
     <input {...getInputProps()} />
-    <div className="autocomplete-dropdown-container">
+    <div className="autocomplete-dropdown-container" style={{ zIndex: "20" }}>
       {loading && <div>Loading...</div>}
       {suggestions.map((suggestion) => (
         <div {...getSuggestionItemProps(suggestion)}>
