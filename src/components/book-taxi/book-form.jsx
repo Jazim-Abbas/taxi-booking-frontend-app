@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import AutoComplete from "react-google-autocomplete";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 import { googleAutoCompleteOptions } from "../../utils/constants";
 
@@ -50,6 +52,8 @@ export default function BookTaxiForm({
     onInputChange({ name: "passengers", value: +passengers + val });
   };
 
+  console.log("drop off location: ", dropoffLocation);
+
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
@@ -58,7 +62,8 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
-          <AutoComplete
+          <_AutoComplete />
+          {/* <AutoComplete
             onPlaceSelected={(place) =>
               handleDropoffLocation(
                 "dropoffLocation",
@@ -68,12 +73,13 @@ export default function BookTaxiForm({
             }
             onInvalid={() => console.log("invalid autocomplete")}
             options={{ ...googleAutoCompleteOptions }}
-            value={dropoffLocation}
-            onChange={(e) => {
-              onInputChange({ name: "dropoffLocation", value: e.target.value });
-            }}
+            // value={dropoffLocation}
+            // onChange={(e) => {
+            //   onInputChange({ name: "dropoffLocation", value: e.target.value });
+            //   console.log("e: ", e);
+            // }}
             placeholder="Drop Off Location"
-          />
+          /> */}
           {/* <input
             type="text"
             name="dropoffLocation"
@@ -302,3 +308,76 @@ export default function BookTaxiForm({
     </form>
   );
 }
+
+function _AutoComplete() {
+  const [value, setValue] = useState("");
+
+  return (
+    <PlacesAutocomplete
+      value={value}
+      onChange={(e) => {
+        console.log("e: ", e);
+        setValue(e);
+      }}
+      onSelect={(e) => {
+        setValue(e);
+        console.log("on select: ", e);
+      }}
+    >
+      {/* Custom render function */}
+      {/* {renderFunc} */}
+
+      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        <div>
+          <input
+            {...getInputProps({
+              placeholder: "Search Places ...",
+              className: "location-search-input",
+            })}
+          />
+          <div className="autocomplete-dropdown-container">
+            {loading && <div>Loading...</div>}
+            {suggestions.map((suggestion) => {
+              const className = suggestion.active
+                ? "suggestion-item--active"
+                : "suggestion-item";
+              // inline style for demonstration purpose
+              const style = suggestion.active
+                ? { backgroundColor: "#fafafa", cursor: "pointer", zIndex: 10 }
+                : { backgroundColor: "#ffffff", cursor: "pointer", zIndex: 10 };
+              return (
+                <div
+                  {...getSuggestionItemProps(suggestion, {
+                    className,
+                    style,
+                  })}
+                >
+                  <span>{suggestion.description}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </PlacesAutocomplete>
+  );
+}
+
+const renderFunc = ({
+  getInputProps,
+  getSuggestionItemProps,
+  suggestions,
+  loading,
+}) => (
+  <div className="autocomplete-root">
+    <input {...getInputProps()} />
+    <div className="autocomplete-dropdown-container">
+      {loading && <div>Loading...</div>}
+      {suggestions.map((suggestion) => (
+        <div {...getSuggestionItemProps(suggestion)}>
+          <span>{suggestion.description}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
