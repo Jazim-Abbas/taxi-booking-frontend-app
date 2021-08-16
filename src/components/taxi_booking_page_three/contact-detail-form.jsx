@@ -5,6 +5,7 @@ import { AppForm, FieldError } from "../app-form";
 import { personalDetailSchema } from "../../utils/validations";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { BookingSummary } from "./contract-detail";
 
 export default function ContactDetailForm({ onSubmit }) {
   const [initialValues, setInitialValues] = useState();
@@ -95,6 +96,8 @@ export default function ContactDetailForm({ onSubmit }) {
           </div>
         </div>
       </div>
+
+      <BookingSummary />
 
       <div class="page_three_continuous_btn">
         <div class="back">

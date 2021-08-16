@@ -8,6 +8,7 @@ import * as bookingApi from "../../apis/booking";
 import AppLoading from "../common/loading";
 import ServerError from "../common/server-error";
 import { BASE_URL } from "../../utils/constants";
+import { BookingSummary } from "../taxi_booking_page_three/contract-detail";
 
 export default function ConfirmationForm() {
   const [isAccept, setIsAccept] = useState(true);
@@ -130,6 +131,8 @@ export default function ConfirmationForm() {
         {isLoading && <AppLoading />}
         <ServerError error={error} />
       </div>
+
+      <BookingSummary />
 
       <div class="page_three_continuous_btn">
         <div class="back">

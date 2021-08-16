@@ -9,6 +9,7 @@ import { updateExtras } from "../../store/booking";
 import useApi from "../../hooks/useApi";
 import * as extraApi from "../../apis/extra";
 import AppLoading from "../common/loading";
+import { BookingSummary } from "../taxi_booking_page_three/contract-detail";
 
 export default function ListExtras() {
   const history = useHistory();
@@ -118,25 +119,25 @@ function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
   );
 }
 
-function BookingSummary() {
-  return (
-    <div class="booking_page_one_price_detail" id="mobile_booking_summary">
-      <h2>Booking Summary</h2>
-      <div class="booking_page_one_total_price">
-        <h3>Selected Vehicle</h3>
-        <span>$100</span>
-      </div>
-      <div class="booking_page_one_total_price total_price_border">
-        <h3>Selected Extra</h3>
-        <span>$100</span>
-      </div>
-      <div class="booking_page_one_total_price">
-        <h3>Total Price</h3>
-        <span>$100</span>
-      </div>
-    </div>
-  );
-}
+// function BookingSummary() {
+//   return (
+//     <div class="booking_page_one_price_detail" id="mobile_booking_summary">
+//       <h2>Booking Summary</h2>
+//       <div class="booking_page_one_total_price">
+//         <h3>Selected Vehicle</h3>
+//         <span>$100</span>
+//       </div>
+//       <div class="booking_page_one_total_price total_price_border">
+//         <h3>Selected Extra</h3>
+//         <span>$100</span>
+//       </div>
+//       <div class="booking_page_one_total_price">
+//         <h3>Total Price</h3>
+//         <span>$100</span>
+//       </div>
+//     </div>
+//   );
+// }
 
 function NavigateToPages({ onNavigateNext }) {
   return (

@@ -187,7 +187,7 @@ export default function TransferDetailToogle() {
         </div>
       )}
 
-      <div class="booking_page_one_price_detail" id="laptop_booking_summary">
+      <div class="booking_page_one_price_detail" id="laptop_booking_summary" style={{ display: "block"}}>
         <h2>Booking Summary</h2>
         <div class="booking_page_one_total_price">
           <h3>Selected Vehicle</h3>

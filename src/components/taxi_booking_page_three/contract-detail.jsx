@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import ContactDetailForm from "./contact-detail-form";
@@ -19,26 +19,52 @@ export default function ContactDetail() {
       <ContactDetailForm onSubmit={handleSubmit} />
 
       {/* <_PaymentMethod /> */}
-      <BookingSummary />
+      {/* <BookingSummary /> */}
     </div>
   );
 }
 
-function BookingSummary() {
+export function BookingSummary() {
+  const { extras, vehicle, travelDistance } = useSelector(
+    (state) => state.booking
+  );
+
+  const _calculateExtrasTotalPrice = () => {
+    let _totalPrice = 0;
+    extras.forEach((extra) => {
+      let quantity = extra.quantity ?? 1;
+      _totalPrice += extra.price * quantity;
+    });
+    _totalPrice = Math.floor(_totalPrice);
+    return _totalPrice;
+  };
+
+  const _calculateVehicleTotalPrice = () => {
+    let _vehiclePrice = 0;
+    if (travelDistance.value) {
+      _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
+    } else {
+      _vehiclePrice = vehicle.pricePerKM;
+    }
+    return Math.floor(_vehiclePrice);
+  };
+
   return (
     <div class="booking_page_one_price_detail" id="mobile_booking_summary">
       <h2>Booking Summary</h2>
       <div class="booking_page_one_total_price">
         <h3>Select Vehicle</h3>
-        <span>$100</span>
+        <span>${_calculateVehicleTotalPrice()}</span>
       </div>
       <div class="booking_page_one_total_price total_price_border">
         <h3>Select Extra</h3>
-        <span>$100</span>
+        <span>${_calculateExtrasTotalPrice()}</span>
       </div>
       <div class="booking_page_one_total_price">
         <h3>Total Price</h3>
-        <span>$100</span>
+        <span>
+          ${_calculateVehicleTotalPrice() + _calculateExtrasTotalPrice()}
+        </span>
       </div>
     </div>
   );
