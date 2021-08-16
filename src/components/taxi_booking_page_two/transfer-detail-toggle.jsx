@@ -11,7 +11,7 @@ export default function TransferDetailToogle() {
   const _calculateExtrasTotalPrice = () => {
     let _totalPrice = 0;
     extras.forEach((extra) => {
-      let quantity = extra.quantity ?? 1;
+      let quantity = extra.qty ?? 1;
       _totalPrice += extra.price * quantity;
     });
     _totalPrice = Math.floor(_totalPrice);

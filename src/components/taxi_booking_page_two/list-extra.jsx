@@ -74,6 +74,10 @@ export default function ListExtras() {
     return selectedExtras.map((extra) => allExtras[extra.id]);
   };
 
+  if (isLoading || !__extras) {
+    return <AppLoading />
+  }
+
   return (
     <div class="page_two_section_two">
       {isLoading && <AppLoading />}
