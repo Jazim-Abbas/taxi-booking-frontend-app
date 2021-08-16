@@ -62,6 +62,20 @@ const booking = createSlice({
         state.extras.push(allExtras[extra]);
       }
     },
+    addSingleExtra: (state, { payload }) => {
+      console.log("add single extra redux store: ", payload);
+
+      const extras = state.extras;
+      const extraIndex = extras.findIndex((extra) => extra.id === payload.id);
+      console.log("extra index: ", extraIndex);
+
+      if (extraIndex !== -1) {
+        const extra = state.extras[extraIndex];
+        state.extras[extraIndex] = { ...extra, qty: extra.qty + 1 };
+      } else {
+        state.extras.push({ ...payload, qty: 1 });
+      }
+    },
     addPersonalDetail: (state, { payload }) => {
       console.log("redux store: ", payload);
       state.personaDetail = { ...payload };
@@ -84,6 +98,7 @@ export const {
   updateExtras,
   addDistanceAndTime,
   resetAllFields,
+  addSingleExtra,
 } = booking.actions;
 
 export default booking.reducer;

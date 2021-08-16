@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import SingleExtra from "./single-extra";
 import { extrasList } from "./extras.data";
-import { updateExtras } from "../../store/booking";
+import { updateExtras, addSingleExtra } from "../../store/booking";
 import useApi from "../../hooks/useApi";
 import * as extraApi from "../../apis/extra";
 import AppLoading from "../common/loading";
@@ -114,26 +114,32 @@ function ExtrasList({ extras, onUpdateQty, onExtraSelected }) {
         //     />
         //   );
         // }
-        return <_SingleExtra />;
+        return <_SingleExtra extra={extra} />;
       })}
     </form>
   );
 }
 
-function _SingleExtra() {
+function _SingleExtra({ extra }) {
+  const dispatch = useDispatch();
+
+  const handleAddSingleExtra = () => {
+    dispatch(addSingleExtra(extra));
+  };
+
   return (
     <div class="page_two_extra_detail_parttwo">
       <div class="page_two_extra">
         <span>
-          <h2>Name</h2>
-          <strong>Price </strong>
+          <h2>{extra.name}</h2>
+          <strong>${extra.price} </strong>
         </span>
-        <small>Description </small>
+        <small>{extra.description} </small>
       </div>
 
       <div class="extra_select_btn">
-        <button type="button" onClick={() => {}}>
-          Select
+        <button type="button" onClick={handleAddSingleExtra}>
+          Add
         </button>
         <button
           disabled
