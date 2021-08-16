@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import SingleExtra from "./single-extra";
-import { extrasList } from "./extras.data";
-import { updateExtras, addSingleExtra } from "../../store/booking";
+import { addSingleExtra } from "../../store/booking";
 import useApi from "../../hooks/useApi";
 import * as extraApi from "../../apis/extra";
 import AppLoading from "../common/loading";
@@ -60,38 +58,15 @@ function ExtrasList({ _extras }) {
   }, [extras]);
 
   const getSelectedExtra = (extraId) => {
-    console.log("extra id: ", extraId);
     if (selectedExtras && selectedExtras[extraId]) {
       return selectedExtras[extraId];
     }
     return null;
   };
 
-  console.log("selected extra: ", selectedExtras);
-
   return (
     <form>
       {_extras.map((extra, i) => {
-        // if (i < 2) {
-        //   return (
-        //     <SingleExtra
-        //       key={extra.id}
-        //       hasQuantity={true}
-        //       extra={extra}
-        //       onUpdateQty={onUpdateQty}
-        //       onExtraSelected={onExtraSelected}
-        //     />
-        //   );
-        // } else {
-        //   return (
-        //     <SingleExtra
-        //       key={extra.id}
-        //       extra={extra}
-        //       onUpdateQty={onUpdateQty}
-        //       onExtraSelected={onExtraSelected}
-        //     />
-        //   );
-        // }
         return (
           <_SingleExtra
             extra={extra}
