@@ -96,16 +96,16 @@ function _SingleExtra({ extra, selectedExtra }) {
       </div>
 
       <div class="extra_select_btn">
-        <button type="button" onClick={handleAddSingleExtra}>
-          {selectedExtra ? "Added" : "Add"}
-        </button>
         <button
           disabled
           type="button"
           onClick={() => console.log("selected")}
-          style={{ marginLeft: "10px", backgroundColor: "dodgerblue" }}
+          style={{ marginRight: "10px", backgroundColor: "dodgerblue" }}
         >
           {selectedExtra ? selectedExtra.qty : "1"}
+        </button>
+        <button type="button" onClick={handleAddSingleExtra}>
+          {selectedExtra ? "Added" : "Add"}
         </button>
       </div>
     </div>
