@@ -140,7 +140,7 @@ export default function ConfirmationForm() {
         </div>
         <div class="next">
           <button href="#" onClick={handleConfirmBooking} disabled={!isAccept}>
-            Pay ammount (${_getTotalPrice()})
+            Pay  
           </button>
         </div>
       </div>
