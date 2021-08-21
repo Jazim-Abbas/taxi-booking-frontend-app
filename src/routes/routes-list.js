@@ -39,25 +39,25 @@ const PROTECTED_ROUTES = [
   {
     path: "/taxi_booking_page_one",
     Component: TaxiBookingPageOne,
-    // reduxKeyNames: reduxBookingKeys.INITIAL_BOOKING,
+    reduxKeyNames: reduxBookingKeys.INITIAL_BOOKING,
     isAuth: true,
   },
   {
     path: "/taxi_booking_page_two",
     Component: TaxiBookingPageTwo,
-    // reduxKeyNames: reduxBookingKeys.VEHICLE,
+    reduxKeyNames: reduxBookingKeys.VEHICLE,
     isAuth: true,
   },
   {
     path: "/taxi_booking_page_three",
     Component: TaxiBookingPageThree,
-    // reduxKeyNames: reduxBookingKeys.EXTRAS,
+    reduxKeyNames: reduxBookingKeys.EXTRAS,
     isAuth: true,
   },
   {
     path: "/taxi_booking_conformation",
     Component: TaxiBookingConfirmation,
-    // reduxKeyNames: reduxBookingKeys.PERSONAL_DETAIL,
+    reduxKeyNames: reduxBookingKeys.PERSONAL_DETAIL,
     isAuth: true,
   },
 ];
