@@ -142,7 +142,7 @@ export default function BookTaxiForm({
             /> */}
 
             <div class="depature_box">
-              <span>Flight Departure Date</span>{" "}
+              <span>Pickup Date</span>{" "}
               <input
                 type="date"
                 placeholder="Flight Departure"
@@ -221,7 +221,7 @@ export default function BookTaxiForm({
               onChange={handleChangeInput}
             /> */}
             <div class="depature_box">
-              <span>Flight Return Date</span>{" "}
+              <span>Return Date</span>{" "}
               <input
                 type="date"
                 placeholder="Flight Departure"
