@@ -63,12 +63,12 @@ export default function TaxiBookingPageOne() {
                           <span>No return date and time</span>
                         )}
                       </div>
-                      <div class="passenger">
+                      {/* <div class="passenger">
                         <span>
                           <i class="fas fa-user-alt"></i>
                           <small>{initialBooking.passengers}</small>
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

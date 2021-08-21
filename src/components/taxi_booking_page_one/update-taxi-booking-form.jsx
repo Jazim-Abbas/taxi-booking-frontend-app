@@ -182,7 +182,10 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <label>Only one way</label>
           </div>
 
-          <div class="airport_fileds">
+
+
+
+          {/* <div class="airport_fileds">
             <span>
               <i class="fas fa-user"></i>
             </span>
@@ -193,10 +196,10 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                   <span>{initialBooking.passengers}</span>
                   <span>Passengers</span>
                 </h5>
-                {/* <h5>
+                <h5>
                 <span>0</span>
                 <span>Adult</span>
-              </h5> */}
+              </h5>
               </div>
             </div>
             <div class="quantites_box passenger_quantities">
@@ -236,7 +239,10 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+
+
+
 
           <div class="booking_page_one_btn">
             <button type="button" onClick={handleUpdateSearch}>
@@ -375,8 +381,8 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <label>Only one way</label>
           </div>
 
-          <div class="airport_fileds">
-            <span>
+          {/* <div class="airport_fileds"> */}
+            {/* <span>
               <i class="fas fa-user"></i>
             </span>
             <div class="air_input">
@@ -386,13 +392,13 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                   <span>{initialBooking.passengers}</span>
                   <span>Passengers</span>
                 </h5>
-                {/* <h5>
+                <h5>
                 <span>0</span>
                 <span>Adult</span>
-              </h5> */}
+              </h5>
               </div>
-            </div>
-            <div class="quantites_box passenger_quantities">
+            </div> */}
+            {/* <div class="quantites_box passenger_quantities">
               <div class="single_box">
                 <div class="children">
                   <h3>Adults</h3>
@@ -428,8 +434,8 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                   <i class="fas fa-plus-circle"></i>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
 
           <div class="booking_page_one_btn">
             <button type="button" onClick={handleUpdateSearch}>
