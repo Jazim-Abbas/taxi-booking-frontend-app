@@ -254,7 +254,7 @@
     width: 43%;
   }
   .continuous_btn {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
   .continuous_btn .back {
