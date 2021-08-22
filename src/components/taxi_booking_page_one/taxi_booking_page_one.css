@@ -48,19 +48,20 @@
   border-bottom: 2px solid gray;
   padding-bottom: 5px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: space-between;
   width: 100%;
+  gap: 0px 5px;
 }
 
 .mobile_route_history .location_history span {
-  width: 100%;
-  text-align: center;
+
+
 }
 
 .mobile_route_history .location_history span i {
-  padding: 5px;
+
   color: #09afee;
-  transform: ROTATE(90deg);
 }
 .timing_history {
   display: flex;

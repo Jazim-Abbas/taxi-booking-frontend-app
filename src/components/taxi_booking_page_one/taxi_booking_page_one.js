@@ -80,7 +80,7 @@ export default function TaxiBookingPageOne() {
                 <ListVehicle />
 
                 <div class="page_one_continous_btn">
-                  <Link to="/Home">Back</Link>
+                  <Link to="/">Back</Link>
                 </div>
               </div>
             </div>
