@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AutoComplete from "react-google-autocomplete";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import PlacesAutocomplete from "react-places-autocomplete";
@@ -11,6 +11,7 @@ export default function BookTaxiForm({
   inputValues,
   onSwapLocation,
 }) {
+  const dropLocationRef = useRef(null);
   const [dropoffLocation, setDropOffLocation] = useState();
   const [pickupLocation, setPickupLocation] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -70,14 +71,15 @@ export default function BookTaxiForm({
                 setDropOffLocation
               )
             }
-            onInvalid={() => console.log("invalid autocomplete")}
+            // onInvalid={() => console.log("invalid autocomplete")}
             options={{ ...googleAutoCompleteOptions }}
-            value={dropoffLocation}
-            onChange={(e) => {
-              onInputChange({ name: "dropoffLocation", value: e.target.value });
-              console.log("e: ", e);
-            }}
+            // value={dropoffLocation}
+            // onChange={(e) => {
+            //   onInputChange({ name: "dropoffLocation", value: e.target.value });
+            //   console.log("e: ", e);
+            // }}
             placeholder="Drop Off Location"
+            ref={dropLocationRef}
           />
           {/* <input
             type="text"
@@ -297,7 +299,14 @@ export default function BookTaxiForm({
         </div>
         <div className="booking_fields">
           {/* <Link to="/taxi_booking_page_one">Order Taxi Now</Link> */}
-          <button type="button" onClick={onSubmit}>
+          <button
+            type="button"
+            onClick={() => {
+              console.log("handle submit");
+              console.log("dropLocation ref: ", dropLocationRef);
+              console.log("dropLocation value: ", dropLocationRef.current.value);
+            }}
+          >
             Order Taxi Now
           </button>
         </div>

@@ -20,6 +20,8 @@ export const BASE_URL =
 
 export const googleAutoCompleteOptions = {
   // types: ["(regions)"],
+  // types: ["establishment"],
+  // types: ["lodging"],
   types: ["establishment"],
   componentRestrictions: { country: "jm" },
 };
