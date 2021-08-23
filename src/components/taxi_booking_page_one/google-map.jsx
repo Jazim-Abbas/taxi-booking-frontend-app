@@ -23,6 +23,9 @@ export default function MyGoogleMap() {
   const { isLoaded } = useGoogleMap();
   const [location, setLocation] = useState();
   const [isMapLoading, setIsMapLoading] = useState(true);
+  const [dropLocationGeocode, setDropLocationGeocode] = useState();
+  const [pickupLocationGeocode, setPickupLocationGeocode] = useState();
+
   const {
     dropoffLocation_lat,
     dropoffLocation_lng,
@@ -32,30 +35,39 @@ export default function MyGoogleMap() {
     pickupLocation,
   } = initialBooking;
 
-  // useEffect(() => {
-  //   console.log("convert geocode")
-  //   _convertLocationToLatAndLng();
-  // }, [dropoffLocation, pickupLocation]);
-
   useEffect(() => {
-    const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
-    const destination = { lat: dropoffLocation_lat, lng: dropoffLocation_lng };
-    const center = { ...origin };
-    const pathCoordinates = [{ ...origin }, { ...destination }];
+    console.log("convert geocode");
+    _convertLocationToLatAndLng();
+  }, [dropoffLocation, pickupLocation]);
 
-    setLocation({ origin, destination, center, pathCoordinates });
-  }, [
-    dropoffLocation_lat,
-    dropoffLocation_lng,
-    pickupLocation_lat,
-    pickupLocation_lng,
-  ]);
+  // useEffect(() => {
+  //   const origin = { lat: pickupLocation_lat, lng: pickupLocation_lng };
+  //   const destination = { lat: dropoffLocation_lat, lng: dropoffLocation_lng };
+  //   const center = { ...origin };
+  //   const pathCoordinates = [{ ...origin }, { ...destination }];
+
+  //   setLocation({ origin, destination, center, pathCoordinates });
+  // }, [
+  //   dropoffLocation_lat,
+  //   dropoffLocation_lng,
+  //   pickupLocation_lat,
+  //   pickupLocation_lng,
+  // ]);
 
   console.log("map location: ", location);
 
   const _convertLocationToLatAndLng = async () => {
-    const geocode = _getLatAndLng(dropoffLocation);
-    console.log("geocode: ", geocode);
+    const dropLocationGeocode = await _getLatAndLng(
+      "Quantum Concepts, Constant Spring Road, Kingston, Jamaica"
+    );
+    const pickupLocationGeocode = await _getLatAndLng(
+      "Sandals Royal Caribbean, Mahoe Close, Montego Bay, Jamaica"
+    );
+
+    setDropLocationGeocode(dropLocationGeocode);
+    setPickupLocationGeocode(pickupLocationGeocode);
+    console.log("dropLocationGeocode: ", dropLocationGeocode);
+    console.log("pickupLocationGeocode: ", pickupLocationGeocode);
   };
 
   const _getLatAndLng = async (location) => {
@@ -93,7 +105,12 @@ export default function MyGoogleMap() {
     return Object.keys(obj).length === 0;
   };
 
-  if (!isMapLoading || !isLoaded || !location) {
+  if (
+    !isMapLoading ||
+    !isLoaded ||
+    !dropLocationGeocode ||
+    !pickupLocationGeocode
+  ) {
     return (
       <div>
         <p>
@@ -103,6 +120,24 @@ export default function MyGoogleMap() {
       </div>
     );
   }
+
+  const origin = {
+    lat: pickupLocationGeocode.lat,
+    lng: pickupLocationGeocode.lng,
+  };
+  const destination = {
+    lat: dropLocationGeocode.lat,
+    lng: dropLocationGeocode.lng,
+  };
+  const center = { ...origin };
+  const pathCoordinates = [{ ...origin }, { ...destination }];
+
+  console.log("origin: ", origin);
+  console.log("destination: ", destination);
+  console.log("center: ", center);
+  console.log("pathCoordinates: ", pathCoordinates);
+
+  // return <p>Google Map here ...</p>;
 
   return (
     <div
@@ -114,13 +149,13 @@ export default function MyGoogleMap() {
     >
       <GoogleMap
         zoom={10}
-        center={location.center}
+        center={center}
         mapContainerStyle={{ width: "100%", height: "100%" }}
       >
-        <Marker position={location.origin} />
-        <Marker position={location.destination} />
+        <Marker position={origin} />
+        <Marker position={destination} />
         <Polyline
-          path={location.pathCoordinates}
+          path={pathCoordinates}
           options={{
             strokeColor: "tomato",
             strokeOpacity: 1,
@@ -130,8 +165,8 @@ export default function MyGoogleMap() {
         />
         <DistanceMatrixService
           options={{
-            origins: [location.origin],
-            destinations: [location.destination],
+            origins: [origin],
+            destinations: [destination],
             travelMode: "DRIVING",
           }}
           callback={handleCalculateDistanceTime}
