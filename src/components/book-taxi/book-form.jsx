@@ -12,6 +12,7 @@ export default function BookTaxiForm({
   onSwapLocation,
 }) {
   const dropLocationRef = useRef(null);
+  const pickupLocationRef = useRef(null);
   const [dropoffLocation, setDropOffLocation] = useState();
   const [pickupLocation, setPickupLocation] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +54,19 @@ export default function BookTaxiForm({
     onInputChange({ name: "passengers", value: +passengers + val });
   };
 
+  const handleSubmit = () => {
+    onInputChange({
+      name: "dropoffLocation",
+      value: dropLocationRef.current.value,
+    });
+    onInputChange({
+      name: "pickupLocation",
+      value: dropLocationRef.current.value,
+    });
+
+    onSubmit();
+  };
+
   console.log("drop off location: ", dropoffLocation);
 
   return (
@@ -64,13 +78,13 @@ export default function BookTaxiForm({
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
           <AutoComplete
-            onPlaceSelected={(place) =>
-              handleDropoffLocation(
-                "dropoffLocation",
-                place,
-                setDropOffLocation
-              )
-            }
+            // onPlaceSelected={(place) =>
+            //   handleDropoffLocation(
+            //     "dropoffLocation",
+            //     place,
+            //     setDropOffLocation
+            //   )
+            // }
             // onInvalid={() => console.log("invalid autocomplete")}
             options={{ ...googleAutoCompleteOptions }}
             // value={dropoffLocation}
@@ -78,6 +92,7 @@ export default function BookTaxiForm({
             //   onInputChange({ name: "dropoffLocation", value: e.target.value });
             //   console.log("e: ", e);
             // }}
+            defaultValue={inputValues.dropoffLocation}
             placeholder="Drop Off Location"
             ref={dropLocationRef}
           />
@@ -91,16 +106,17 @@ export default function BookTaxiForm({
         <div className="booking_fields departure_airport">
           <i className="fas fa-map-marker-alt"></i>
           <AutoComplete
-            onPlaceSelected={(place) =>
-              handleDropoffLocation("pickupLocation", place, setPickupLocation)
-            }
+            // onPlaceSelected={(place) =>
+            //   handleDropoffLocation("pickupLocation", place, setPickupLocation)
+            // }
             options={{ ...googleAutoCompleteOptions }}
             defaultValue={inputValues.pickupLocation}
-            value={pickupLocation}
-            onChange={(e) => {
-              onInputChange({ name: "pickupLocation", value: e.target.value });
-            }}
+            // value={pickupLocation}
+            // onChange={(e) => {
+            //   onInputChange({ name: "pickupLocation", value: e.target.value });
+            // }}
             placeholder="Pickup Location"
+            ref={pickupLocationRef}
           />
           {/* <input
             type="text"
@@ -302,9 +318,13 @@ export default function BookTaxiForm({
           <button
             type="button"
             onClick={() => {
-              console.log("handle submit");
-              console.log("dropLocation ref: ", dropLocationRef);
-              console.log("dropLocation value: ", dropLocationRef.current.value);
+              // console.log("handle submit");
+              // console.log("dropLocation ref: ", dropLocationRef);
+              // console.log(
+              //   "dropLocation value: ",
+              //   dropLocationRef.current.value
+              // );
+              handleSubmit();
             }}
           >
             Order Taxi Now
