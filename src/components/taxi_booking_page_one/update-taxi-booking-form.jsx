@@ -58,7 +58,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
       pickupLocation: pickupLocationRef.current.value,
     };
     console.log("form values inside component: ", _booking);
-    // dispatch(orderTaxi(_booking));
+    dispatch(orderTaxi(_booking));
     // console.log("handle update search");
   };
 
