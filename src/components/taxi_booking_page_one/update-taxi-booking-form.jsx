@@ -19,9 +19,12 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   }, [booking]);
 
   // useEffect(() => {
-  //   dropLocationRef.current.value = booking.initialBooking.dropoffLocation;
-  //   pickupLocationRef.current.value = booking.initialBooking.pickupLocation;
-  // }, [])
+  //   if (dropLocationRef && pickupLocationRef) {
+  //     dropLocationRef.current.value = booking.initialBooking.dropoffLocation;
+  //     pickupLocationRef.current.value = booking.initialBooking.pickupLocation;
+  //     console.log("drop location ref: ", dropLocationRef);
+  //   }
+  // }, []);
 
   const handleSelectedPlace = (inputName, place) => {
     const { lat, lng } = place.geometry.location;
@@ -49,9 +52,14 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   };
 
   const handleUpdateSearch = () => {
-    console.log("form values inside component: ", initialBooking);
-    dispatch(orderTaxi(initialBooking));
-    console.log("handle update search");
+    const _booking = {
+      ...initialBooking,
+      dropoffLocation: dropLocationRef.current.value,
+      pickupLocation: pickupLocationRef.current.value,
+    };
+    console.log("form values inside component: ", _booking);
+    // dispatch(orderTaxi(_booking));
+    // console.log("handle update search");
   };
 
   if (!initialBooking) {
@@ -69,20 +77,21 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <div class="air_input">
               <span>Where From?</span>
               {/* <input type="location" placeholder="Departure Airport" /> */}
-              <AutoComplete
+              {/* <AutoComplete
+                options={{ ...googleAutoCompleteOptions }}
+                inputAutocompleteValue="off"
+                ref={pickupLocationRef}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("dropoffLocation", place)
                 // }
-                options={{ ...googleAutoCompleteOptions }}
                 // value={initialBooking.dropoffLocation}
                 // onChange={(e) => {
                 //   e.target.name = "dropoffLocation";
                 //   handleChange(e);
                 // }}
-                defaultValue={initialBooking.pickupLocation}
-                inputAutocompleteValue="off"
-                ref={pickupLocationRef}
-              />
+                // defaultValue={initialBooking.pickupLocation}
+                
+              /> */}
             </div>
           </div>
 
@@ -93,19 +102,19 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <div class="air_input">
               <span>Where To?</span>
               {/* <input type="location" placeholder="pickup Location" /> */}
-              <AutoComplete
+              {/* <AutoComplete
+                options={{ ...googleAutoCompleteOptions }}
+                ref={dropLocationRef}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("pickupLocation", place)
                 // }
-                options={{ ...googleAutoCompleteOptions }}
                 // value={initialBooking.pickupLocation}
                 // onChange={(e) => {
                 //   e.target.name = "pickupLocation";
                 //   handleChange(e);
                 // }}
-                defaultValue={initialBooking.dropoffLocation}
-                ref={dropLocationRef}
-              />
+                // defaultValue={initialBooking.dropoffLocation}
+              /> */}
             </div>
           </div>
 
@@ -277,7 +286,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 //   handleChange(e);
                 // }}
                 inputAutocompleteValue="off"
-                defaultValue={initialBooking.pickupLocation}
+                // defaultValue={initialBooking.pickupLocation}
                 ref={pickupLocationRef}
               />
             </div>
@@ -300,7 +309,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 //   e.target.name = "pickupLocation";
                 //   handleChange(e);
                 // }}
-                defaultValue={initialBooking.dropoffLocation}
+                // defaultValue={initialBooking.dropoffLocation}
                 ref={dropLocationRef}
               />
             </div>
