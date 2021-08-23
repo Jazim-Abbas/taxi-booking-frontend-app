@@ -9,6 +9,8 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   // const [isOpen, setIsOpen] = useState(false);
 
   const booking = useSelector((state) => state.booking);
+  const _dropLocationRef = useRef(null);
+  const _pickupLocationRef = useRef(null);
   const dropLocationRef = useRef(null);
   const pickupLocationRef = useRef(null);
   const dispatch = useDispatch();
@@ -52,12 +54,41 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   };
 
   const handleUpdateSearch = () => {
+    // const _booking = {
+    //   ...initialBooking,
+    //   dropoffLocation: dropLocationRef.current.value,
+    //   pickupLocation: pickupLocationRef.current.value,
+    // };
+
+    let dropoffLocation = "";
+    let pickupLocation = "";
+
+    if (dropLocationRef.current.value) {
+      console.log("desktop");
+      dropoffLocation = dropLocationRef.current.value;
+    } else {
+      console.log("mobile");
+
+      dropoffLocation = _dropLocationRef.current.value;
+    }
+
+    if (pickupLocationRef.current.value) {
+      pickupLocation = pickupLocationRef.current.value;
+    } else {
+      pickupLocation = _pickupLocationRef.current.value;
+    }
+
     const _booking = {
       ...initialBooking,
-      dropoffLocation: dropLocationRef.current.value,
-      pickupLocation: pickupLocationRef.current.value,
+      dropoffLocation,
+      pickupLocation,
     };
-    console.log("form values inside component: ", _booking);
+
+    // console.log("drop location ref: ", dropLocationRef, _dropLocationRef);
+    // console.log("drop of location: ", _dropLocationRef.current.value);
+    // console.log("pickup location: ", _pickupLocationRef.current.value);
+
+    // console.log("form values inside component: ", _booking);
     dispatch(orderTaxi(_booking));
     // console.log("handle update search");
   };
@@ -77,10 +108,11 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <div class="air_input">
               <span>Where From?</span>
               {/* <input type="location" placeholder="Departure Airport" /> */}
-              {/* <AutoComplete
+              <AutoComplete
                 options={{ ...googleAutoCompleteOptions }}
                 inputAutocompleteValue="off"
-                ref={pickupLocationRef}
+                defaultValue={initialBooking.pickupLocation}
+                ref={_pickupLocationRef}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("dropoffLocation", place)
                 // }
@@ -89,9 +121,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 //   e.target.name = "dropoffLocation";
                 //   handleChange(e);
                 // }}
-                // defaultValue={initialBooking.pickupLocation}
-                
-              /> */}
+              />
             </div>
           </div>
 
@@ -102,9 +132,10 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
             <div class="air_input">
               <span>Where To?</span>
               {/* <input type="location" placeholder="pickup Location" /> */}
-              {/* <AutoComplete
+              <AutoComplete
                 options={{ ...googleAutoCompleteOptions }}
-                ref={dropLocationRef}
+                ref={_dropLocationRef}
+                defaultValue={initialBooking.dropoffLocation}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("pickupLocation", place)
                 // }
@@ -113,8 +144,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
                 //   e.target.name = "pickupLocation";
                 //   handleChange(e);
                 // }}
-                // defaultValue={initialBooking.dropoffLocation}
-              /> */}
+              />
             </div>
           </div>
 
@@ -276,18 +306,18 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
               <span>Where From?</span>
               {/* <input type="location" placeholder="Departure Airport" /> */}
               <AutoComplete
+                options={{ ...googleAutoCompleteOptions }}
+                inputAutocompleteValue="off"
+                ref={pickupLocationRef}
+                defaultValue={initialBooking.pickupLocation}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("dropoffLocation", place)
                 // }
-                options={{ ...googleAutoCompleteOptions }}
                 // value={initialBooking.dropoffLocation}
                 // onChange={(e) => {
                 //   e.target.name = "dropoffLocation";
                 //   handleChange(e);
                 // }}
-                inputAutocompleteValue="off"
-                // defaultValue={initialBooking.pickupLocation}
-                ref={pickupLocationRef}
               />
             </div>
           </div>
@@ -300,17 +330,17 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
               <span>Where To?</span>
               {/* <input type="location" placeholder="pickup Location" /> */}
               <AutoComplete
+                options={{ ...googleAutoCompleteOptions }}
+                ref={dropLocationRef}
+                defaultValue={initialBooking.dropoffLocation}
                 // onPlaceSelected={(place) =>
                 //   handleSelectedPlace("pickupLocation", place)
                 // }
-                options={{ ...googleAutoCompleteOptions }}
                 // value={initialBooking.pickupLocation}
                 // onChange={(e) => {
                 //   e.target.name = "pickupLocation";
                 //   handleChange(e);
                 // }}
-                // defaultValue={initialBooking.dropoffLocation}
-                ref={dropLocationRef}
               />
             </div>
           </div>
