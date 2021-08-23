@@ -6,52 +6,50 @@ import BookTaxiForm from "./book-form";
 import { orderTaxi } from "../../store/booking";
 
 export default function BookTaxi() {
-  const { initialBooking } = useSelector((state) => state.booking);
-  const [booking, setBooking] = useState(bookTaxiInitialValue);
+  // const { initialBooking } = useSelector((state) => state.booking);
+  // const [booking, setBooking] = useState(bookTaxiInitialValue);
   const history = useHistory();
   const dispatch = useDispatch();
-  const bookingState = useSelector((state) => state.booking);
-  console.log("inside order taxi component", bookingState);
+  // const bookingState = useSelector((state) => state.booking);
 
-  useEffect(() => {
-    setBooking({ ...initialBooking });
-  }, []);
+  // useEffect(() => {
+  //   setBooking({ ...initialBooking });
+  // }, []);
 
-  const handleInputChage = (input) => {
-    console.log("input: ", input);
-    const { name, value, ...rest } = input;
+  // const handleInputChage = (input) => {
+  //   console.log("input: ", input);
+  //   const { name, value, ...rest } = input;
 
-    setBooking((prev) => {
-      return { ...prev, [name]: value.toString(), ...rest };
-    });
-  };
+  //   setBooking((prev) => {
+  //     return { ...prev, [name]: value.toString(), ...rest };
+  //   });
+  // };
 
-  const handleSwapLocation = () => {
-    const { dropoffLocation, pickupLocation } = booking;
+  // const handleSwapLocation = () => {
+  //   const { dropoffLocation, pickupLocation } = booking;
 
-    setBooking((prev) => {
-      return {
-        ...prev,
-        dropoffLocation: pickupLocation,
-        pickupLocation: dropoffLocation,
-      };
-    });
-  };
+  //   setBooking((prev) => {
+  //     return {
+  //       ...prev,
+  //       dropoffLocation: pickupLocation,
+  //       pickupLocation: dropoffLocation,
+  //     };
+  //   });
+  // };
 
-  const handleOrderTaxi = ({ formValues }) => {
+  const handleOrderTaxi = (formValues) => {
     console.log("order taxi");
-    console.log("booking: ", booking);
 
-    // dispatch(orderTaxi(booking));
-    // history.push("taxi_booking_page_one");
+    dispatch(orderTaxi(formValues));
+    history.push("taxi_booking_page_one");
   };
 
   return (
     <BookTaxiForm
       onSubmit={handleOrderTaxi}
-      onSwapLocation={handleSwapLocation}
-      onInputChange={handleInputChage}
-      inputValues={booking}
+      // onSwapLocation={handleSwapLocation}
+      // onInputChange={handleInputChage}
+      // inputValues={booking}
     />
   );
 }

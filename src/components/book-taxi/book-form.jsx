@@ -6,12 +6,7 @@ import PlacesAutocomplete from "react-places-autocomplete";
 
 import { googleAutoCompleteOptions } from "../../utils/constants";
 
-export default function BookTaxiForm({
-  onSubmit,
-  onInputChange,
-  // inputValues,
-  onSwapLocation,
-}) {
+export default function BookTaxiForm({ onSubmit }) {
   const { initialBooking } = useSelector((state) => state.booking);
   const [inputValues, setBooking] = useState({});
   const dropLocationRef = useRef(null);
@@ -66,7 +61,6 @@ export default function BookTaxiForm({
 
   const handleChangePassenger = (val) => {
     setPassengers((prev) => prev + val);
-    onInputChange({ name: "passengers", value: +passengers + val });
   };
 
   const handleSwapLocation = () => {
@@ -98,6 +92,13 @@ export default function BookTaxiForm({
     // onSubmit();
 
     console.log("handle submit: ", {
+      ...inputValues,
+      dropoffLocation: dropLocationRef.current.value,
+      pickupLocation: pickupLocationRef.current.value,
+      passengers,
+    });
+
+    onSubmit({
       ...inputValues,
       dropoffLocation: dropLocationRef.current.value,
       pickupLocation: pickupLocationRef.current.value,
