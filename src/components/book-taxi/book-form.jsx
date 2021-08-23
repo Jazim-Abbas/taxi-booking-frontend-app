@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import AutoComplete from "react-google-autocomplete";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -8,9 +9,11 @@ import { googleAutoCompleteOptions } from "../../utils/constants";
 export default function BookTaxiForm({
   onSubmit,
   onInputChange,
-  inputValues,
+  // inputValues,
   onSwapLocation,
 }) {
+  const { initialBooking } = useSelector((state) => state.booking);
+  const [inputValues, setBooking] = useState({});
   const dropLocationRef = useRef(null);
   const pickupLocationRef = useRef(null);
   const [dropoffLocation, setDropOffLocation] = useState();
@@ -18,31 +21,43 @@ export default function BookTaxiForm({
   const [isOpen, setIsOpen] = useState(false);
   const [passengers, setPassengers] = useState(1);
 
+  // useEffect(() => {
+  //   setDropOffLocation(inputValues.dropoffLocation);
+  //   setPickupLocation(inputValues.pickupLocation);
+  // }, [inputValues.dropoffLocation, inputValues.pickupLocation]);
+
   useEffect(() => {
-    setDropOffLocation(inputValues.dropoffLocation);
-    setPickupLocation(inputValues.pickupLocation);
+    setBooking({ ...initialBooking });
+  }, []);
+
+  useEffect(() => {
+    dropLocationRef.current.value = inputValues.dropoffLocation;
+    pickupLocationRef.current.value = inputValues.pickupLocation;
   }, [inputValues.dropoffLocation, inputValues.pickupLocation]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    onInputChange({ name, value: value.toString() });
+    // onInputChange({ name, value: value.toString() });
+    setBooking((prev) => {
+      return { ...prev, [name]: value };
+    });
   };
 
-  const handleDropoffLocation = (inputName, place, setLocationCallback) => {
-    console.log("place: ", place);
+  // const handleDropoffLocation = (inputName, place, setLocationCallback) => {
+  //   console.log("place: ", place);
 
-    const { lat, lng } = place.geometry.location;
+  //   const { lat, lng } = place.geometry.location;
 
-    const target = {
-      name: inputName,
-      value: place.formatted_address,
-      [inputName + "_lat"]: lat(),
-      [inputName + "_lng"]: lng(),
-    };
+  //   const target = {
+  //     name: inputName,
+  //     value: place.formatted_address,
+  //     [inputName + "_lat"]: lat(),
+  //     [inputName + "_lng"]: lng(),
+  //   };
 
-    setLocationCallback(target.value);
-    onInputChange({ ...target });
-  };
+  //   setLocationCallback(target.value);
+  //   onInputChange({ ...target });
+  // };
 
   const handleDropDown = () => {
     console.log("handle dropdown");
@@ -55,19 +70,24 @@ export default function BookTaxiForm({
   };
 
   const handleSubmit = () => {
-    onInputChange({
-      name: "dropoffLocation",
-      value: dropLocationRef.current.value,
-    });
-    onInputChange({
-      name: "pickupLocation",
-      value: dropLocationRef.current.value,
-    });
+    // onInputChange({
+    //   name: "dropoffLocation",
+    //   value: dropLocationRef.current.value,
+    // });
+    // onInputChange({
+    //   name: "pickupLocation",
+    //   value: dropLocationRef.current.value,
+    // });
 
-    onSubmit();
+    // onSubmit();
+
+    console.log("handle submit: ", {
+      ...inputValues,
+      dropoffLocation: dropLocationRef.current.value,
+      pickupLocation: pickupLocationRef.current.value,
+      passengers,
+    });
   };
-
-  console.log("drop off location: ", dropoffLocation);
 
   return (
     <form id="order_taxi_form">

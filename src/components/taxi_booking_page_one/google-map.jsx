@@ -57,12 +57,8 @@ export default function MyGoogleMap() {
   console.log("map location: ", location);
 
   const _convertLocationToLatAndLng = async () => {
-    const dropLocationGeocode = await _getLatAndLng(
-      "Quantum Concepts, Constant Spring Road, Kingston, Jamaica"
-    );
-    const pickupLocationGeocode = await _getLatAndLng(
-      "Sandals Royal Caribbean, Mahoe Close, Montego Bay, Jamaica"
-    );
+    const dropLocationGeocode = await _getLatAndLng(dropoffLocation);
+    const pickupLocationGeocode = await _getLatAndLng(pickupLocation);
 
     setDropLocationGeocode(dropLocationGeocode);
     setPickupLocationGeocode(pickupLocationGeocode);

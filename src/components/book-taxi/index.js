@@ -38,11 +38,12 @@ export default function BookTaxi() {
     });
   };
 
-  const handleOrderTaxi = () => {
+  const handleOrderTaxi = ({ formValues }) => {
     console.log("order taxi");
+    console.log("booking: ", booking);
 
-    dispatch(orderTaxi(booking));
-    history.push("taxi_booking_page_one");
+    // dispatch(orderTaxi(booking));
+    // history.push("taxi_booking_page_one");
   };
 
   return (
