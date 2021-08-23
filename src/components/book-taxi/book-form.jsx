@@ -69,6 +69,22 @@ export default function BookTaxiForm({
     onInputChange({ name: "passengers", value: +passengers + val });
   };
 
+  const handleSwapLocation = () => {
+    // const { dropoffLocation, pickupLocation } = inputValues;
+
+    // setBooking((prev) => {
+    //   return {
+    //     ...prev,
+    //     dropoffLocation: pickupLocation,
+    //     pickupLocation: dropoffLocation,
+    //   };
+    // });
+
+    const dropLocation = dropLocationRef.current.value;
+    dropLocationRef.current.value = pickupLocationRef.current.value;
+    pickupLocationRef.current.value = dropLocation;
+  };
+
   const handleSubmit = () => {
     // onInputChange({
     //   name: "dropoffLocation",
@@ -92,7 +108,7 @@ export default function BookTaxiForm({
   return (
     <form id="order_taxi_form">
       <div className="booking_info banner_booking_first_child">
-        <div className="interchange_arrow" onClick={onSwapLocation}>
+        <div className="interchange_arrow" onClick={handleSwapLocation}>
           <i className="fas fa-expand-arrows-alt"></i>
         </div>
         <div className="booking_fields departure_airport">
