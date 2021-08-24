@@ -365,7 +365,7 @@ width: 100%;
   /* width: 70px;
   padding: 0px; */
 
-  padding: 22px 0px 0px 14px !important;
+  /* padding: 22px 0px 0px 14px !important; */
 }
 .booking_detail form .change_banner_layout .booking_fields input::placeholder {
   color: #3e4958;
@@ -1455,7 +1455,7 @@ footer a:hover {
 .depature_time_box span {
   position: absolute;
   top: 6px;
-  right: 25px;
+  left: 14px;
   font-size: 14px;
 }
 
@@ -1635,6 +1635,9 @@ footer a:hover {
     grid-template-columns: 1fr;
     grid-template-areas: ".";
   }
+  .booking_fields button {
+    width: 100% !important;
+  }
 }
 @media (max-width: 470px) {
   .change_banner_layout {
@@ -1676,9 +1679,6 @@ footer a:hover {
   .depature_time_box span {
     left: 41px !important;
   }
-  .booking_detail form .change_banner_layout .booking_fields i {
-    top: 41px;
-  }
 
   .booking_detail form .change_banner_layout .booking_fields #time {
     /* width: 70px;
@@ -1686,6 +1686,15 @@ footer a:hover {
   
     padding: 22px 0px 0px 43px !important;
   }
+}
+
+@media (max-width: 380px) {
+.booking_detail form .change_banner_layout .booking_fields .time_date_input {
+  grid-template-columns: 1fr ;
+  grid-template-areas: ".";
+
+}
+
 }
 
 .__order-btn {
@@ -1697,3 +1706,4 @@ footer a:hover {
   position: relative;
   text-align: center;
 }
+

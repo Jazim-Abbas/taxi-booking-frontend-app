@@ -57,7 +57,7 @@ export default function ConfirmationForm() {
       passengerName: personaDetail.firstName + " " + personaDetail.lastName,
       passengerEmail: personaDetail.passengerEmail,
       passengerNumber: personaDetail.passengerNumber,
-      totalPassengers: +initialBooking.passengers,
+      totalPassengers: 1,
       totalBags: personaDetail.totalBags,
       extrasPrice: _calculateExtrasPrice(),
     };

@@ -247,6 +247,7 @@ export default function BookTaxiForm({ onSubmit }) {
               <input type="date" placeholder="Flight Departure" />
             </div>
             <div class="depature_time_box">
+              
               <span>Time</span>{" "}
               <input id="time" type="time" placeholder="Time" />
             </div>
@@ -286,6 +287,7 @@ export default function BookTaxiForm({ onSubmit }) {
               />
             </div>
             <div class="depature_time_box">
+            <i class="far fa-clock"></i>
               <span>Return Time</span>{" "}
               {/* <input
                 id="time"
