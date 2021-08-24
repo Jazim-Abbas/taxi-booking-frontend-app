@@ -304,16 +304,16 @@ header {
   margin-bottom: 10px;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr
   grid-template-rows: auto;
   gap: 10px 10px;
-  grid-template-areas: ". .";
+  grid-template-areas: ".";
 }
 
 .booking_detail form .change_banner_layout .booking_fields {
   position: relative;
   width: 100%;
-  background-color: #fff;
+
 }
 .booking_detail form .change_banner_layout .booking_fields i {
   position: absolute;
@@ -327,8 +327,11 @@ header {
   transform: rotate(-26deg);
 }
 .booking_detail form .change_banner_layout .booking_fields .time_date_input {
-  display: flex;
-  justify-content: space-between;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-template-areas: ". .";
+ gap: 10px 10px;
+width: 100%;
 }
 .booking_detail form .change_banner_layout .booking_fields input {
   /* font-size: 15px;
@@ -537,7 +540,7 @@ width: 100%; */
   border-style: solid;
   border-width: 1px 1px 1px 1px;
   border: none;
-  width: 100%;
+  width: 280px;
   outline: none;
   border-radius: 4px;
 }
@@ -1683,4 +1686,14 @@ footer a:hover {
   
     padding: 22px 0px 0px 43px !important;
   }
+}
+
+.__order-btn {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: auto;
+  gap: 10px 10px;
+  grid-template-areas: "." !important;
+  position: relative;
+  text-align: center;
 }

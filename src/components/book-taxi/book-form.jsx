@@ -308,16 +308,16 @@ export default function BookTaxiForm({ onSubmit }) {
         </div>
       </div>
 
-      <div className="booking_info">
-        <div className="booking_fields" onClick={handleDropDown}>
+      <div className="booking_info __order-btn">
+
+        
+        {/* <div className="booking_fields" onClick={handleDropDown}>
           <i className="fas fa-car quantites_icon"></i>
           <div className="quantites">
             <h5>
               <span>{passengers}</span> Passengers
             </h5>
-            {/* <h5>
-              <span>0</span>children
-            </h5> */}
+            
           </div>
           <div
             className="quantites_box"
@@ -326,7 +326,6 @@ export default function BookTaxiForm({ onSubmit }) {
             <div className="single_box">
               <div className="children">
                 <h3>Passengers</h3>
-                {/* <small>12+ year</small> */}
               </div>
               <div className="icon_section">
                 <i
@@ -349,7 +348,10 @@ export default function BookTaxiForm({ onSubmit }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
+
+
         <div className="booking_fields">
           {/* <Link to="/taxi_booking_page_one">Order Taxi Now</Link> */}
           <button
