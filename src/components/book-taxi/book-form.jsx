@@ -207,6 +207,7 @@ export default function BookTaxiForm({ onSubmit }) {
               />
             </div>
             <div class="depature_time_box">
+            <i class="far fa-clock"></i>
               <span>Pickup Time</span>{" "}
               {/* <input
                 id="time"
