@@ -48,7 +48,6 @@ export default function AdminRoutes() {
         {/* <AdminVehicleList />
         </ProtectedRoute> */}
         <ProtectedRoute
-          isAdmin
           path={`${path}/booking/:id`}
           component={SingleBookingScreen}
         />
