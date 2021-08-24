@@ -130,7 +130,7 @@ export default function BookTaxiForm({ onSubmit }) {
             //   console.log("e: ", e);
             // }}
             defaultValue={inputValues.dropoffLocation}
-            placeholder="Drop Off Location"
+            placeholder="Where From ?"
             ref={dropLocationRef}
           />
           {/* <input
@@ -152,7 +152,7 @@ export default function BookTaxiForm({ onSubmit }) {
             // onChange={(e) => {
             //   onInputChange({ name: "pickupLocation", value: e.target.value });
             // }}
-            placeholder="Pickup Location"
+            placeholder="Where To ?"
             ref={pickupLocationRef}
           />
           {/* <input
@@ -207,7 +207,7 @@ export default function BookTaxiForm({ onSubmit }) {
               />
             </div>
             <div class="depature_time_box">
-              <span>Time</span>{" "}
+              <span>Pickup Time</span>{" "}
               {/* <input
                 id="time"
                 type="time"
@@ -276,7 +276,7 @@ export default function BookTaxiForm({ onSubmit }) {
               onChange={handleChangeInput}
             /> */}
             <div class="depature_box">
-              <span>Return Date</span>{" "}
+              <span>Add Return ?</span>{" "}
               <input
                 type="date"
                 placeholder="Flight Departure"
@@ -286,7 +286,7 @@ export default function BookTaxiForm({ onSubmit }) {
               />
             </div>
             <div class="depature_time_box">
-              <span>Time</span>{" "}
+              <span>Return Time</span>{" "}
               {/* <input
                 id="time"
                 type="time"
@@ -366,7 +366,7 @@ export default function BookTaxiForm({ onSubmit }) {
               handleSubmit();
             }}
           >
-            Order Taxi Now
+            Show Prices
           </button>
         </div>
       </div>
