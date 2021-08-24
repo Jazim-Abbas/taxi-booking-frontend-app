@@ -20,7 +20,12 @@ function LoginScreen() {
       dispatch(createUser(user));
       localStorage.setItem("token", user.token);
       localStorage.setItem("user", JSON.stringify(user));
-      history.push("/");
+
+      const nextPageURL = localStorage.getItem("next-url");
+      const url = nextPageURL ? "/" + nextPageURL : "/";
+      localStorage.removeItem("next-url");
+
+      history.replace(url);
       console.log("res: ", res.data);
     } catch (_) {}
   };

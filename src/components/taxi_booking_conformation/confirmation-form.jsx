@@ -30,6 +30,13 @@ export default function ConfirmationForm() {
   };
 
   const handleConfirmBooking = async () => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      localStorage.setItem("next-url", "taxi_booking_conformation");
+      history.push("/login");
+      return;
+    }
+
     await _makeAppropriateFields();
     console.log("handle confirm booking");
   };
@@ -140,7 +147,7 @@ export default function ConfirmationForm() {
         </div>
         <div class="next">
           <button href="#" onClick={handleConfirmBooking} disabled={!isAccept}>
-            Pay  
+            Pay
           </button>
         </div>
       </div>

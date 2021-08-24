@@ -1,9 +1,9 @@
 import { Field } from "formik";
+import { Link } from "react-router-dom";
 
 import { AppForm, FieldError } from "../app-form";
 import { loginSchema } from "../../utils/validations";
 import AppLoading from "../common/loading";
-import { Link } from "react-router-dom";
 
 export default function LoginForm({ onSubmit, isLoading }) {
   return (
