@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { selectVehicle } from "../../store/booking";
 import { BASE_URL } from "../../utils/constants";
 
-export default function SingleVehicle({ vehicle }) {
+export default function SingleVehicle({ vehicle, getVehiclePrice }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -36,17 +36,17 @@ export default function SingleVehicle({ vehicle }) {
               <i class="fas fa-suitcase-rolling"></i>{" "}
               <small>{vehicle.luggageCapacity} Bags</small>
             </span>
-            <span>
+            {/* <span>
               <i id="single_car_more" class="fas fa-chevron-down"></i>
               <small>More Info</small>
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
       <div class="booking_page_one_car_detail">
         <div class="booking_page_one_car_price_detail">
           <strong>Total One-Way Price</strong>
-          <strong>${vehicle.pricePerKM}</strong>
+          <strong>${getVehiclePrice(vehicle.pricePerKM)}</strong>
           <small>Free Cancelation</small>
           <small>No Hidden Charges</small>
           {/* <Link to="/taxi_booking_page_two">Select This Vehicle</Link> */}
