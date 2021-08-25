@@ -113,6 +113,31 @@ export function VehicleForm({ onSubmit, onChangeFile, initValues }) {
             <FieldError field="price" />
           </div>
         </div>
+        <div class="profile_section_two">
+          <div class="profile_name">
+            <label>Select Vehicle Category</label>
+            <Field
+              as="select"
+              name="type"
+              style={{
+                border: "2px solid #d8d8d8",
+                outline: "none",
+                backgroundColor: "#ffffff",
+                padding: "10px 10px",
+                width: "100%",
+              }}
+            >
+              <option value="">---------------</option>
+              <option value="standard">Standard</option>
+              <option value="family">Family</option>
+              <option value="exec & vip">Exec And VIP</option>
+              <option value="minivan">Minivan</option>
+              <option value="small buss">Small Bus</option>
+              <option value="coach">Coach</option>
+            </Field>
+            <FieldError field="type" />
+          </div>
+        </div>
       </div>
       <div class="profile_save_btn">
         <button type="submit">Save</button>
@@ -127,4 +152,5 @@ const initialValues = {
   passenger: "",
   luggage: "",
   price: "",
+  type: "",
 };

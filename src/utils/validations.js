@@ -30,6 +30,7 @@ const vehicleSchema = yup.object().shape({
   passenger: yup.number().required(),
   luggage: yup.number().required(),
   price: yup.number().required(),
+  type: yup.string().required(),
 });
 
 const extraSchema = yup.object().shape({

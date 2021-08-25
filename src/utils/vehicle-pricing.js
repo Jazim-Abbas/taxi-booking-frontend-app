@@ -117,7 +117,7 @@ function getRangeNumber(km) {
     return rangeNumbers[km];
   }
 
-  let range = 1;
+  let range = 13;
 
   for (let i = 0; i < ranges.length; i++) {
     const _range = ranges[i];
