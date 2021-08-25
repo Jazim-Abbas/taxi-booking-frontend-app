@@ -93,3 +93,19 @@ const smallBus = {
   12: { pickupPrice: 975, returnPrice: 926 },
   13: { pickupPrice: 1300, returnPrice: 1235 },
 };
+
+const coach = {
+  1: { pickupPrice: 240, returnPrice: 228 },
+  2: { pickupPrice: 420, returnPrice: 399 },
+  3: { pickupPrice: 480, returnPrice: 456 },
+  4: { pickupPrice: 600, returnPrice: 570 },
+  5: { pickupPrice: 660, returnPrice: 627 },
+  6: { pickupPrice: 720, returnPrice: 684 },
+  7: { pickupPrice: 1200, returnPrice: 1140 },
+  8: { pickupPrice: 1320, returnPrice: 1254 },
+  9: { pickupPrice: 1440, returnPrice: 1368 },
+  10: { pickupPrice: 1560, returnPrice: 1482 },
+  11: { pickupPrice: 1680, returnPrice: 1596 },
+  12: { pickupPrice: 1800, returnPrice: 1710 },
+  13: { pickupPrice: 2400, returnPrice: 2280 },
+};
