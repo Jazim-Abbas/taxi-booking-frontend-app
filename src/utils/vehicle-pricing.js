@@ -1,0 +1,15 @@
+const ranges = [
+  { rangeFrom: 0.01, rangeTo: 15.0, rangeNo: 1 },
+  { rangeFrom: 15.01, rangeTo: 40.0, rangeNo: 2 },
+  { rangeFrom: 40.01, rangeTo: 60.0, rangeNo: 3 },
+  { rangeFrom: 60.01, rangeTo: 80.0, rangeNo: 4 },
+  { rangeFrom: 80.01, rangeTo: 90.0, rangeNo: 5 },
+  { rangeFrom: 90.01, rangeTo: 99.0, rangeNo: 6 },
+  { rangeFrom: 99.01, rangeTo: 110.00, rangeNo: 7 },
+  { rangeFrom: 110.01, rangeTo: 120.0, rangeNo: 8 },
+  { rangeFrom: 120.01, rangeTo: 170.0, rangeNo: 9 },
+  { rangeFrom: 170.01, rangeTo: 200.0, rangeNo: 10 },
+  { rangeFrom: 200.01, rangeTo: 240.0, rangeNo: 11 },
+  { rangeFrom: 240.01, rangeTo: 300.0, rangeNo: 12 },
+  { rangeFrom: 300.01, rangeTo: 400.0, rangeNo: 13 },
+];
