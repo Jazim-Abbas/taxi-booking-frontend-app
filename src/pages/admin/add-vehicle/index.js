@@ -107,13 +107,13 @@ export function VehicleForm({ onSubmit, onChangeFile, initValues }) {
             <FieldError field="luggage" />
           </div>
         </div>
-        <div class="profile_section_two">
+        {/* <div class="profile_section_two">
           <div class="profile_name">
             <label>price</label>
             <Field type="number" name="price" placeholder="" />
             <FieldError field="price" />
           </div>
-        </div>
+        </div> */}
         <div class="profile_section_two">
           <div class="profile_name">
             <label>Select Vehicle Category</label>
@@ -152,6 +152,6 @@ const initialValues = {
   name: "",
   passenger: "",
   luggage: "",
-  price: "",
+  // price: "",
   type: "",
 };
