@@ -39,22 +39,22 @@ export function BookingSummary() {
     return _totalPrice;
   };
 
-  const _calculateVehicleTotalPrice = () => {
-    let _vehiclePrice = 0;
-    if (travelDistance.value) {
-      _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
-    } else {
-      _vehiclePrice = vehicle.pricePerKM;
-    }
-    return Math.floor(_vehiclePrice);
-  };
+  // const _calculateVehicleTotalPrice = () => {
+  //   let _vehiclePrice = 0;
+  //   if (travelDistance.value) {
+  //     _vehiclePrice = vehicle.pricePerKM * (travelDistance.value / 1000);
+  //   } else {
+  //     _vehiclePrice = vehicle.pricePerKM;
+  //   }
+  //   return Math.floor(_vehiclePrice);
+  // };
 
   return (
     <div class="booking_page_one_price_detail" id="mobile_booking_summary">
       <h2>Booking Summary</h2>
       <div class="booking_page_one_total_price">
         <h3>Select Vehicle</h3>
-        <span>${_calculateVehicleTotalPrice()}</span>
+        <span>${vehicle.price}</span>
       </div>
       <div class="booking_page_one_total_price total_price_border">
         <h3>Select Extra</h3>
@@ -62,9 +62,7 @@ export function BookingSummary() {
       </div>
       <div class="booking_page_one_total_price">
         <h3>Total Price</h3>
-        <span>
-          ${_calculateVehicleTotalPrice() + _calculateExtrasTotalPrice()}
-        </span>
+        <span>${vehicle.price + _calculateExtrasTotalPrice()}</span>
       </div>
     </div>
   );

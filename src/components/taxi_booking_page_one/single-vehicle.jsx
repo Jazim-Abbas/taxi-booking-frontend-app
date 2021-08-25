@@ -27,7 +27,7 @@ export default function SingleVehicle({ vehicle, getVehiclePrice }) {
 
   const handleSelectVehicle = () => {
     console.log("select vehicle");
-    dispatch(selectVehicle(vehicle));
+    dispatch(selectVehicle({ ...vehicle, price: vehiclePrice }));
     history.push("/taxi_booking_page_two");
   };
 

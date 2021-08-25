@@ -187,11 +187,15 @@ export default function TransferDetailToogle() {
         </div>
       )}
 
-      <div class="booking_page_one_price_detail" id="laptop_booking_summary" style={{ display: "block"}}>
+      <div
+        class="booking_page_one_price_detail"
+        id="laptop_booking_summary"
+        style={{ display: "block" }}
+      >
         <h2>Booking Summary</h2>
         <div class="booking_page_one_total_price">
           <h3>Selected Vehicle</h3>
-          <span>${_calculateVehicleTotalPrice()}</span>
+          <span>${vehicle.price}</span>
         </div>
         <div class="booking_page_one_total_price total_price_border">
           <h3>Selected Extra</h3>
@@ -199,9 +203,7 @@ export default function TransferDetailToogle() {
         </div>
         <div class="booking_page_one_total_price">
           <h3>Total Price</h3>
-          <span>
-            ${_calculateExtrasTotalPrice() + _calculateVehicleTotalPrice()}
-          </span>
+          <span>${_calculateExtrasTotalPrice() + vehicle.price}</span>
         </div>
       </div>
     </div>
