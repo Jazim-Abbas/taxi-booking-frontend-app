@@ -18,7 +18,7 @@ export default function SingleVehicle({ vehicle, getVehiclePrice }) {
 
   useEffect(() => {
     const price = vehiclePricing.getTaxiPrice({
-      taxiCategoryName: "standard",
+      taxiCategoryName: vehicle.type,
       isOneWay: initialBooking.isOneWay,
       km: travelDistance.value / 1000,
     });

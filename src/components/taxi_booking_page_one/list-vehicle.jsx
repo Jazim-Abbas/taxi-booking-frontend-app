@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import AppLoading from "../common/loading";
 import SingleVehicle from "./single-vehicle";
 import * as vehicleApi from "../../apis/vehicle";
-import * as vehiclePricing from "../../utils/vehicle-pricing";
 
 export default function ListVehicle() {
   const { travelDistance } = useSelector((state) => state.booking);

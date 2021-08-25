@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 import "./taxi_booking_page_one.css";
 import GoogleMap from "./google-map";
 import AppLayout from "../common/layout";
 import ListVehicle from "./list-vehicle";
 import UpdateTaxiBookingForm from "./update-taxi-booking-form";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import moment from "moment";
 
 export default function TaxiBookingPageOne() {
   const { initialBooking } = useSelector((state) => state.booking);
