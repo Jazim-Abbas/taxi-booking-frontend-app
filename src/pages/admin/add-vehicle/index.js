@@ -38,6 +38,7 @@ function _AddNewTaxi() {
       pricePerKM: formValues.price,
       isAvailable: true,
       image: actualFile,
+      type: formValues.type,
     };
     console.log(vehicle);
 
