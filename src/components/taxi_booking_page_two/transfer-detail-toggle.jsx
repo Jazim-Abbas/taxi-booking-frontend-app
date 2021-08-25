@@ -144,7 +144,7 @@ export default function TransferDetailToogle() {
             </div>
           </div>
 
-          <div class="pickup_detail_box">
+          {/* <div class="pickup_detail_box">
             <h4>Passengers</h4>
             <div class="where_from">
               <i class="fas fa-user"></i>
@@ -154,22 +154,22 @@ export default function TransferDetailToogle() {
               </div>
             </div>
 
-            {/* <div class="where_from">
+            <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>CHILDREN</span>
               <p>0</p>
             </div>
-          </div> */}
+          </div>
 
-            {/* <div class="where_from">
+            <div class="where_from">
             <i class="fas fa-user"></i>
             <div class="where_from_location">
               <span>INFANTS</span>
               <p>0</p>
             </div>
-          </div> */}
           </div>
+          </div> */}
 
           {travelDistance.text && (
             <div class="pickup_detail_box">
