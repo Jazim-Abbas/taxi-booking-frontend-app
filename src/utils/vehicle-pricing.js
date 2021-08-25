@@ -5,7 +5,7 @@ const ranges = [
   { rangeFrom: 60.01, rangeTo: 80.0, rangeNo: 4 },
   { rangeFrom: 80.01, rangeTo: 90.0, rangeNo: 5 },
   { rangeFrom: 90.01, rangeTo: 99.0, rangeNo: 6 },
-  { rangeFrom: 99.01, rangeTo: 110.00, rangeNo: 7 },
+  { rangeFrom: 99.01, rangeTo: 110.0, rangeNo: 7 },
   { rangeFrom: 110.01, rangeTo: 120.0, rangeNo: 8 },
   { rangeFrom: 120.01, rangeTo: 170.0, rangeNo: 9 },
   { rangeFrom: 170.01, rangeTo: 200.0, rangeNo: 10 },
@@ -13,3 +13,19 @@ const ranges = [
   { rangeFrom: 240.01, rangeTo: 300.0, rangeNo: 12 },
   { rangeFrom: 300.01, rangeTo: 400.0, rangeNo: 13 },
 ];
+
+const standard = {
+  1: { pickupPrice: 40, returnPrice: 38 },
+  2: { pickupPrice: 70, returnPrice: 67 },
+  3: { pickupPrice: 80, returnPrice: 76 },
+  4: { pickupPrice: 100, returnPrice: 95 },
+  5: { pickupPrice: 110, returnPrice: 105 },
+  6: { pickupPrice: 120, returnPrice: 114 },
+  7: { pickupPrice: 200, returnPrice: 190 },
+  8: { pickupPrice: 220, returnPrice: 209 },
+  9: { pickupPrice: 240, returnPrice: 228 },
+  10: { pickupPrice: 260, returnPrice: 247 },
+  11: { pickupPrice: 280, returnPrice: 266 },
+  12: { pickupPrice: 300, returnPrice: 285 },
+  13: { pickupPrice: 400, returnPrice: 380 },
+};
