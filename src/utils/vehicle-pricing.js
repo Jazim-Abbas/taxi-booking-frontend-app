@@ -45,3 +45,35 @@ const family = {
   12: { pickupPrice: 450, returnPrice: 428 },
   13: { pickupPrice: 600, returnPrice: 570 },
 };
+
+const vip = {
+  1: { pickupPrice: 100, returnPrice: 95 },
+  2: { pickupPrice: 175, returnPrice: 166 },
+  3: { pickupPrice: 200, returnPrice: 190 },
+  4: { pickupPrice: 250, returnPrice: 238 },
+  5: { pickupPrice: 275, returnPrice: 261 },
+  6: { pickupPrice: 300, returnPrice: 285 },
+  7: { pickupPrice: 500, returnPrice: 475 },
+  8: { pickupPrice: 550, returnPrice: 523 },
+  9: { pickupPrice: 600, returnPrice: 570 },
+  10: { pickupPrice: 650, returnPrice: 618 },
+  11: { pickupPrice: 700, returnPrice: 665 },
+  12: { pickupPrice: 750, returnPrice: 713 },
+  13: { pickupPrice: 1000, returnPrice: 950 },
+};
+
+const minivan = {
+  1: { pickupPrice: 80, returnPrice: 76 },
+  2: { pickupPrice: 140, returnPrice: 133 },
+  3: { pickupPrice: 160, returnPrice: 152 },
+  4: { pickupPrice: 200, returnPrice: 190 },
+  5: { pickupPrice: 220, returnPrice: 209 },
+  6: { pickupPrice: 240, returnPrice: 228 },
+  7: { pickupPrice: 400, returnPrice: 380 },
+  8: { pickupPrice: 440, returnPrice: 418 },
+  9: { pickupPrice: 480, returnPrice: 456 },
+  10: { pickupPrice: 520, returnPrice: 494 },
+  11: { pickupPrice: 560, returnPrice: 532 },
+  12: { pickupPrice: 600, returnPrice: 570 },
+  13: { pickupPrice: 800, returnPrice: 760 },
+};
