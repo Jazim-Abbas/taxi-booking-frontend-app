@@ -109,3 +109,46 @@ const coach = {
   12: { pickupPrice: 1800, returnPrice: 1710 },
   13: { pickupPrice: 2400, returnPrice: 2280 },
 };
+
+const rangeNumbers = {};
+
+function getRangeNumber(km) {
+  if (rangeNumbers[km]) {
+    return rangeNumbers[km];
+  }
+
+  let range = 1;
+
+  for (let i = 0; i < ranges.length; i++) {
+    const _range = ranges[i];
+
+    if (_range.rangeFrom < km && km < _range.rangeTo) {
+      range = _range.rangeNo;
+      break;
+    }
+  }
+
+  rangeNumbers[km] = range;
+  return range;
+}
+
+function getAppropriateTaxi(taxiCategoryName) {
+  const category = {
+    standard,
+    family,
+    "exec & vip": vip,
+    minivan,
+    "small buss": smallBus,
+    coach,
+  };
+
+  return category[taxiCategoryName];
+}
+
+export function getTaxiPrice({ taxiCategoryName, isOneWay = true, km } = {}) {
+  const rangeNo = getRangeNumber(km);
+  const taxiCategory = getAppropriateTaxi(taxiCategoryName);
+
+  if (isOneWay) return taxiCategory[rangeNo].pickupPrice;
+  return taxiCategory[rangeNo].pickupPrice + taxiCategory[rangeNo].returnPrice;
+}
