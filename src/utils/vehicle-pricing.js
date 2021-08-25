@@ -29,3 +29,19 @@ const standard = {
   12: { pickupPrice: 300, returnPrice: 285 },
   13: { pickupPrice: 400, returnPrice: 380 },
 };
+
+const family = {
+  1: { pickupPrice: 60, returnPrice: 57 },
+  2: { pickupPrice: 105, returnPrice: 100 },
+  3: { pickupPrice: 120, returnPrice: 114 },
+  4: { pickupPrice: 150, returnPrice: 143 },
+  5: { pickupPrice: 165, returnPrice: 157 },
+  6: { pickupPrice: 180, returnPrice: 171 },
+  7: { pickupPrice: 300, returnPrice: 285 },
+  8: { pickupPrice: 330, returnPrice: 314 },
+  9: { pickupPrice: 360, returnPrice: 342 },
+  10: { pickupPrice: 390, returnPrice: 371 },
+  11: { pickupPrice: 420, returnPrice: 399 },
+  12: { pickupPrice: 450, returnPrice: 428 },
+  13: { pickupPrice: 600, returnPrice: 570 },
+};
