@@ -77,3 +77,19 @@ const minivan = {
   12: { pickupPrice: 600, returnPrice: 570 },
   13: { pickupPrice: 800, returnPrice: 760 },
 };
+
+const smallBus = {
+  1: { pickupPrice: 130, returnPrice: 124 },
+  2: { pickupPrice: 228, returnPrice: 216 },
+  3: { pickupPrice: 260, returnPrice: 247 },
+  4: { pickupPrice: 325, returnPrice: 309 },
+  5: { pickupPrice: 358, returnPrice: 340 },
+  6: { pickupPrice: 390, returnPrice: 371 },
+  7: { pickupPrice: 650, returnPrice: 618 },
+  8: { pickupPrice: 715, returnPrice: 679 },
+  9: { pickupPrice: 780, returnPrice: 741 },
+  10: { pickupPrice: 845, returnPrice: 803 },
+  11: { pickupPrice: 910, returnPrice: 865 },
+  12: { pickupPrice: 975, returnPrice: 926 },
+  13: { pickupPrice: 1300, returnPrice: 1235 },
+};
