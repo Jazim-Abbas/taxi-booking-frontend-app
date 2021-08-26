@@ -5,6 +5,11 @@ import AutoComplete from "react-google-autocomplete";
 import { orderTaxi } from "../../store/booking";
 import { googleAutoCompleteOptions } from "../../utils/constants";
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return { width, height };
+}
+
 export default function UpdateTaxiBookingForm({ isOpen }) {
   // const [isOpen, setIsOpen] = useState(false);
 
@@ -15,10 +20,22 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
   const pickupLocationRef = useRef(null);
   const dispatch = useDispatch();
   const [initialBooking, setInitialBooking] = useState();
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
 
   useEffect(() => {
     setInitialBooking({ ...booking.initialBooking });
   }, [booking]);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // useEffect(() => {
   //   if (dropLocationRef && pickupLocationRef) {
@@ -63,7 +80,11 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
     let dropoffLocation = "";
     let pickupLocation = "";
 
-    if (dropLocationRef.current.value) {
+    // console.log("desktop: ", dropLocationRef.current.value);
+    // console.log("mobile: ", _dropLocationRef.current.value);
+    console.log("window dimension: ", windowDimensions.width);
+
+    if (windowDimensions.width > 540) {
       console.log("desktop");
       dropoffLocation = dropLocationRef.current.value;
     } else {
@@ -72,7 +93,7 @@ export default function UpdateTaxiBookingForm({ isOpen }) {
       dropoffLocation = _dropLocationRef.current.value;
     }
 
-    if (pickupLocationRef.current.value) {
+    if (windowDimensions.width > 540) {
       pickupLocation = pickupLocationRef.current.value;
     } else {
       pickupLocation = _pickupLocationRef.current.value;
