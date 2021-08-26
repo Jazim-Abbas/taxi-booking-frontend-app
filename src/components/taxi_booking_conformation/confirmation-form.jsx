@@ -67,6 +67,8 @@ export default function ConfirmationForm() {
       totalPassengers: 1,
       totalBags: personaDetail.totalBags,
       extrasPrice: _calculateExtrasPrice(),
+      vehiclePrice: vehicle.price,
+      vehicleType: vehicle.type,
     };
     if (!initialBooking.returnDate) {
       const { returnDateTime, ...rest } = bookingFields;
@@ -212,7 +214,7 @@ function VehicleDetail({ vehiclePrice, vehicle }) {
         <div class="booking_page_one_car_detail">
           <div class="booking_page_one_car_price_detail">
             <strong>Total Price</strong>
-            <strong>$ {vehiclePrice}</strong>
+            <strong>$ {vehicle.price}</strong>
             <small>Free Cancelation</small>
             <small>No Hidden Charges</small>
           </div>
