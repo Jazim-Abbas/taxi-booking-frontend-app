@@ -66,7 +66,7 @@ export default function TransferDetailToogle() {
             <div class="where_from">
               <i class="far fa-calendar-alt"></i>
               <div class="where_from_location">
-                <span>PICKUP DATE</span>
+                <span>PICKUP DATE & Time</span>
                 <p>
                   {moment(initialBooking.pickupDate).calendar()}{" "}
                   <small>
@@ -76,13 +76,13 @@ export default function TransferDetailToogle() {
               </div>
             </div>
 
-            <div class="where_from">
+            {/* <div class="where_from">
               <i class="fas fa-map-marker-alt"></i>
               <div class="where_from_location">
                 <span>PICKUP TIME</span>
                 <p>12:00</p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {!initialBooking.isOneWay && (
@@ -107,7 +107,7 @@ export default function TransferDetailToogle() {
               <div class="where_from">
                 <i class="far fa-calendar-alt"></i>
                 <div class="where_from_location">
-                  <span>RETURN DATE</span>
+                  <span>RETURN DATE & Time</span>
                   <p>
                     {moment(initialBooking.returnDate).calendar()}{" "}
                     <small>
@@ -117,13 +117,13 @@ export default function TransferDetailToogle() {
                 </div>
               </div>
 
-              <div class="where_from">
+              {/* <div class="where_from">
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="where_from_location">
                   <span>RETURN TIME</span>
                   <p>12:00</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
 

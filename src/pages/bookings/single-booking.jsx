@@ -56,7 +56,10 @@ export default function SingleBookingScreen() {
         <div class="customer_admin">
           <div class="custom_container">
             <Link to="/admin">{"<-"} Back to Bookings Page</Link>
-            <div class="page_two_booking_complete_summary" style={{ marginTop: "20px"}}>
+            <div
+              class="page_two_booking_complete_summary"
+              style={{ marginTop: "20px" }}
+            >
               <p>Transfer Details</p>
               <i class="fas fa-chevron-down"></i>
             </div>
@@ -82,7 +85,7 @@ export default function SingleBookingScreen() {
                 <div class="where_from">
                   <i class="far fa-calendar-alt"></i>
                   <div class="where_from_location">
-                    <span>TRAVEL DATE</span>
+                    <span>PICKUP DATE</span>
                     <p>
                       {moment(booking.startDateTime).format("YYYY-MM-DD")}{" "}
                       <small>
@@ -101,42 +104,51 @@ export default function SingleBookingScreen() {
                 </div>
               </div>
 
-              {/* <div class="pickup_detail_box">
-                <h4>Return</h4>
-                <div class="where_from">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <div class="where_from_location">
-                    <span>WHERE FROM</span>
-                    <p>{booking.dropoffLocation}</p>
+              {_booking.returnDateTime && (
+                <div class="pickup_detail_box">
+                  <h4>Return</h4>
+                  <div class="where_from">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="where_from_location">
+                      <span>WHERE FROM</span>
+                      <p>{_booking.dropoffLocation}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div class="where_from">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <div class="where_from_location">
-                    <span>WHERE TO</span>
-                    <p>{booking.pickupLocation}</p>
+                  <div class="where_from">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="where_from_location">
+                      <span>WHERE TO</span>
+                      <p>{_booking.pickupLocation}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div class="where_from">
-                  <i class="far fa-calendar-alt"></i>
-                  <div class="where_from_location">
-                    <span>TRAVEL DATE</span>
-                    <p>
-                      {booking.returnDate} <small>[Friday 30,July]</small>
-                    </p>
+                  <div class="where_from">
+                    <i class="far fa-calendar-alt"></i>
+                    <div class="where_from_location">
+                      <span>RETURN DATE</span>
+                      <p>
+                        {_booking.returnDateTime}{" "}
+                        <small>
+                          [
+                          {moment(_booking.returnDateTime).format(
+                            "MMM Do YYYY"
+                          )}
+                          ]
+                        </small>
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div class="where_from">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <div class="where_from_location">
-                    <span>PICKUP TIME</span>
-                    <p>{booking.returnTime}</p>
+                  <div class="where_from">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="where_from_location">
+                      <span>PICKUP TIME</span>
+                      <p>{_booking.returnDateTime}</p>
+                    </div>
                   </div>
                 </div>
-              </div> */}
+              )}
 
               {/* <div class="pickup_detail_box">
                 <h4>{booking.vehicle.name}</h4>

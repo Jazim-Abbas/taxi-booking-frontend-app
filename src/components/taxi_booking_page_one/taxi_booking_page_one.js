@@ -31,7 +31,7 @@ export default function TaxiBookingPageOne() {
                 <div class="mobile_route_deail" id="mobile_route_deail">
                   <div class="mobile_route_history" onClick={handleOpen}>
                     <div class="location_history">
-                      <span>{initialBooking.dropoffLocation}</span>
+                      <span>{initialBooking.pickupLocation}</span>
                       <span>
                         {!initialBooking.isOneWay && (
                           <i class="fas fa-exchange-alt"></i>
@@ -40,7 +40,7 @@ export default function TaxiBookingPageOne() {
                           <i className="fas fa-arrow-right"></i>
                         )}
                       </span>
-                      <span>{initialBooking.pickupLocation}</span>
+                      <span>{initialBooking.dropoffLocation}</span>
                     </div>
                     <div class="timing_history">
                       <div class="date_time_history">
