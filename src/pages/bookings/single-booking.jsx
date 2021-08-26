@@ -143,8 +143,8 @@ export default function SingleBookingScreen() {
                   <div class="where_from">
                     <i class="fas fa-map-marker-alt"></i>
                     <div class="where_from_location">
-                      <span>PICKUP TIME</span>
-                      <p>{_booking.returnDateTime}</p>
+                      <span>RETURN TIME</span>
+                      <p>{moment(booking.startDateTime).format("LT")}</p>
                     </div>
                   </div>
                 </div>
@@ -211,10 +211,7 @@ export default function SingleBookingScreen() {
               </div> */}
             </div>
 
-            <div
-              class="booking_page_one_price_detail"
-              id="laptop_booking_summary"
-            >
+            <div class="booking_page_one_price_detail" id="">
               <h2>Booking Summary</h2>
               {/* <div class="booking_page_one_total_price">
                 <h3>Selected Vehicle</h3>

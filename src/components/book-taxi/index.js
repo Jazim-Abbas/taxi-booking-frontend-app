@@ -38,9 +38,11 @@ export default function BookTaxi() {
   // };
 
   const handleOrderTaxi = (formValues) => {
-    console.log("order taxi");
+    const { isOneWay, ..._formValues } = formValues;
+    console.log("formValues: ", formValues);
+    console.log("_formValues: ", _formValues);
 
-    dispatch(orderTaxi(formValues));
+    dispatch(orderTaxi(_formValues));
     history.push("taxi_booking_page_one");
   };
 
