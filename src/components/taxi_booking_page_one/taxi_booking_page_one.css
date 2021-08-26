@@ -51,7 +51,7 @@
   /* flex-direction: column; */
   justify-content: space-between;
   width: 100%;
-  gap: 0px 5px;
+  gap: 0px 10px;
 }
 
 .mobile_route_history .location_history span {
@@ -140,6 +140,7 @@
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
+  height: 48px;
 }
 .airport_fileds_border {
   border-bottom: 1px solid #e5a600;
