@@ -129,9 +129,9 @@ export default function BookTaxiForm({ onSubmit }) {
             //   onInputChange({ name: "dropoffLocation", value: e.target.value });
             //   console.log("e: ", e);
             // }}
-            defaultValue={inputValues.dropoffLocation}
+            defaultValue={inputValues.pickupLocation}
             placeholder="Where From ?"
-            ref={dropLocationRef}
+            ref={pickupLocationRef}
           />
           {/* <input
             type="text"
@@ -147,13 +147,13 @@ export default function BookTaxiForm({ onSubmit }) {
             //   handleDropoffLocation("pickupLocation", place, setPickupLocation)
             // }
             options={{ ...googleAutoCompleteOptions }}
-            defaultValue={inputValues.pickupLocation}
+            defaultValue={inputValues.dropoffLocation}
             // value={pickupLocation}
             // onChange={(e) => {
             //   onInputChange({ name: "pickupLocation", value: e.target.value });
             // }}
             placeholder="Where To ?"
-            ref={pickupLocationRef}
+            ref={dropLocationRef}
           />
           {/* <input
             type="text"
